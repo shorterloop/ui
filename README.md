@@ -1,27 +1,74 @@
-# Shui
+# Shorter Loop ui component library
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.8.
 
-## Development server
+[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+We are building and maintaining UI components and tools that will help you to build up your own custom components with a lot of customizing options..
 
-## Code scaffolding
+## How to install?
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+You can use npm command line tool to install package.
 
-## Build
+```sh
+npm install shorterloop
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## How to use?
 
-## Running unit tests
+Import the Module:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```ts
+import { ProdeasyPhotographModule } from shorterloop;
 
-## Running end-to-end tests
+@NgModule({
+  ...
+  imports: [ProdeasyPhotographModule]
+  ...
+})
+export class AppModule { }
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Add Form Field in app.component.html
 
-## Further help
+```html
+<prodeasy-photograph>
+  ...
+  ...
+  ...
+</prodeasy-photograph>
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Storybook?
+
+
+[Storybook Link](https://storybook.prodeasy.com)
+
+
+# Our release process
+
+We are following a branch strategy for releasing the prerelease and final versions.
+
+- `major/minor/patch` : all these versions will be published from the `master` branch.
+- `prerelease --preid=beta`: all the prerelease version will be published from the `dev` branch.
+
+#### Patch releases
+
+The patch builds (1.0.1, 1.0.2, etc.) are prepared based on commits in the `master` branch;
+it contains only non-breaking changes.
+
+#### Minor releases
+
+The minor builds (1.1.0, 1.2.0, etc.) can contain changes related to HTML, APIs, CSS, and UX.
+
+#### Prerelease releases
+
+The prerelease builds (1.0.1-beta.0, 1.0.1-beta.1, etc.) are prepared based on commits in the `dev` branch;
+
+## Publishing a new package
+
+1. `npm version patch/minor/major`.
+2. Run `npm publish`
+
+# Browser Support
+
+We supports the most recent versions of all the major browsers: Chrome, Firefox, Safari and IE11/edge.
