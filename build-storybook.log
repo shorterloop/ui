@@ -1,0 +1,32 @@
+
+> angular-latest@0.0.0 build-storybook
+> ng run angular-latest:build-storybook --output-dir /var/folders/p6/h58jffwj3kn_tjchnp33zpbc0000gn/T/chromatic--34802-hxtpNFkI8ElF
+
+info => Cleaning outputDir: ../../../../../../var/folders/p6/h58jffwj3kn_tjchnp33zpbc0000gn/T/chromatic--34802-hxtpNFkI8ElF
+info => Loading presets
+info => Building manager..
+info => Manager built (136 ms)
+info => Building preview..
+info Addon-docs: using MDX3
+info => Using implicit CSS loaders
+info => Using angular browser target options from "angular-latest:build"
+info => Using angular project with "tsConfig:/Users/dineshrawat/Documents/projects/prodeasy/ui-2.0/.storybook/tsconfig.json"
+WARN No story files found for the specified pattern: src/**/*.mdx
+info => Using default Webpack5 setup
+WARN asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
+WARN This can impact web performance.
+WARN Assets: 
+WARN   145.4beaf49b.iframe.bundle.js (358 KiB)
+WARN   639.8b4ad66e.iframe.bundle.js (948 KiB)
+WARN   69.028fe72b.iframe.bundle.js (2.55 MiB)
+WARN entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
+WARN Entrypoints:
+WARN   main (2.63 MiB)
+WARN       runtime~main.bbf9a20b.iframe.bundle.js
+WARN       69.02ba71b8caee74c1dfa5.css
+WARN       69.028fe72b.iframe.bundle.js
+WARN       main.5ba3233a953471800b28.css
+WARN       main.3af8ebb0.iframe.bundle.js
+WARN 
+info => Preview built (18 s)
+info => Output directory: /var/folders/p6/h58jffwj3kn_tjchnp33zpbc0000gn/T/chromatic--34802-hxtpNFkI8ElF
