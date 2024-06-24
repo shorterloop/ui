@@ -1,0 +1,379 @@
+<!-- kanban.component.html -->
+<div class="kanban-board" cdkDropListGroup *ngIf="!type">
+  <ng-container *ngFor="let column of data">
+    <div [style.width.%]="!column?.collapsed? (100 / data.length): 10" class="kanban-column">
+      <div class="kanban-column-header">
+        <h2 [class.collapsed]="column?.collapsed">
+          <span *ngIf="!column?.collapsed">{{ column.heading }}</span>
+
+          <span class="expand-icon" *ngIf="column?.toggleColumn" [class.icon_center]="column?.collapsed"
+            (click)="toggleCollapse(column)">
+            <!-- Custom symbols for expand and collapse -->
+            <ng-container *ngIf="!column?.collapsed; else collapsedIcon">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                fill="#5f6368">
+                <path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z" />
+              </svg>
+            </ng-container>
+            <ng-template #collapsedIcon>
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                fill="#5f6368">
+                <path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z" />
+              </svg>
+            </ng-template>
+          </span>
+        </h2>
+      </div>
+
+      <div class="kanban-column-data">
+        <div *ngIf="column?.collapsed" class="vertical-writing">
+          [{{column.tasks?.length}}] {{column.heading}}
+        </div>
+        <div cdkDropList [cdkDropListData]="column.tasks" class="kanban-list" #kanbanList
+          (cdkDropListDropped)="drop($event)" *ngIf="!column?.collapsed">
+          <div class="kanban-item" *ngFor="let task of column.tasks" cdkDrag
+            [style.borderTop]="task?.borderColor ? '3px solid ' + task?.borderColor : ''">
+            <div class="task-card">
+              <!-- Header -->
+              <div class="task-header">
+                <ng-container *ngFor="let item of task.header">
+                  <ng-container *ngIf="item.type === 'link'">
+                    <span class="link">
+                      <a [href]="item.url">{{ item.label }}</a>
+                    </span>
+                  </ng-container>
+                  <ng-container *ngIf="item.type === 'chip'">
+                    <span class="chip-container">
+                      <span *ngFor="let chip of item.value" class="chip" [style.backgroundColor]="chip?.backgroundColor"
+                        [style.color]="chip?.foregroundColor">{{
+                        chip?.value
+                        }}</span>
+                    </span>
+                  </ng-container>
+                  <!-- Add more header types as needed -->
+                </ng-container>
+              </div>
+
+              <!-- Body -->
+              <div class="task-body">
+                <p>{{ task.body.description }}</p>
+              </div>
+
+              <!-- Footer -->
+              <div class="task-footer">
+                <ng-container *ngFor="let item of task.footer">
+                  <div class="avatar" *ngIf="item.type === 'avatar'">
+                    <img *ngIf="item?.photo" [src]="item?.photo" alt="{{ item.label }}" />
+                    <span>{{ item.label }}</span>
+                  </div>
+                  <ng-container *ngIf="item.type === 'budget'">
+                    <div>Budget: {{ item.value }}</div>
+                  </ng-container>
+                  <ng-container *ngIf="item.type === 'timeFrame'">
+                    <div>Time Frame: {{ item.value }}</div>
+                  </ng-container>
+                  <!-- Add more footer types as needed -->
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="kanban-column-action" *ngIf="column?.action && !column?.collapsed">
+          <a class="add-button" (click)="addAction($event, column)">{{ column?.action?.label }}</a>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<!-- Swimlane -->
+<ng-container *ngIf="type === 'swimlane'">
+  <div class="kanban-board">
+    <ng-container *ngFor="let column of data[0] | columnNames: data">
+      <div [style.width.%]="column?.idealWidth" class="kanban-column">
+        <div class="kanban-column-header">
+          <h2 [class.collapsed]="column?.collapsed">
+            <span *ngIf="!column?.collapsed">{{ column.heading }}</span>
+
+            <span class="expand-icon" *ngIf="column?.toggleColumn" [class.icon_center]="column?.collapsed"
+              (click)="toggleCollapseSwimlane(column)">
+              <!-- Custom symbols for expand and collapse -->
+              <ng-container *ngIf="!column?.collapsed; else collapsedIcon">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                  fill="#5f6368">
+                  <path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z" />
+                </svg>
+              </ng-container>
+              <ng-template #collapsedIcon>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                  fill="#5f6368">
+                  <path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z" />
+                </svg>
+              </ng-template>
+            </span>
+          </h2>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <section cdkDropListGroup class="swimlane-section">
+    <details open *ngFor="let column of data">
+      <summary>{{ column?.heading }}</summary>
+
+      <div class="kanban-board">
+        <div class="kanban-column-data" *ngFor="let dataColumn of column.columns"
+          [style.width.%]="dataColumn?.idealWidth" [class.padding_0]="dataColumn?.collapsed">
+          <div *ngIf="dataColumn?.collapsed" class="vertical-writing">
+            [{{dataColumn.tasks?.length}}] {{dataColumn.heading}}
+          </div>
+
+          <div cdkDropList [cdkDropListData]="dataColumn.tasks" class="kanban-list"
+            attr.customId="swimlane_row_{{column?.id}}" #kanbanList (cdkDropListDropped)="drop($event)"
+            *ngIf="!dataColumn?.collapsed">
+            <div class="kanban-item" *ngFor="let task of dataColumn.tasks" cdkDrag
+              [style.borderTop]="task?.borderColor ? '3px solid ' + task?.borderColor : ''">
+              <div class="task-card">
+                <!-- Header -->
+                <div class="task-header">
+                  <ng-container *ngFor="let item of task.header">
+                    <ng-container *ngIf="item.type === 'link'">
+                      <span class="link">
+                        <a [href]="item.url">{{ item.label }}</a>
+                      </span>
+                    </ng-container>
+                    <ng-container *ngIf="item.type === 'chip'">
+                      <span class="chip-container">
+                        <span *ngFor="let chip of item.value" class="chip"
+                          [style.backgroundColor]="chip?.backgroundColor" [style.color]="chip?.foregroundColor">{{
+                          chip?.value
+                          }}</span>
+                      </span>
+                    </ng-container>
+                    <!-- Add more header types as needed -->
+                  </ng-container>
+                </div>
+
+                <!-- Body -->
+                <div class="task-body">
+                  <p>{{ task.body.description }}</p>
+                </div>
+
+                <!-- Footer -->
+                <div class="task-footer">
+                  <ng-container *ngFor="let item of task.footer">
+                    <div class="avatar" *ngIf="item.type === 'avatar'">
+                      <img *ngIf="item?.photo" [src]="item?.photo" alt="{{ item.label }}" />
+                      <span>{{ item.label }}</span>
+                    </div>
+                    <ng-container *ngIf="item.type === 'budget'">
+                      <div>Budget: {{ item.value }}</div>
+                    </ng-container>
+                    <ng-container *ngIf="item.type === 'timeFrame'">
+                      <div>Time Frame: {{ item.value }}</div>
+                    </ng-container>
+                    <!-- Add more footer types as needed -->
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="kanban-column-action" *ngIf="column?.action && !column?.collapsed">
+            <a class="add-button" (click)="addAction($event, column)">{{ column?.action?.label }}</a>
+          </div>
+        </div>
+      </div>
+    </details>
+  </section>
+</ng-container>
+
+<!-- Workflow  -->
+<ng-container *ngIf="type === 'workflow'">
+  <table>
+    <thead>
+      <tr>
+        <th *ngFor="let th of tableHeaders; let i=index" [style.width.%]="100 / tableHeaders.length">
+          {{ th.label }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let opportunity of data; let i = index">
+        <tr *ngFor="let solution of opportunity.solutions; let j = index">
+          <ng-container *ngIf="j === 0">
+            <td [attr.rowspan]="opportunity.solutions.length" class="odd-section">
+              <div class="kanban-item"
+                [style.borderTop]="opportunity.opportunity?.borderColor ? '3px solid ' + opportunity.opportunity?.borderColor : ''">
+                <div class="task-card">
+                  <!-- Header -->
+                  <div class="task-header" *ngIf="opportunity.opportunity.header">
+                    <ng-container *ngFor="let item of opportunity.opportunity.header">
+                      <ng-container *ngIf="item.type === 'link'">
+                        <span class="link">
+                          <a [href]="item.url">{{ item.label }}</a>
+                        </span>
+                      </ng-container>
+                      <ng-container *ngIf="item.type === 'chip'">
+                        <span class="chip-container">
+                          <span *ngFor="let chip of item.value" class="chip"
+                            [style.backgroundColor]="chip?.backgroundColor" [style.color]="chip?.foregroundColor">{{
+                            chip?.value
+                            }}</span>
+                        </span>
+                      </ng-container>
+                      <!-- Add more header types as needed -->
+                    </ng-container>
+                  </div>
+
+                  <!-- Body -->
+                  <div class="task-body" *ngIf="opportunity.opportunity.body.description">
+                    <p>{{ opportunity.opportunity.body.description }}</p>
+                  </div>
+
+                  <!-- Footer -->
+                  <div class="task-footer" *ngIf="opportunity.opportunity.footer">
+                    <ng-container *ngFor="let item of opportunity.opportunity.footer">
+                      <div class="avatar" *ngIf="item.type === 'avatar'">
+                        <img *ngIf="item?.photo" [src]="item?.photo" alt="{{ item.label }}" />
+                        <span>{{ item.label }}</span>
+                      </div>
+                      <ng-container *ngIf="item.type === 'budget'">
+                        <div>Budget: {{ item.value }}</div>
+                      </ng-container>
+                      <ng-container *ngIf="item.type === 'timeFrame'">
+                        <div>Time Frame: {{ item.value }}</div>
+                      </ng-container>
+                      <!-- Add more footer types as needed -->
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="opportunity.opportunity?.action" class="workflow-kanban-action">
+                <a (click)="addAction($event, opportunity.opportunity)" class="d-flex">
+                  <span *ngIf="opportunity.opportunity?.action?.icon"
+                    [innerHTML]="sanitizer.bypassSecurityTrustHtml(opportunity.opportunity?.action?.icon)"></span>
+
+                  <span>{{ opportunity.opportunity?.action?.label
+                    }}</span>
+                </a>
+              </div>
+            </td>
+          </ng-container>
+
+          <td>
+            <div class="kanban-item"
+              [style.borderTop]="solution.solution?.borderColor ? '3px solid ' + solution.solution?.borderColor : ''">
+              <div class="task-card">
+                <!-- Header -->
+                <div class="task-header" *ngIf="solution.solution.header">
+                  <ng-container *ngFor="let item of solution.solution.header">
+                    <ng-container *ngIf="item.type === 'link'">
+                      <span class="link">
+                        <a [href]="item.url">{{ item.label }}</a>
+                      </span>
+                    </ng-container>
+                    <ng-container *ngIf="item.type === 'chip'">
+                      <span class="chip-container">
+                        <span *ngFor="let chip of item.value" class="chip"
+                          [style.backgroundColor]="chip?.backgroundColor" [style.color]="chip?.foregroundColor">{{
+                          chip?.value
+                          }}</span>
+                      </span>
+                    </ng-container>
+                    <!-- Add more header types as needed -->
+                  </ng-container>
+                </div>
+
+                <!-- Body -->
+                <div class="task-body" *ngIf="solution.solution.body.description">
+                  <p>{{ solution.solution.body.description }}</p>
+                </div>
+
+                <!-- Footer -->
+                <div class="task-footer" *ngIf="solution.solution.footer">
+                  <ng-container *ngFor="let item of solution.solution.footer">
+                    <div class="avatar" *ngIf="item.type === 'avatar'">
+                      <img *ngIf="item?.photo" [src]="item?.photo" alt="{{ item.label }}" />
+                      <span>{{ item.label }}</span>
+                    </div>
+                    <ng-container *ngIf="item.type === 'budget'">
+                      <div>Budget: {{ item.value }}</div>
+                    </ng-container>
+                    <ng-container *ngIf="item.type === 'timeFrame'">
+                      <div>Time Frame: {{ item.value }}</div>
+                    </ng-container>
+                    <!-- Add more footer types as needed -->
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="solution.solution?.action" class="workflow-kanban-action">
+              <a (click)="addAction($event, solution.solution)" class="d-flex">
+                <span *ngIf="solution.solution?.action?.icon"
+                  [innerHTML]="sanitizer.bypassSecurityTrustHtml(solution.solution?.action?.icon)"></span>
+
+                <span>{{ solution.solution?.action?.label
+                  }}</span>
+              </a>
+            </div>
+          </td>
+
+          <td class="odd-section" cdkDropListGroup cdkDropList [cdkDropListData]="solution.experiments"
+            (cdkDropListDropped)="drop($event)">
+            <ng-container *ngFor="let experiment of solution.experiments" class="kanban-list">
+              <div class="kanban-item" cdkDrag
+                [style.borderTop]="experiment?.borderColor ? '3px solid ' + experiment?.borderColor : ''">
+                <div class="task-card">
+                  <!-- Header -->
+                  <div class="task-header" *ngIf="experiment.header">
+                    <ng-container *ngFor="let item of experiment.header">
+                      <ng-container *ngIf="item.type === 'link'">
+                        <span class="link">
+                          <a [href]="item.url">{{ item.label }}</a>
+                        </span>
+                      </ng-container>
+                      <ng-container *ngIf="item.type === 'chip'">
+                        <span class="chip-container">
+                          <span *ngFor="let chip of item.value" class="chip"
+                            [style.backgroundColor]="chip?.backgroundColor" [style.color]="chip?.foregroundColor">{{
+                            chip?.value
+                            }}</span>
+                        </span>
+                      </ng-container>
+                      <!-- Add more header types as needed -->
+                    </ng-container>
+                  </div>
+
+                  <!-- Body -->
+                  <div class="task-body" *ngIf="experiment.body.description">
+                    <p>{{ experiment.body.description }}</p>
+                  </div>
+
+                  <!-- Footer -->
+                  <div class="task-footer" *ngIf="experiment.footer">
+                    <ng-container *ngFor="let item of experiment.footer">
+                      <div class="avatar" *ngIf="item.type === 'avatar'">
+                        <img *ngIf="item?.photo" [src]="item?.photo" alt="{{ item.label }}" />
+                        <span>{{ item.label }}</span>
+                      </div>
+                      <ng-container *ngIf="item.type === 'budget'">
+                        <div>Budget: {{ item.value }}</div>
+                      </ng-container>
+                      <ng-container *ngIf="item.type === 'timeFrame'">
+                        <div>Time Frame: {{ item.value }}</div>
+                      </ng-container>
+                      <!-- Add more footer types as needed -->
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </td>
+        </tr>
+
+      </ng-container>
+    </tbody>
+  </table>
+</ng-container>

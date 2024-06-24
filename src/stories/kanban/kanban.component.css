@@ -1,0 +1,355 @@
+* {
+  font-family: system-ui;
+  margin: 0;
+  padding: 0;
+}
+
+.kanban-board {
+  display: flex;
+}
+
+.kanban_board_collapsed {
+  gap: 10px;
+}
+
+.kanban-column {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  overflow: hidden;
+  border-right: none;
+  /* border-bottom: none; */
+}
+
+.kanban-column:last-child {
+  border-right: 1px solid #e0e0e0;
+}
+
+.kanban-column:hover .kanban-column-action {
+  visibility: visible;
+}
+
+h2 {
+  /* border-bottom: 1px solid #e0e0e0; */
+  border-right: none;
+  margin: 0;
+  padding: 16px 0 16px 16px;
+  background-color: #ffffff;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}
+
+/*
+.kanban-column:last-child h2 {
+  border-right: 1px solid #e0e0e0;
+} */
+
+.kanban-column-data {
+  padding: 16px;
+  border-top: 1px solid #e0e0e0;
+  /* border-bottom: none !important;
+  border-right: none !important;
+  border-left: none !important; */
+}
+
+.kanban-column-data:first-child {
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+}
+
+.kanban-column-data:not(:last-child) {
+  border-right: none !important;
+  border-bottom: none !important;
+}
+
+/*
+.kanban-column:last-child .kanban-column-data {
+  border-right: 1px solid #e0e0e0;
+} */
+
+.kanban-column.collapsed .kanban-column-data {
+  display: none;
+  /* Hide the column data when collapsed */
+}
+
+.kanban-column:nth-child(odd) {
+  background-color: #f8f6ff;
+}
+
+.kanban-list {
+  min-height: 200px;
+  height: 100%;
+}
+
+.kanban-item {
+  position: relative;
+  justify-content: space-between;
+  padding: 10px 8px;
+  min-height: 41px;
+  background: #fff;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.cdk-drag.kanban-item {
+  cursor: grab;
+}
+
+.cdk-drag.kanban-item:active,
+.kanban-board:active {
+  cursor: grabbing;
+}
+
+.icon_center {
+  justify-content: center !important;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.link {
+  margin-right: 3px;
+}
+
+.link a {
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%;
+  text-transform: capitalize;
+  text-decoration: none;
+  white-space: nowrap;
+  max-width: fit-content;
+  color: #573df4;
+  float: left;
+  margin-right: 5px;
+  min-width: fit-content;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.chip-container {
+  color: #ffffff;
+  margin-right: 5px;
+}
+
+.chip-container .chip {
+  color: #fff;
+  text-align: center;
+  font-size: 10px;
+  margin-right: 5px;
+  padding: 4px 8px;
+  border-radius: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.task-body {
+  color: #323232;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%;
+  min-height: 40px;
+  margin: 14px 0;
+}
+
+.task-footer {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%;
+  color: #230f9f;
+}
+
+.task-footer div:not(:last-child)::after {
+  content: '·';
+  margin-right: 5px;
+  font-size: 12px;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar img {
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.kanban-column-action {
+  visibility: hidden;
+  font-style: normal;
+  line-height: 140%;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  max-width: fit-content;
+  color: #573df4;
+  float: left;
+  margin-right: 5px;
+  min-width: fit-content;
+  font-size: 14px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  display: block;
+}
+
+.expand-icon {
+  cursor: pointer;
+  margin-right: 5px;
+  font-size: 18px;
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.expand-icon svg {
+  width: 18px;
+  border: 1px solid transparent;
+  height: 18px;
+  padding: 5px;
+}
+
+.expand-icon svg:hover {
+  background: #f0f0f0;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 4px;
+  box-shadow: none;
+  color: #0f6cbd;
+}
+
+.vertical-writing {
+  color: #616161;
+  font-size: 12px;
+  font-weight: 600;
+  overflow: hidden;
+  padding: 12px;
+  position: relative;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -ms-writing-mode: tb-lr;
+  writing-mode: vertical-lr;
+  left: 25%;
+}
+
+.swimlane-section {
+  border-left: 1px solid #e0e0e0;
+  border-right: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+summary {
+  padding: 16px;
+  background-color: #FAFAFA;
+  cursor: pointer;
+}
+
+details:not(:first-child) {
+  border-top: 1px solid #e0e0e0;
+}
+
+.swimlane-section .kanban-column-data {
+  border: 1px solid #e0e0e0;
+  /* border-left: none; */
+}
+
+.swimlane-section .kanban-column-data:last-child {
+  border-right: none;
+  border-bottom: none;
+}
+
+.padding_0 {
+  padding: 0;
+}
+
+.padding_0:first-child {
+  border: 1px solid #e0e0e0 !important;
+  border-bottom: none !important;
+  border-right: none !important;
+  border-left: none !important;
+}
+
+.padding_0:last-child {
+  border: 1px solid #e0e0e0 !important;
+}
+
+h2.collapsed {
+  padding-left: 0 !important;
+}
+
+h2:not(.collapsed) {
+  padding-right: 16px !important;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background-color: #ffffff;
+  padding: 0;
+}
+
+th,
+th,
+td {
+  border: 1px solid #e0e0e0;
+  padding: 16px;
+  text-align: left;
+}
+
+td {
+  vertical-align: top;
+}
+
+.swimlane-section .kanban-column-data:nth-child(odd) {
+  background-color: #f8f6ff;
+}
+
+.odd-section {
+  background-color: #f8f6ff;
+}
+
+.workflow-kanban-action a {
+  font-style: normal;
+  line-height: 140%;
+  text-transform: capitalize;
+  text-decoration: none;
+  white-space: nowrap;
+  max-width: fit-content;
+  color: #573df4;
+  float: left;
+  margin-right: 5px;
+  min-width: fit-content;
+  font-size: 14px;
+  cursor: pointer;
+  float: right;
+}
+
+.d-flex {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
