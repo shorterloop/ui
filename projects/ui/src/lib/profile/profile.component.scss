@@ -1,0 +1,26 @@
+.name_field {
+  width: 440px;
+
+  ::-webkit-input-placeholder {
+    color: #000000;
+  }
+
+  :-ms-input-placeholder {
+    color: #000000;
+  }
+
+  ::placeholder {
+    color: #000000;
+  }
+}
+
+.upload_text {
+  font-family: Arial;
+  color: #979797;
+  font-size: 13px;
+  padding-right: 60px;
+}
+
+.photograph-container {
+  display: flex;
+}

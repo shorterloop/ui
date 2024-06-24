@@ -1,0 +1,96 @@
+
+    .photo_wrap {
+      width: 108px;
+      height: 108px;
+      text-align: center;
+      margin-right: 20px;
+      position: relative;
+      border-radius: 4px;
+      .photo_overlay {
+        position: absolute;
+        background: rgba(60, 64, 67, 0.86);
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+        border-radius: 4px;
+        align-items: center;
+        justify-content: center;
+        display: none;
+        img {
+          height: 24px;
+          width: 24px;
+        }
+      }
+      svg {
+        width: 108px;
+        border-radius: 4px;
+      }
+      img {
+        height: 108px;
+        width: 108px;
+        border-radius: 4px;
+      }
+    }
+    .name_wrap {
+      width: 108px;
+      text-align: center;
+      margin-right: 20px;
+      .name_field {
+        ::-webkit-input-placeholder {
+          color: #000000;
+        }
+        :-ms-input-placeholder {
+          color: #000000;
+        }
+        ::placeholder {
+          color: #000000;
+        }
+        input {
+          font-size: 32px;
+          color: #000000;
+          // font-family: $fontBold;
+          border: 1px solid transparent;
+          margin-left: -10px;
+          border-radius: 4px;
+          padding: 3px 8px;
+          &:hover {
+            border-color: rgba(25, 25, 25, 0.32) !important;
+          }
+        }
+      }
+      .upload_photo_button {
+        .upload_btn {
+          color: #076cf2;
+          font-size: 13px;
+          border: none;
+          background: transparent;
+          padding: 0;
+          margin: 1px 0 7px;
+          cursor: pointer;
+        }
+      }
+      .upload_text {
+        color: #979797;
+        font-size: 13px;
+        padding-right: 60px;
+      }
+    }
+    .remove_photo {
+      display: block;
+    }
+
+      .photo_wrap {
+        &:hover {
+          .photo_overlay {
+            display: flex;
+          }
+        }
+      }
+      .remove_photo {
+        display: block;
+      }
+      .upload_photo {
+        display: block;
+      }
+

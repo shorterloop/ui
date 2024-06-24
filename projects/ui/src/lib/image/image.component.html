@@ -1,0 +1,49 @@
+<div class="photo_wrap" #imageContainer>
+  <!-- upload photo on hover -->
+  <a class="photo_overlay" (click)="fileInput.click()">
+    <img [src]="editIcon" alt="edit" />
+  </a>
+  <input
+    hidden
+    type="file"
+    #fileInput
+    accept="image/png, image/jpeg, image/jpg"
+    (change)="imageUpload($event, imageContainer)"
+  />
+
+  <img
+    class="company_image"
+    [src]="imageSrc"
+    id="imgSrc"
+    #imgSrc
+    (error)="handleImageError(imageContainer)"
+  />
+</div>
+<div class="name_wrap">
+  <!-- Upload photo -->
+  <div *ngIf="!isImageUploaded" class="upload_photo_button upload_photo">
+    <button (click)="fileInput.click()" class="upload_btn">
+      {{ uploadButtonText }}
+    </button>
+    <input
+      hidden
+      type="file"
+      #fileInput
+      accept="image/png, image/jpeg, image/jpg"
+      (change)="imageUpload($event, imageContainer)"
+    />
+  </div>
+  <!-- Remove photo -->
+  <div *ngIf="isImageUploaded" class="upload_photo_button remove_photo">
+    <button (click)="removeImage(imageContainer)" class="upload_btn">
+      {{ removeButtonText }}
+    </button>
+    <input
+      hidden
+      type="file"
+      #fileInput
+      accept="image/png, image/jpeg, image/jpg"
+      (change)="imageUpload($event, imageContainer)"
+    />
+  </div>
+</div>

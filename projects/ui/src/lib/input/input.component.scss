@@ -1,0 +1,18 @@
+input {
+  font-size: 32px;
+  color: #000000;
+  font-family: Arial;
+  border: 1px solid transparent;
+  margin-left: -10px;
+  border-radius: 4px;
+  padding: 3px 8px;
+  &:hover {
+    border-color: rgba(25, 25, 25, 0.32) !important;
+  }
+  &:focus{
+    border-color: rgba(25, 25, 25, 0.32) !important;
+  }
+  &:focus-visible{
+    outline-color: rgba(25, 25, 25, 0.32) !important;
+  }
+}
