@@ -7,10 +7,13 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "storybook": "ng run angular-latest:storybook",
-    "chromatic": "npx chromatic --project-token=chpt_02ca151e6535bf7",
     "build-storybook": "ng run angular-latest:build-storybook"
   },
   "private": true,
+  "engines": {
+    "node": "18.19.1",
+    "npm": "10.2.4"
+  },
   "dependencies": {
     "@angular/animations": "^18.0.0",
     "@angular/cdk": "^18.0.4",
@@ -30,14 +33,12 @@
     "@angular-devkit/build-angular": "^18.0.5",
     "@angular/cli": "^18.0.5",
     "@angular/compiler-cli": "^18.0.0",
-    "@chromatic-com/storybook": "^1.5.0",
     "@storybook/addon-essentials": "^8.1.10",
     "@storybook/addon-interactions": "^8.1.10",
     "@storybook/addon-links": "^8.1.10",
     "@storybook/angular": "^8.1.10",
     "@storybook/blocks": "^8.1.10",
     "@storybook/test": "^8.1.10",
-    "chromatic": "^11.5.4",
     "storybook": "^8.1.10",
     "typescript": "~5.4.2"
   }
