@@ -30,8 +30,8 @@ jobs:
       with:
         apiToken: ${{ secrets.CF_API_TOKEN }}
         accountId:  ${{ secrets.CF_ACCOUNT_ID }}
-        projectName: 'ui-2-0'
-        directory: '/storybook-static'
+        projectName: 'dist'
+        directory: 'storybook/ui'
         branch: main
         gitHubToken: ${{ secrets.GH_TOKEN }}
         wranglerVersion: '3'

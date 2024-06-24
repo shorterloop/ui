@@ -36,9 +36,8 @@ yarn-error.log
 /libpeerconnection.log
 testem.log
 /typings
+/storybook-static
 
 # System files
 .DS_Store
 Thumbs.db
-
-*storybook.log
