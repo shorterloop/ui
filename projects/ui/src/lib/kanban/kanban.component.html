@@ -136,11 +136,11 @@
               [style.borderTop]="task?.borderColor ? '3px solid ' + task?.borderColor : ''">
               <div class="task-card">
                 <!-- Header -->
-                <div class="task-header">
+                <div class="task-header" *ngIf="task?.header?.length">
                   <ng-container *ngFor="let item of task.header">
                     <ng-container *ngIf="item.type === 'link'">
                       <span class="link">
-                        <a [href]="item.url">{{ item.label }}</a>
+                        <a href="javascript:void(0)" (click)="addAction($event, item)">{{ item.label }}</a>
                       </span>
                     </ng-container>
                     <ng-container *ngIf="item.type === 'chip'">
@@ -161,7 +161,7 @@
                 </div>
 
                 <!-- Footer -->
-                <div class="task-footer">
+                <div class="task-footer" *ngIf="task.footer?.length">
                   <ng-container *ngFor="let item of task.footer">
                     <div class="avatar" *ngIf="item.type === 'avatar'">
                       <img *ngIf="item?.photo" [src]="item?.photo" alt="{{ item.label }}" />
