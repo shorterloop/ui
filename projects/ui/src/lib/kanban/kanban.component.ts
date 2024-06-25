@@ -121,7 +121,7 @@ export class KanbanComponent implements AfterViewInit {
   }
 
   addAction($event: any, column: Column) {
-    column.action?.event($event, column);
+    column?.action?.event($event, column);
   }
 
   toggleCollapse(column: Column) {
