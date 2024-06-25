@@ -29,7 +29,11 @@ const kanbanData = [
       {
         id: 1,
         header: [
-          { type: 'link', label: 'EP-1', url: 'https://example.com' },
+          {
+            type: 'link', label: 'EP-1', event: ($event: any, column: any) => {
+              console.log("Added new experiment action performed: ", column, $event);
+            }
+          },
           { type: 'chip', value: [{ value: 'To Do', backgroundColor: '#FFF1F1', foregroundColor: '#D3272A' }] },
         ],
         body: { description: 'User-Perceived Value Validation. User-Perceived Value Validation' },
@@ -153,7 +157,11 @@ const kanbanDataWithSwimlanes = [
           {
             id: 1,
             header: [
-              { type: 'link', label: 'EP-1', url: 'https://example.com' },
+              {
+                type: 'link', label: 'EP-1', event: ($event: any, column: any) => {
+                  console.log("Added new experiment action performed: ", column, $event);
+                }
+              },
               { type: 'chip', value: [{ value: 'Tag 1', backgroundColor: '#FFF1F1', foregroundColor: '#D3272A' }, { value: 'Tag 2', backgroundColor: '#009042' }] },
             ],
             body: { description: 'User-Perceived Value Validation. User-Perceived Value Validation' },
@@ -270,7 +278,11 @@ const kanbanDataWithSwimlanes = [
           {
             id: 7,
             header: [
-              { type: 'link', label: 'EP-7', url: 'https://example.com' },
+              {
+                type: 'link', label: 'EP-7', event: ($event: any, column: any) => {
+                  console.log("Added new experiment action performed: ", column, $event);
+                }
+              },
               { type: 'chip', value: [{ value: 'Tag 9', backgroundColor: '#FFF1F1', foregroundColor: '#D3272A' }, { value: 'Tag 10', backgroundColor: '#009042' }] },
             ],
             body: { description: 'New Task in To Do' },
@@ -297,7 +309,11 @@ const kanbanDataWithSwimlanes = [
           {
             id: 8,
             header: [
-              { type: 'link', label: 'EP-8', url: 'https://example.com' },
+              {
+                type: 'link', label: 'EP-8', event: ($event: any, column: any) => {
+                  console.log("Added new experiment action performed: ", column, $event);
+                }
+              },
               { type: 'chip', value: [{ value: 'Tag 11', backgroundColor: 'blue' }] },
             ],
             body: { description: 'New Task in Progress' },
@@ -318,7 +334,11 @@ const kanbanDataWithSwimlanes = [
           {
             id: 9,
             header: [
-              { type: 'link', label: 'EP-9', url: 'https://example.com' },
+              {
+                type: 'link', label: 'EP-9', event: ($event: any, column: any) => {
+                  console.log("Added new experiment action performed: ", column, $event);
+                }
+              },
               { type: 'chip', value: [{ value: 'Tag 12', backgroundColor: 'red', foregroundColor: '#ffffff' }] },
             ],
             body: { description: 'New Completed Task' },
@@ -341,7 +361,11 @@ const workflowItems = [
     opportunity: {
       id: 1,
       header: [
-        { type: 'link', label: 'EP-1', url: 'https://example.com' },
+        {
+          type: 'link', label: 'EP-1', event: ($event: any, column: any) => {
+            console.log("Added new experiment action performed: ", column, $event);
+          }
+        },
         { type: 'chip', value: [{ value: 'Tag 1', backgroundColor: '#FFF1F1', foregroundColor: '#D3272A' }, { value: 'Tag 2', backgroundColor: '#009042' }] },
       ],
       body: { description: 'To assess whether users perceive a high value from using Shorter Loop.' },
@@ -365,7 +389,11 @@ const workflowItems = [
         {
           id: 1,
           header: [
-            { type: 'link', label: 'EP-1', url: 'https://example.com' },
+            {
+              type: 'link', label: 'EP-1', event: ($event: any, column: any) => {
+                console.log("Added new experiment action performed: ", column, $event);
+              }
+            },
             { type: 'chip', value: [{ value: 'Tag 1', backgroundColor: '#FFF1F1', foregroundColor: '#D3272A' }, { value: 'Tag 2', backgroundColor: '#009042' }] },
           ],
           body: { description: 'Solution 1.1' },
@@ -387,7 +415,11 @@ const workflowItems = [
           {
             id: 1,
             header: [
-              { type: 'link', label: 'EX-98', url: 'https://example.com' },
+              {
+                type: 'link', label: 'EX-98', event: ($event: any, column: any) => {
+                  console.log("Added new experiment action performed: ", column, $event);
+                }
+              },
               { type: 'chip', value: [{ value: 'Tag 1', backgroundColor: '#FFF1F1', foregroundColor: '#D3272A' }, { value: 'Tag 2', backgroundColor: '#009042' }] },
             ],
             body: { description: 'Experiment 1.1.1' },
@@ -400,7 +432,11 @@ const workflowItems = [
           }, {
             id: 1,
             header: [
-              { type: 'link', label: 'EX-199', url: 'https://example.com' },
+              {
+                type: 'link', label: 'EX-199', event: ($event: any, column: any) => {
+                  console.log("Added new experiment action performed: ", column, $event);
+                }
+              },
               { type: 'chip', value: [{ value: 'Tag 1', backgroundColor: '#FFF1F1', foregroundColor: '#D3272A' }, { value: 'Tag 2', backgroundColor: '#009042' }] },
             ],
             body: { description: 'Experiment 1.1.2' },
@@ -414,7 +450,11 @@ const workflowItems = [
           {
             id: 1,
             header: [
-              { type: 'link', label: 'EX-200', url: 'https://example.com' },
+              {
+                type: 'link', label: 'EX-200', event: ($event: any, column: any) => {
+                  console.log("Added new experiment action performed: ", column, $event);
+                }
+              },
               { type: 'chip', value: [{ value: 'Tag 1', backgroundColor: '#FFF1F1', foregroundColor: '#D3272A' }, { value: 'Tag 2', backgroundColor: '#009042' }] },
             ],
             body: { description: 'Experiment 1.1.3' },
@@ -432,7 +472,11 @@ const workflowItems = [
         {
           id: 1,
           header: [
-            { type: 'link', label: 'EP-1', url: 'https://example.com' },
+            {
+              type: 'link', label: 'EP-1', event: ($event: any, column: any) => {
+                console.log("Added new experiment action performed: ", column, $event);
+              }
+            },
             { type: 'chip', value: [{ value: 'Tag 1', backgroundColor: '#FFF1F1', foregroundColor: '#D3272A' }, { value: 'Tag 2', backgroundColor: '#009042' }] },
           ],
           body: { description: 'Solution 1.2' },
@@ -454,7 +498,11 @@ const workflowItems = [
           {
             id: 3,
             header: [
-              { type: 'link', label: 'EX-98', url: 'https://example.com' },
+              {
+                type: 'link', label: 'EX-98', event: ($event: any, column: any) => {
+                  console.log("Added new experiment action performed: ", column, $event);
+                }
+              },
               { type: 'chip', value: [{ value: 'Tag 1', backgroundColor: '#FFF1F1', foregroundColor: '#D3272A' }, { value: 'Tag 2', backgroundColor: '#009042' }] },
             ],
             body: { description: 'Experiment 1.2.1' },
@@ -467,7 +515,11 @@ const workflowItems = [
           }, {
             id: 4,
             header: [
-              { type: 'link', label: 'EX-99', url: 'https://example.com' },
+              {
+                type: 'link', label: 'EX-99', event: ($event: any, column: any) => {
+                  console.log("Added new experiment action performed: ", column, $event);
+                }
+              },
               { type: 'chip', value: [{ value: 'Tag 1', backgroundColor: '#FFF1F1', foregroundColor: '#D3272A' }, { value: 'Tag 2', backgroundColor: '#009042' }] },
             ],
             body: { description: 'Experiment 1.2.2' },
@@ -481,7 +533,11 @@ const workflowItems = [
           {
             id: 5,
             header: [
-              { type: 'link', label: 'EX-100', url: 'https://example.com' },
+              {
+                type: 'link', label: 'EX-100', event: ($event: any, column: any) => {
+                  console.log("Added new experiment action performed: ", column, $event);
+                }
+              },
               { type: 'chip', value: [{ value: 'Tag 1', backgroundColor: '#FFF1F1', foregroundColor: '#D3272A' }, { value: 'Tag 2', backgroundColor: '#009042' }] },
             ],
             body: { description: 'Experiment 1.2.3' },
@@ -500,7 +556,11 @@ const workflowItems = [
     opportunity: {
       id: 2,
       header: [
-        { type: 'link', label: 'EP-400', url: 'https://example.com' },
+        {
+          type: 'link', label: 'EP-400', event: ($event: any, column: any) => {
+            console.log("Added new experiment action performed: ", column, $event);
+          }
+        },
         { type: 'chip', value: [{ value: 'Tag 1', backgroundColor: '#FFF1F1', foregroundColor: '#D3272A' }, { value: 'Tag 2', backgroundColor: '#009042' }] },
       ],
       body: { description: 'Opportunity 2' },
@@ -524,7 +584,11 @@ const workflowItems = [
         {
           id: 1,
           header: [
-            { type: 'link', label: 'EP-1000', url: 'https://example.com' },
+            {
+              type: 'link', label: 'EP-1000', event: ($event: any, column: any) => {
+                console.log("Added new experiment action performed: ", column, $event);
+              }
+            },
             { type: 'chip', value: [{ value: 'Tag 1', backgroundColor: '#FFF1F1', foregroundColor: '#D3272A' }, { value: 'Tag 2', backgroundColor: '#009042' }] },
           ],
           body: { description: 'Solution 1.2' },
@@ -546,7 +610,11 @@ const workflowItems = [
           {
             id: 1,
             header: [
-              { type: 'link', label: 'EX-98', url: 'https://example.com' },
+              {
+                type: 'link', label: 'EX-98', event: ($event: any, column: any) => {
+                  console.log("Added new experiment action performed: ", column, $event);
+                }
+              },
               { type: 'chip', value: [{ value: 'Tag 1', backgroundColor: '#FFF1F1', foregroundColor: '#D3272A' }, { value: 'Tag 2', backgroundColor: '#009042' }] },
             ],
             body: { description: 'Experiment 1.1.1' },
@@ -564,7 +632,11 @@ const workflowItems = [
         {
           id: 1,
           header: [
-            { type: 'link', label: 'EP-1', url: 'https://example.com' },
+            {
+              type: 'link', label: 'EP-1', event: ($event: any, column: any) => {
+                console.log("Added new experiment action performed: ", column, $event);
+              }
+            },
             { type: 'chip', value: [{ value: 'Tag 1', backgroundColor: '#FFF1F1', foregroundColor: '#D3272A' }, { value: 'Tag 2', backgroundColor: '#009042' }] },
           ],
           body: { description: 'Solution 2.2' },
@@ -586,7 +658,11 @@ const workflowItems = [
           {
             id: 3,
             header: [
-              { type: 'link', label: 'EX-98', url: 'https://example.com' },
+              {
+                type: 'link', label: 'EX-98', event: ($event: any, column: any) => {
+                  console.log("Added new experiment action performed: ", column, $event);
+                }
+              },
               { type: 'chip', value: [{ value: 'Tag 1', backgroundColor: '#FFF1F1', foregroundColor: '#D3272A' }, { value: 'Tag 2', backgroundColor: '#009042' }] },
             ],
             body: { description: 'Experiment 1.2.1' },
@@ -599,7 +675,11 @@ const workflowItems = [
           }, {
             id: 4,
             header: [
-              { type: 'link', label: 'EX-99', url: 'https://example.com' },
+              {
+                type: 'link', label: 'EX-99', event: ($event: any, column: any) => {
+                  console.log("Added new experiment action performed: ", column, $event);
+                }
+              },
               { type: 'chip', value: [{ value: 'Tag 1', backgroundColor: '#FFF1F1', foregroundColor: '#D3272A' }, { value: 'Tag 2', backgroundColor: '#009042' }] },
             ],
             body: { description: 'Experiment 1.2.2' },
