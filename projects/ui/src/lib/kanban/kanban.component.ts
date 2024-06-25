@@ -120,6 +120,7 @@ export class KanbanComponent implements AfterViewInit {
   }
 
   addAction($event: any, column: Column) {
+    debugger
     column.action?.event($event, column);
   }
 
@@ -190,7 +191,6 @@ export class KanbanComponent implements AfterViewInit {
     const totalColumns = this.tableHeaders.length;
     const collapsedCount = collapsedColumns.length;
     const remainingColumns = totalColumns - collapsedCount;
-    debugger
     if ((remainingColumns > 1 && !column.collapsed) || (remainingColumns >= 1 && column.collapsed)) {
       column.collapsed = !column.collapsed;
     }

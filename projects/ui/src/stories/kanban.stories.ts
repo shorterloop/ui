@@ -498,13 +498,28 @@ const workflowItems = [
 ];
 
 const tableHeaders = [{
-  label: 'Opportunities'
+  label: 'Opportunities',
+  action: {
+    event: ($event: any, column: any) => {
+      console.log("Added new experiment action performed: ", column, $event);
+    }
+  }
 },
 {
-  label: 'Solutions'
+  label: 'Solutions',
+  action: {
+    event: ($event: any, column: any) => {
+      console.log("2Added new experiment action performed: ", column, $event);
+    }
+  }
 },
 {
-  label: 'Experiments'
+  label: 'Experiments',
+  action: {
+    event: ($event: any, column: any) => {
+      console.log("3Added new experiment action performed: ", column, $event);
+    }
+  }
 }];
 
 export const Default: Story = {

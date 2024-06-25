@@ -39,7 +39,7 @@
                 <ng-container *ngFor="let item of task.header">
                   <ng-container *ngIf="item.type === 'link'">
                     <span class="link">
-                      <a [href]="item.url">{{ item.label }}</a>
+                      <a href="javascript:void(0)" (click)="addAction($event, item)">{{ item.label }}</a>
                     </span>
                   </ng-container>
                   <ng-container *ngIf="item.type === 'chip'">
@@ -195,7 +195,16 @@
     <thead>
       <tr>
         <th *ngFor="let th of tableHeaders; let i=index" [style.width.%]="100 / tableHeaders.length">
-          {{ th.label }}
+          <span class="workflow-table-heading">{{ th.label }}</span>
+
+          <svg class="add-next" width="32" height="32" viewBox="0 0 32 32" fill="none"
+            xmlns="http://www.w3.org/2000/svg" (click)="addAction($event, th)">
+            <rect width="32" height="32" rx="4" fill="#F8F6FE" />
+            <path
+              d="M16 20.6664C15.8112 20.6664 15.6472 20.5971 15.508 20.4584C15.3694 20.3192 15.3 20.1552 15.3 19.9664V16.7H12.0336C11.8448 16.7 11.6808 16.6307 11.5416 16.492C11.403 16.3528 11.3336 16.1888 11.3336 16C11.3336 15.8112 11.403 15.6472 11.5416 15.508C11.6808 15.3693 11.8448 15.3 12.0336 15.3H15.3V12.0336C15.3 11.8448 15.3694 11.6808 15.508 11.5416C15.6472 11.4029 15.8112 11.3336 16 11.3336C16.1888 11.3336 16.3528 11.4029 16.492 11.5416C16.6307 11.6808 16.7 11.8448 16.7 12.0336V15.3H19.9664C20.1552 15.3 20.3192 15.3693 20.4584 15.508C20.5971 15.6472 20.6664 15.8112 20.6664 16C20.6664 16.1888 20.5971 16.3528 20.4584 16.492C20.3192 16.6307 20.1552 16.7 19.9664 16.7H16.7V19.9664C16.7 20.1552 16.6307 20.3192 16.492 20.4584C16.3528 20.5971 16.1888 20.6664 16 20.6664Z"
+              fill="#573DF4" />
+          </svg>
+
         </th>
       </tr>
     </thead>
@@ -213,7 +222,7 @@
                       <ng-container *ngFor="let item of opportunity.opportunity.header">
                         <ng-container *ngIf="item.type === 'link'">
                           <span class="link">
-                            <a [href]="item.url">{{ item.label }}</a>
+                            <a href="javascript:void(0)" (click)="addAction($event, item)">{{ item.label }}</a>
                           </span>
                         </ng-container>
                         <ng-container *ngIf="item.type === 'chip'">
@@ -270,7 +279,7 @@
                     <ng-container *ngFor="let item of solution.solution.header">
                       <ng-container *ngIf="item.type === 'link'">
                         <span class="link">
-                          <a [href]="item.url">{{ item.label }}</a>
+                          <a href="javascript:void(0)" (click)="addAction($event, item)">{{ item.label }}</a>
                         </span>
                       </ng-container>
                       <ng-container *ngIf="item.type === 'chip'">
@@ -328,7 +337,7 @@
                       <ng-container *ngFor="let item of experiment.header">
                         <ng-container *ngIf="item.type === 'link'">
                           <span class="link">
-                            <a [href]="item.url">{{ item.label }}</a>
+                            <a href="javascript:void(0)" (click)="addAction($event, item)">{{ item.label }}</a>
                           </span>
                         </ng-container>
                         <ng-container *ngIf="item.type === 'chip'">
@@ -381,7 +390,7 @@
                     <ng-container *ngFor="let item of opportunity.opportunity.header">
                       <ng-container *ngIf="item.type === 'link'">
                         <span class="link">
-                          <a [href]="item.url">{{ item.label }}</a>
+                          <a href="javascript:void(0)" (click)="addAction($event, item)">{{ item.label }}</a>
                         </span>
                       </ng-container>
                       <ng-container *ngIf="item.type === 'chip'">

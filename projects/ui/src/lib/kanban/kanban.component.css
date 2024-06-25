@@ -315,6 +315,17 @@ table {
 th {
   background-color: #ffffff;
   padding: 0;
+  position: relative;
+}
+
+th svg.add-next {
+  float: right;
+  cursor: pointer
+}
+
+th span.workflow-table-heading {
+  position: absolute;
+  padding-top: 5px;
 }
 
 th,
