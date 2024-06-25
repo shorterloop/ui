@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ColumnNamesPipe } from './column-names.pipe';
 import { DomSanitizer } from '@angular/platform-browser';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 interface LibraryItem {
@@ -55,7 +56,7 @@ type KanbanData = Column[] | Swimlane[] | any[];
 @Component({
   selector: 'shorterloop-kanban',
   standalone: true,
-  imports: [CommonModule, DragDropModule, MatIconModule, MatExpansionModule, ColumnNamesPipe],
+  imports: [CommonModule, DragDropModule, MatIconModule, MatExpansionModule, MatMenuModule, ColumnNamesPipe],
   templateUrl: './kanban.component.html',
   styleUrls: ['./kanban.component.css'],
 })
