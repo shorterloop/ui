@@ -120,7 +120,6 @@ export class KanbanComponent implements AfterViewInit {
   }
 
   addAction($event: any, column: Column) {
-    debugger
     column.action?.event($event, column);
   }
 
