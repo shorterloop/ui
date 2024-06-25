@@ -262,9 +262,10 @@
                 </div>
                 <div *ngIf="opportunity.opportunity?.action" class="workflow-kanban-action">
                   <a (click)="addAction($event, opportunity.opportunity)" class="d-flex">
-                    <span *ngIf="opportunity.opportunity?.action?.icon" class="add_solution_button"
+                    <span *ngIf="opportunity.opportunity?.action?.icon"
                       [innerHTML]="sanitizer.bypassSecurityTrustHtml(opportunity.opportunity?.action?.icon)"></span>
-                    <span>{{ opportunity.opportunity?.action?.label }}</span>
+
+                    <span class="add_solution_button">{{ opportunity.opportunity?.action?.label }}</span>
                   </a>
                 </div>
               </td>
