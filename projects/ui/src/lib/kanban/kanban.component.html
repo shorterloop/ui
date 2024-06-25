@@ -35,7 +35,7 @@
             [style.borderTop]="task?.borderColor ? '3px solid ' + task?.borderColor : ''">
             <div class="task-card">
               <!-- Header -->
-              <div class="task-header">
+              <div class="task-header" *ngIf="task.header?.length">
                 <ng-container *ngFor="let item of task.header">
                   <ng-container *ngIf="item.type === 'link'">
                     <span class="link">
@@ -60,7 +60,7 @@
               </div>
 
               <!-- Footer -->
-              <div class="task-footer">
+              <div class="task-footer" *ngIf="task.footer?.length">
                 <ng-container *ngFor="let item of task.footer">
                   <div class="avatar" *ngIf="item.type === 'avatar'">
                     <img *ngIf="item?.photo" [src]="item?.photo" alt="{{ item.label }}" />
@@ -208,7 +208,7 @@
                 [style.borderTop]="opportunity.opportunity?.borderColor ? '3px solid ' + opportunity.opportunity?.borderColor : ''">
                 <div class="task-card">
                   <!-- Header -->
-                  <div class="task-header" *ngIf="opportunity.opportunity.header">
+                  <div class="task-header" *ngIf="opportunity.opportunity.header?.length">
                     <ng-container *ngFor="let item of opportunity.opportunity.header">
                       <ng-container *ngIf="item.type === 'link'">
                         <span class="link">
@@ -233,7 +233,7 @@
                   </div>
 
                   <!-- Footer -->
-                  <div class="task-footer" *ngIf="opportunity.opportunity.footer">
+                  <div class="task-footer" *ngIf="opportunity.opportunity.footer?.length">
                     <ng-container *ngFor="let item of opportunity.opportunity.footer">
                       <div class="avatar" *ngIf="item.type === 'avatar'">
                         <img *ngIf="item?.photo" [src]="item?.photo" alt="{{ item.label }}" />
@@ -267,7 +267,7 @@
               [style.borderTop]="solution.solution?.borderColor ? '3px solid ' + solution.solution?.borderColor : ''">
               <div class="task-card">
                 <!-- Header -->
-                <div class="task-header" *ngIf="solution.solution.header">
+                <div class="task-header" *ngIf="solution.solution.header?.length">
                   <ng-container *ngFor="let item of solution.solution.header">
                     <ng-container *ngIf="item.type === 'link'">
                       <span class="link">
@@ -292,7 +292,7 @@
                 </div>
 
                 <!-- Footer -->
-                <div class="task-footer" *ngIf="solution.solution.footer">
+                <div class="task-footer" *ngIf="solution.solution.footer?.length">
                   <ng-container *ngFor="let item of solution.solution.footer">
                     <div class="avatar" *ngIf="item.type === 'avatar'">
                       <img *ngIf="item?.photo" [src]="item?.photo" alt="{{ item.label }}" />
@@ -327,7 +327,7 @@
                 [style.borderTop]="experiment?.borderColor ? '3px solid ' + experiment?.borderColor : ''">
                 <div class="task-card">
                   <!-- Header -->
-                  <div class="task-header" *ngIf="experiment.header">
+                  <div class="task-header" *ngIf="experiment.header?.length">
                     <ng-container *ngFor="let item of experiment.header">
                       <ng-container *ngIf="item.type === 'link'">
                         <span class="link">
@@ -352,7 +352,7 @@
                   </div>
 
                   <!-- Footer -->
-                  <div class="task-footer" *ngIf="experiment.footer">
+                  <div class="task-footer" *ngIf="experiment.footer?.length">
                     <ng-container *ngFor="let item of experiment.footer">
                       <div class="avatar" *ngIf="item.type === 'avatar'">
                         <img *ngIf="item?.photo" [src]="item?.photo" alt="{{ item.label }}" />
