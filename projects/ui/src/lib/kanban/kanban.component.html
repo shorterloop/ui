@@ -322,7 +322,7 @@
                 <a (click)="addAction($event, solution.solution)" class="d-flex">
                   <span *ngIf="solution.solution?.action?.icon"
                     [innerHTML]="sanitizer.bypassSecurityTrustHtml(solution.solution?.action?.icon)"></span>
-                  <span>{{ solution.solution?.action?.label }}</span>
+                  <span class="add_solution_button">{{ solution.solution?.action?.label }}</span>
                 </a>
               </div>
             </td>
@@ -433,7 +433,7 @@
                 <a (click)="addAction($event, opportunity.opportunity)" class="d-flex">
                   <span *ngIf="opportunity.opportunity?.action?.icon"
                     [innerHTML]="sanitizer.bypassSecurityTrustHtml(opportunity.opportunity?.action?.icon)"></span>
-                  <span>{{ opportunity.opportunity?.action?.label }}</span>
+                  <span class="add_solution_button">{{ opportunity.opportunity?.action?.label }}</span>
                 </a>
               </div>
             </td>
