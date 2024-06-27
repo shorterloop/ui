@@ -35,6 +35,12 @@ export function ObserveApiStatus(target: any, options?: ObserveApiOptions) {
 
       let loadingSpan: any = document.createElement('span');
 
+      // Remove existing buttonProgressLoadingState if present
+      let existingLoadingSpan = target.querySelector('.buttonProgressLoadingState');
+      if (existingLoadingSpan) {
+        target.removeChild(existingLoadingSpan);
+      }
+
       if (!options || (options && !options.hideLoader)) {
         loadingSpan.className = 'buttonProgressLoadingState';
         loadingSpan.textContent = ' ';
