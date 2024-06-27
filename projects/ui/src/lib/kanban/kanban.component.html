@@ -211,67 +211,69 @@
     <tbody>
       <ng-container *ngFor="let opportunity of data; let i = index">
         <tr *ngIf="opportunity.solutions.length > 0; else noSolutions">
-          <ng-container *ngFor="let solution of opportunity.solutions; let j = index">
-            <ng-container *ngIf="j === 0">
-              <td [attr.rowspan]="opportunity.solutions.length" class="odd-section">
-                <div class="kanban-item" *ngIf="!(opportunity.opportunity | isEmptyObject)"
-                  [style.borderTop]="opportunity.opportunity?.borderColor ? '3px solid ' + opportunity.opportunity?.borderColor : ''">
-                  <div class="task-card">
-                    <!-- Header -->
-                    <div class="task-header" *ngIf="opportunity.opportunity.header?.length">
-                      <ng-container *ngFor="let item of opportunity.opportunity.header">
-                        <ng-container *ngIf="item.type === 'link'">
-                          <span class="link">
-                            <a href="javascript:void(0)" (click)="addAction($event, item)">{{ item.label }}</a>
-                          </span>
-                        </ng-container>
-                        <ng-container *ngIf="item.type === 'chip'">
-                          <span class="chip-container">
-                            <span *ngFor="let chip of item.value" class="chip"
-                              [style.backgroundColor]="chip?.backgroundColor" [style.color]="chip?.foregroundColor">
-                              {{ chip?.value }}
-                            </span>
-                          </span>
-                        </ng-container>
-                        <!-- Add more header types as needed -->
-                      </ng-container>
-                    </div>
-
-                    <!-- Body -->
-                    <div class="task-body" *ngIf="opportunity.opportunity.body?.description"
-                      [innerHTML]="opportunity.opportunity.body?.description"
-                      [attr.contenteditable]="opportunity.opportunity.body?.contenteditable">
-                    </div>
-
-                    <!-- Footer -->
-                    <div class="task-footer" *ngIf="opportunity.opportunity.footer?.length">
-                      <ng-container *ngFor="let item of opportunity.opportunity.footer">
-                        <div class="avatar" *ngIf="item.type === 'avatar'">
-                          <img *ngIf="item?.photo" [src]="item?.photo" alt="{{ item.label }}" />
-                          <span>{{ item.label }}</span>
-                        </div>
-                        <ng-container *ngIf="item.type === 'budget'">
-                          <div>Budget: {{ item.value }}</div>
-                        </ng-container>
-                        <ng-container *ngIf="item.type === 'timeFrame'">
-                          <div>Time Frame: {{ item.value }}</div>
-                        </ng-container>
-                        <!-- Add more footer types as needed -->
-                      </ng-container>
-                    </div>
-                  </div>
+          <!-- First column for opportunity details -->
+          <td [attr.rowspan]="opportunity.solutions.length + 1" class="odd-section">
+            <div class="kanban-item" *ngIf="!(opportunity.opportunity | isEmptyObject)"
+              [style.borderTop]="opportunity.opportunity?.borderColor ? '3px solid ' + opportunity.opportunity?.borderColor : ''">
+              <div class="task-card">
+                <!-- Header -->
+                <div class="task-header" *ngIf="opportunity.opportunity.header?.length">
+                  <ng-container *ngFor="let item of opportunity.opportunity.header">
+                    <ng-container *ngIf="item.type === 'link'">
+                      <span class="link">
+                        <a href="javascript:void(0)" (click)="addAction($event, item)">{{ item.label }}</a>
+                      </span>
+                    </ng-container>
+                    <ng-container *ngIf="item.type === 'chip'">
+                      <span class="chip-container">
+                        <span *ngFor="let chip of item.value" class="chip"
+                          [style.backgroundColor]="chip?.backgroundColor" [style.color]="chip?.foregroundColor">
+                          {{ chip?.value }}
+                        </span>
+                      </span>
+                    </ng-container>
+                    <!-- Add more header types as needed -->
+                  </ng-container>
                 </div>
-                <div *ngIf="opportunity.opportunity?.action" class="workflow-kanban-action">
-                  <a (click)="addAction($event, opportunity.opportunity)" class="d-flex">
-                    <span *ngIf="opportunity.opportunity?.action?.icon"
-                      [innerHTML]="sanitizer.bypassSecurityTrustHtml(opportunity.opportunity?.action?.icon)"></span>
 
-                    <span class="add_solution_button">{{ opportunity.opportunity?.action?.label }}</span>
-                  </a>
+                <!-- Body -->
+                <div class="task-body" *ngIf="opportunity.opportunity.body?.description"
+                  [innerHTML]="opportunity.opportunity.body?.description"
+                  [attr.contenteditable]="opportunity.opportunity.body?.contenteditable">
                 </div>
-              </td>
-            </ng-container>
 
+                <!-- Footer -->
+                <div class="task-footer" *ngIf="opportunity.opportunity.footer?.length">
+                  <ng-container *ngFor="let item of opportunity.opportunity.footer">
+                    <div class="avatar" *ngIf="item.type === 'avatar'">
+                      <img *ngIf="item?.photo" [src]="item?.photo" alt="{{ item.label }}" />
+                      <span>{{ item.label }}</span>
+                    </div>
+                    <ng-container *ngIf="item.type === 'budget'">
+                      <div>Budget: {{ item.value }}</div>
+                    </ng-container>
+                    <ng-container *ngIf="item.type === 'timeFrame'">
+                      <div>Time Frame: {{ item.value }}</div>
+                    </ng-container>
+                    <!-- Add more footer types as needed -->
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="opportunity.opportunity?.action" class="workflow-kanban-action">
+              <a (click)="addAction($event, opportunity.opportunity)" class="d-flex">
+                <span *ngIf="opportunity.opportunity?.action?.icon"
+                  [innerHTML]="sanitizer.bypassSecurityTrustHtml(opportunity.opportunity?.action?.icon)"></span>
+                <span class="add_solution_button">{{ opportunity.opportunity?.action?.label }}</span>
+              </a>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Rows for each solution and its experiments -->
+        <ng-container *ngFor="let solution of opportunity.solutions; let j = index">
+          <tr>
+            <!-- Solution column -->
             <td>
               <div class="kanban-item" *ngIf="!(solution.solution | isEmptyObject)"
                 [style.borderTop]="solution.solution?.borderColor ? '3px solid ' + solution.solution?.borderColor : ''">
@@ -329,6 +331,7 @@
               </div>
             </td>
 
+            <!-- Experiments column -->
             <td class="odd-section" cdkDropListGroup cdkDropList [cdkDropListData]="solution.experiments"
               (cdkDropListDropped)="drop($event)">
               <ng-container *ngFor="let experiment of solution.experiments" class="kanban-list">
@@ -358,7 +361,7 @@
                     <!-- Body -->
                     <div class="task-body" *ngIf="experiment.body?.description"
                       [innerHTML]="experiment.body?.description"
-                      [attr.contenteditable]="experiment.body?.description?.contenteditable">
+                      [attr.contenteditable]="experiment.body?.contenteditable">
                     </div>
 
                     <!-- Footer -->
@@ -381,8 +384,10 @@
                 </div>
               </ng-container>
             </td>
-          </ng-container>
-        </tr>
+          </tr>
+        </ng-container>
+
+        <!-- Placeholder row if no solutions -->
         <ng-template #noSolutions>
           <tr>
             <td class="odd-section">
@@ -442,7 +447,7 @@
               </div>
             </td>
             <td></td>
-            <td clss="odd-section"></td>
+            <td class="odd-section"></td>
           </tr>
         </ng-template>
       </ng-container>
