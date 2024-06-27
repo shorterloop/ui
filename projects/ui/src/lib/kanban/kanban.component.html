@@ -55,8 +55,8 @@
               </div>
 
               <!-- Body -->
-              <div class="task-body">
-                <p>{{ task.body?.description }}</p>
+              <div class="task-body" [innerHTML]="task.body?.description"
+                [attr.contenteditable]="task.body?.description?.contenteditable">
               </div>
 
               <!-- Footer -->
@@ -156,8 +156,8 @@
                 </div>
 
                 <!-- Body -->
-                <div class="task-body">
-                  <p>{{ task.body?.description }}</p>
+                <div class="task-body" [innerHTML]="task.body?.description"
+                  [attr.contenteditable]="task.body?.description?.contenteditable">
                 </div>
 
                 <!-- Footer -->
@@ -238,8 +238,9 @@
                     </div>
 
                     <!-- Body -->
-                    <div class="task-body" *ngIf="opportunity.opportunity.body?.description">
-                      <p>{{ opportunity.opportunity.body?.description }}</p>
+                    <div class="task-body" *ngIf="opportunity.opportunity.body?.description"
+                      [innerHTML]="opportunity.opportunity.body?.description"
+                      [attr.contenteditable]="opportunity.opportunity.body?.contenteditable">
                     </div>
 
                     <!-- Footer -->
@@ -296,8 +297,9 @@
                   </div>
 
                   <!-- Body -->
-                  <div class="task-body" *ngIf="solution.solution.body?.description">
-                    <p>{{ solution.solution.body?.description }}</p>
+                  <div class="task-body" *ngIf="solution.solution.body?.description"
+                    [innerHTML]="solution.solution.body?.description"
+                    [attr.contenteditable]="solution.solution.body?.contenteditable">
                   </div>
 
                   <!-- Footer -->
@@ -354,8 +356,9 @@
                     </div>
 
                     <!-- Body -->
-                    <div class="task-body" *ngIf="experiment.body?.description">
-                      <p>{{ experiment.body?.description }}</p>
+                    <div class="task-body" *ngIf="experiment.body?.description"
+                      [innerHTML]="experiment.body?.description"
+                      [attr.contenteditable]="experiment.body?.description?.contenteditable">
                     </div>
 
                     <!-- Footer -->
@@ -407,8 +410,9 @@
                   </div>
 
                   <!-- Body -->
-                  <div class="task-body" *ngIf="opportunity.opportunity.body?.description">
-                    <p>{{ opportunity.opportunity.body?.description }}</p>
+                  <div class="task-body" *ngIf="opportunity.opportunity.body?.description"
+                    [innerHTML]="opportunity.opportunity.body?.description"
+                    [attr.contenteditable]="opportunity.opportunity.body?.contenteditable">
                   </div>
 
                   <!-- Footer -->

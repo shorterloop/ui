@@ -362,6 +362,7 @@ const workflowItems = [
       "id": 1,
       "header": [],
       "body": {
+        "contenteditable": true,
         "description": "Conduct research and analysis on emerging trends in renewable energy and sustainable technologies"
       },
       "footer": [],
