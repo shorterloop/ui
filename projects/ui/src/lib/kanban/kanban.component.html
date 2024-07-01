@@ -55,8 +55,8 @@
               </div>
 
               <!-- Body -->
-              <div class="task-body" [innerHTML]="task.body?.description"
-                [attr.contenteditable]="task.body?.description?.contenteditable">
+              <div class="task-body" [innerHTML]="task.body?.summary"
+                [attr.contenteditable]="task.body?.summary?.contenteditable">
               </div>
 
               <!-- Footer -->
@@ -156,8 +156,8 @@
                 </div>
 
                 <!-- Body -->
-                <div class="task-body" [innerHTML]="task.body?.description"
-                  [attr.contenteditable]="task.body?.description?.contenteditable">
+                <div class="task-body" [innerHTML]="task.body?.summary"
+                  [attr.contenteditable]="task.body?.summary?.contenteditable">
                 </div>
 
                 <!-- Footer -->
@@ -237,8 +237,8 @@
                 </div>
 
                 <!-- Body -->
-                <div class="task-body" *ngIf="opportunity.opportunity.body?.description"
-                  [innerHTML]="opportunity.opportunity.body?.description"
+                <div class="task-body" *ngIf="opportunity.opportunity.body?.summary"
+                  [innerHTML]="opportunity.opportunity.body?.summary"
                   [attr.contenteditable]="opportunity.opportunity.body?.contenteditable">
                 </div>
 
@@ -299,8 +299,8 @@
                   </div>
 
                   <!-- Body -->
-                  <div class="task-body" *ngIf="solution.solution.body?.description"
-                    [innerHTML]="solution.solution.body?.description"
+                  <div class="task-body" *ngIf="solution.solution.body?.summary"
+                    [innerHTML]="solution.solution.body?.summary"
                     [attr.contenteditable]="solution.solution.body?.contenteditable">
                   </div>
 
@@ -359,8 +359,7 @@
                     </div>
 
                     <!-- Body -->
-                    <div class="task-body" *ngIf="experiment.body?.description"
-                      [innerHTML]="experiment.body?.description"
+                    <div class="task-body" *ngIf="experiment.body?.summary" [innerHTML]="experiment.body?.summary"
                       [attr.contenteditable]="experiment.body?.contenteditable">
                     </div>
 
@@ -415,8 +414,8 @@
                   </div>
 
                   <!-- Body -->
-                  <div class="task-body" *ngIf="opportunity.opportunity.body?.description"
-                    [innerHTML]="opportunity.opportunity.body?.description"
+                  <div class="task-body" *ngIf="opportunity.opportunity.body?.summary"
+                    [innerHTML]="opportunity.opportunity.body?.summary"
                     [attr.contenteditable]="opportunity.opportunity.body?.contenteditable">
                   </div>
 
