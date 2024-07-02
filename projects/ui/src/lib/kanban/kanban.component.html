@@ -70,10 +70,10 @@
                     <span>{{ item.label }}</span>
                   </div>
                   <ng-container *ngIf="item.type === 'budget'">
-                    <div>Budget: {{ item.value }}</div>
+                    <div>{{item?.label}} {{ item.value }}</div>
                   </ng-container>
                   <ng-container *ngIf="item.type === 'timeFrame'">
-                    <div>Time Frame: {{ item.value }}</div>
+                    <div>{{item?.label}}: {{ item.value }}</div>
                   </ng-container>
                   <!-- Add more footer types as needed -->
                 </ng-container>
@@ -174,10 +174,10 @@
                       <span>{{ item.label }}</span>
                     </div>
                     <ng-container *ngIf="item.type === 'budget'">
-                      <div>Budget: {{ item.value }}</div>
+                      <div>{{item?.label}}: {{ item.value }}</div>
                     </ng-container>
                     <ng-container *ngIf="item.type === 'timeFrame'">
-                      <div>Time Frame: {{ item.value }}</div>
+                      <div>{{item?.label}}: {{ item.value }}</div>
                     </ng-container>
                     <!-- Add more footer types as needed -->
                   </ng-container>
@@ -259,10 +259,10 @@
                       <span>{{ item.label }}</span>
                     </div>
                     <ng-container *ngIf="item.type === 'budget'">
-                      <div>Budget: {{ item.value }}</div>
+                      <div>{{item?.label}}: {{ item.value }}</div>
                     </ng-container>
                     <ng-container *ngIf="item.type === 'timeFrame'">
-                      <div>Time Frame: {{ item.value }}</div>
+                      <div>{{item?.label}}: {{ item.value }}</div>
                     </ng-container>
                     <!-- Add more footer types as needed -->
                   </ng-container>
@@ -324,10 +324,10 @@
                         <span>{{ item.label }}</span>
                       </div>
                       <ng-container *ngIf="item.type === 'budget'">
-                        <div>Budget: {{ item.value }}</div>
+                        <div>{{item?.label}}: {{ item.value }}</div>
                       </ng-container>
                       <ng-container *ngIf="item.type === 'timeFrame'">
-                        <div>Time Frame: {{ item.value }}</div>
+                        <div>{{item?.label}}: {{ item.value }}</div>
                       </ng-container>
                       <!-- Add more footer types as needed -->
                     </ng-container>
@@ -386,10 +386,10 @@
                           <span>{{ item.label }}</span>
                         </div>
                         <ng-container *ngIf="item.type === 'budget'">
-                          <div>Budget: {{ item.value }}</div>
+                          <div>{{item?.label}}: {{ item.value }}</div>
                         </ng-container>
                         <ng-container *ngIf="item.type === 'timeFrame'">
-                          <div>Time Frame: {{ item.value }}</div>
+                          <div>{{item?.label}}: {{ item.value }}</div>
                         </ng-container>
                         <!-- Add more footer types as needed -->
                       </ng-container>
@@ -445,10 +445,10 @@
                         <span>{{ item.label }}</span>
                       </div>
                       <ng-container *ngIf="item.type === 'budget'">
-                        <div>Budget: {{ item.value }}</div>
+                        <div>{{item?.label}}: {{ item.value }}</div>
                       </ng-container>
                       <ng-container *ngIf="item.type === 'timeFrame'">
-                        <div>Time Frame: {{ item.value }}</div>
+                        <div>{{item?.label}}: {{ item.value }}</div>
                       </ng-container>
                       <!-- Add more footer types as needed -->
                     </ng-container>
