@@ -29,6 +29,10 @@ interface Task {
   header: LibraryItem[];
   body: {
     description: string;
+    contenteditable?: boolean
+    action?: {
+      event: ($event: any, column: Column) => void;
+    };
   };
   footer: LibraryItem[];
   borderColor?: string;

@@ -369,3 +369,7 @@ td {
   align-items: center;
   gap: 8px;
 }
+
+.content_editable {
+  cursor: text;
+}

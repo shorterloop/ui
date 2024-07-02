@@ -31,7 +31,7 @@
         </div>
         <div cdkDropList [cdkDropListData]="column.tasks" class="kanban-list" #kanbanList
           (cdkDropListDropped)="drop($event)" *ngIf="!column?.collapsed">
-          <div class="kanban-item" *ngFor="let task of column.tasks" cdkDrag
+          <div class="kanban-item" *ngFor="let task of column.tasks" cdkDrag [cdkDragDisabled]="column?.preventDrag"
             [style.borderTop]="task?.borderColor ? '3px solid ' + task?.borderColor : ''">
             <div class="task-card">
               <!-- Header -->
@@ -56,6 +56,8 @@
 
               <!-- Body -->
               <div class="task-body" [innerHTML]="task.body?.summary"
+                [class.content_editable]="task.body?.contenteditable"
+                (mousedown)="task.body?.contenteditable? $event.stopPropagation(): null"
                 [attr.contenteditable]="task.body?.contenteditable"
                 (click)="!task.body?.contenteditable? addAction($event, task.body): null">
               </div>
@@ -158,6 +160,8 @@
 
                 <!-- Body -->
                 <div class="task-body" [innerHTML]="task.body?.summary"
+                  [class.content_editable]="task.body?.contenteditable"
+                  (mousedown)="task.body?.contenteditable? $event.stopPropagation(): null"
                   [attr.contenteditable]="task.body?.contenteditable"
                   (click)="!task.body?.contenteditable? addAction($event, task.body): null">
                 </div>
@@ -240,6 +244,8 @@
 
                 <!-- Body -->
                 <div class="task-body" *ngIf="opportunity.opportunity.body?.summary"
+                  [class.content_editable]="opportunity.opportunity.body?.contenteditable"
+                  (mousedown)="opportunity.opportunity.body?.contenteditable? $event.stopPropagation(): null"
                   [innerHTML]="opportunity.opportunity.body?.summary"
                   [attr.contenteditable]="opportunity.opportunity.body?.contenteditable"
                   (click)="!opportunity.opportunity?.contenteditable? addAction($event, opportunity.opportunity): null">
@@ -303,6 +309,8 @@
 
                   <!-- Body -->
                   <div class="task-body" *ngIf="solution.solution.body?.summary"
+                    [class.content_editable]="solution.solution.body?.contenteditable"
+                    (mousedown)="solution.solution.body?.contenteditable? $event.stopPropagation(): null"
                     [innerHTML]="solution.solution.body?.summary"
                     [attr.contenteditable]="solution.solution.body?.contenteditable"
                     (click)="!solution.solution.body?.contenteditable? addAction($event, solution.solution): null">
@@ -364,6 +372,8 @@
 
                     <!-- Body -->
                     <div class="task-body" *ngIf="experiment.body?.summary" [innerHTML]="experiment.body?.summary"
+                      [class.content_editable]="experiment.body?.contenteditable"
+                      (mousedown)="experiment.body?.contenteditable? $event.stopPropagation(): null"
                       (click)="!experiment.body?.contenteditable? addAction($event, experiment.body): null"
                       [attr.contenteditable]="experiment.body?.contenteditable">
                     </div>
@@ -421,6 +431,8 @@
                   <!-- Body -->
                   <div class="task-body" *ngIf="opportunity.opportunity.body?.summary"
                     [innerHTML]="opportunity.opportunity.body?.summary"
+                    [class.content_editable]="opportunity.opportunity.body?.contenteditable"
+                    (mousedown)="opportunity.opportunity.body?.contenteditable? $event.stopPropagation(): null"
                     [attr.contenteditable]="opportunity.opportunity.body?.contenteditable"
                     (click)="!opportunity.opportunity.body?.contenteditable? addAction($event, opportunity.opportunity): null">
                   </div>

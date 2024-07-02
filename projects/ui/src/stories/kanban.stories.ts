@@ -25,6 +25,7 @@ const kanbanData = [
   {
     id: 1,
     heading: 'To Do',
+    preventDrag: true,
     tasks: [
       {
         id: 1,
@@ -76,6 +77,7 @@ const kanbanData = [
   },
   {
     id: 2,
+    preventDrag: true,
     heading: 'In Progress',
     tasks: [
       {
@@ -125,7 +127,7 @@ const kanbanData = [
           { type: 'link', label: 'EP-5', url: 'https://fifth-example.com' },
           { type: 'chip', value: [{ value: 'Tag 7', backgroundColor: 'pink', foregroundColor: '#000000' }] },
         ],
-        body: { summary: 'Description for Completed Task 1' },
+        body: { summary: 'Description for Completed Task 1', contenteditable: true },
         footer: [
           { type: 'avatar', label: 'Sarah Adams', photo: 'https://picsum.photos/204' },
           { type: 'budget', label: 'Budget', value: '$500' },
