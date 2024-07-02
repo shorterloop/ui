@@ -372,7 +372,7 @@ const workflowItems = [
       "header": [],
       "body": {
         "contenteditable": true,
-        "description": "Conduct research and analysis on emerging trends in renewable energy and sustainable technologies"
+        "summary": "Conduct research and analysis on emerging trends in renewable energy and sustainable technologies"
       },
       "footer": [],
       "borderColor": "#4784fc",
@@ -386,7 +386,7 @@ const workflowItems = [
           "id": 1,
           "header": [],
           "body": {
-            "description": "Community Engagement Initiative"
+            "summary": "Community Engagement Initiative"
           },
           "footer": [],
           "borderColor": "#4784fc",
@@ -408,7 +408,7 @@ const workflowItems = [
               }
             ],
             "body": {
-              "description": "etee"
+              "summary": "etee"
             },
             "footer": [
               {
@@ -437,7 +437,7 @@ const workflowItems = [
               }
             ],
             "body": {
-              "description": "Hilooo"
+              "summary": "Hilooo"
             },
             "footer": [
               {
@@ -466,7 +466,7 @@ const workflowItems = [
               }
             ],
             "body": {
-              "description": "Conduct research and analysis on emerging trends in renewable energy and sustainable technologies"
+              "summary": "Conduct research and analysis on emerging trends in renewable energy and sustainable technologies"
             },
             "footer": [
               {
@@ -489,7 +489,7 @@ const workflowItems = [
           "id": 1,
           "header": [],
           "body": {
-            "description": "I am testing"
+            "summary": "I am testing"
           },
           "footer": [],
           "borderColor": "#4784fc",
@@ -511,7 +511,7 @@ const workflowItems = [
               }
             ],
             "body": {
-              "description": "etee"
+              "summary": "Test experiment"
             },
             "footer": [
               {
@@ -540,7 +540,7 @@ const workflowItems = [
               }
             ],
             "body": {
-              "description": "Hilooo"
+              "summary": "Hilooo"
             },
             "footer": [
               {
@@ -569,7 +569,7 @@ const workflowItems = [
               }
             ],
             "body": {
-              "description": "Conduct research and analysis on emerging trends in renewable energy and sustainable technologies"
+              "summary": "Conduct research and analysis on emerging trends in renewable energy and sustainable technologies"
             },
             "footer": [
               {
@@ -592,7 +592,7 @@ const workflowItems = [
           "id": 1,
           "header": [],
           "body": {
-            "description": "I am testing 2.0"
+            "summary": "I am testing 2.0"
           },
           "footer": [],
           "borderColor": "#4784fc",
@@ -614,7 +614,7 @@ const workflowItems = [
               }
             ],
             "body": {
-              "description": "etee"
+              "summary": "Volcano EruptionWrite a secret message with lemon juice and reveal it by heating the paper"
             },
             "footer": [
               {
@@ -643,7 +643,7 @@ const workflowItems = [
               }
             ],
             "body": {
-              "description": "Hilooo"
+              "summary": "Create a fizzy explosion by mixing baking soda and vinegar"
             },
             "footer": [
               {
@@ -672,7 +672,7 @@ const workflowItems = [
               }
             ],
             "body": {
-              "description": "Conduct research and analysis on emerging trends in renewable energy and sustainable technologies"
+              "summary": "Conduct research and analysis on emerging trends in renewable energy and sustainable technologies"
             },
             "footer": [
               {
@@ -697,7 +697,7 @@ const workflowItems = [
       "id": 2,
       "header": [],
       "body": {
-        "description": "Collaborate with cross-functional teams to develop strategies for integrating green technologies into everyday applications.\n"
+        "summary": "Collaborate with cross-functional teams to develop strategies for integrating green technologies into everyday applications.\n"
       },
       "footer": [],
       "borderColor": "#4784fc",
@@ -713,7 +713,7 @@ const workflowItems = [
           "id": 1,
           "header": [],
           "body": {
-            "description": "I am testing"
+            "summary": "I am testing"
           },
           "footer": [],
           "borderColor": "#4784fc",
@@ -735,7 +735,7 @@ const workflowItems = [
               }
             ],
             "body": {
-              "description": "etee"
+              "summary": "etee"
             },
             "footer": [
               {
@@ -764,7 +764,7 @@ const workflowItems = [
               }
             ],
             "body": {
-              "description": "Hilooo"
+              "summary": "Hilooo"
             },
             "footer": [
               {
@@ -793,7 +793,7 @@ const workflowItems = [
               }
             ],
             "body": {
-              "description": "Conduct research and analysis on emerging trends in renewable energy and sustainable technologies"
+              "summary": "Conduct research and analysis on emerging trends in renewable energy and sustainable technologies"
             },
             "footer": [
               {
@@ -816,7 +816,7 @@ const workflowItems = [
           "id": 1,
           "header": [],
           "body": {
-            "description": "I am testing 2.0"
+            "summary": "I am testing 2.0"
           },
           "footer": [],
           "borderColor": "#4784fc",
@@ -838,7 +838,7 @@ const workflowItems = [
               }
             ],
             "body": {
-              "description": "etee"
+              "summary": "etee"
             },
             "footer": [
               {
@@ -867,7 +867,7 @@ const workflowItems = [
               }
             ],
             "body": {
-              "description": "Hilooo"
+              "summary": "Hilooo"
             },
             "footer": [
               {
@@ -896,7 +896,7 @@ const workflowItems = [
               }
             ],
             "body": {
-              "description": "Conduct research and analysis on emerging trends in renewable energy and sustainable technologies"
+              "summary": "Conduct research and analysis on emerging trends in renewable energy and sustainable technologies"
             },
             "footer": [
               {
