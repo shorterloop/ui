@@ -56,8 +56,8 @@
 
               <!-- Body -->
               <div class="task-body" [innerHTML]="task.body?.summary"
-                [attr.contenteditable]="task.body?.summary?.contenteditable"
-                (click)="!task.body?.summary?.contenteditable? addAction($event, task.body): null">
+                [attr.contenteditable]="task.body?.contenteditable"
+                (click)="!task.body?.contenteditable? addAction($event, task.body): null">
               </div>
 
               <!-- Footer -->
@@ -158,8 +158,8 @@
 
                 <!-- Body -->
                 <div class="task-body" [innerHTML]="task.body?.summary"
-                  [attr.contenteditable]="task.body?.summary?.contenteditable"
-                  (click)="!task.body?.summary?.contenteditable? addAction($event, task.body): null">
+                  [attr.contenteditable]="task.body?.contenteditable"
+                  (click)="!task.body?.contenteditable? addAction($event, task.body): null">
                 </div>
 
                 <!-- Footer -->
@@ -242,7 +242,7 @@
                 <div class="task-body" *ngIf="opportunity.opportunity.body?.summary"
                   [innerHTML]="opportunity.opportunity.body?.summary"
                   [attr.contenteditable]="opportunity.opportunity.body?.contenteditable"
-                  (click)="!opportunity.opportunity?.summary?.contenteditable? addAction($event, opportunity.opportunity): null">
+                  (click)="!opportunity.opportunity?.contenteditable? addAction($event, opportunity.opportunity): null">
                 </div>
 
                 <!-- Footer -->

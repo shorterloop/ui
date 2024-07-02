@@ -247,7 +247,7 @@ const kanbanDataWithSwimlanes = [
               { type: 'link', label: 'EP-5', url: 'https://fifth-example.com' },
               { type: 'chip', value: [{ value: 'Tag 7', backgroundColor: 'pink', foregroundColor: '#000000' }] },
             ],
-            body: { summary: 'Description for Completed Task 1' },
+            body: { summary: 'Description for Completed Task 1', contenteditable: true },
             footer: [
               { type: 'avatar', label: 'Sarah Adams', photo: 'https://picsum.photos/204' },
               { type: 'budget', label: 'Budget', value: '$500' },
