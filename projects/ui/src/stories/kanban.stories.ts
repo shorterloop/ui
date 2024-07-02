@@ -10,7 +10,7 @@ const meta: Meta<KanbanComponent> = {
   tags: ['autodocs'],
   parameters: {
     docs: {
-      description: {
+      summary: {
         component: 'This is a Kanban component that allows for managing tasks within columns and swimlanes. It supports drag-and-drop functionality and can be collapsed or expanded for a better user experience. The component showcases features like sorting cards, enabling drag-and-drop across swimlanes, showing or hiding empty rows, displaying item counts, and managing swimlane frozen rows.',
       },
     },
@@ -36,7 +36,14 @@ const kanbanData = [
           },
           { type: 'chip', value: [{ value: 'To Do', backgroundColor: '#FFF1F1', foregroundColor: '#D3272A' }] },
         ],
-        body: { description: 'User-Perceived Value Validation. User-Perceived Value Validation' },
+        body: {
+          summary: 'User-Perceived Value Validation. User-Perceived Value Validation',
+          action: {
+            event: ($event: any, column: any) => {
+              console.log("Added new experiment action performed: ", column, $event)
+            }
+          }
+        },
         footer: [
           { type: 'avatar', label: 'Dinesh Rawat', photo: 'https://picsum.photos/201' },
           { type: 'budget', label: 'Budget', value: '$100' },
@@ -50,7 +57,7 @@ const kanbanData = [
           { type: 'link', label: 'EP-2', url: 'https://another-example.com' },
           { type: 'chip', value: [{ value: 'Tag 3', backgroundColor: 'green' }, { value: 'Tag 4', backgroundColor: 'orange' }] },
         ],
-        body: { description: 'Description for Task 2' },
+        body: { summary: 'Description for Task 2' },
         footer: [
           { type: 'avatar', label: 'John Doe', photo: 'https://picsum.photos/200' },
           { type: 'budget', label: 'Budget', value: '$200' },
@@ -77,7 +84,7 @@ const kanbanData = [
           { type: 'link', label: 'EP-3', url: 'https://third-example.com' },
           { type: 'chip', value: [{ value: 'Tag 5', backgroundColor: 'purple' }] },
         ],
-        body: { description: 'Description for Task 3' },
+        body: { summary: 'Description for Task 3' },
         footer: [
           { type: 'avatar', label: 'Jane Smith', photo: 'https://picsum.photos/202' },
           { type: 'budget', label: 'Budget', value: '$300' },
@@ -91,7 +98,7 @@ const kanbanData = [
           { type: 'link', label: 'EP-4', url: 'https://fourth-example.com' },
           { type: 'chip', value: [{ value: 'Tag 6', backgroundColor: 'brown' }] },
         ],
-        body: { description: 'User-Perceived Value Validation' },
+        body: { summary: 'User-Perceived Value Validation' },
         footer: [
           { type: 'avatar', label: 'Michael Johnson', photo: 'https://picsum.photos/203' },
           { type: 'budget', label: 'Budget', value: '$400' },
@@ -118,7 +125,7 @@ const kanbanData = [
           { type: 'link', label: 'EP-5', url: 'https://fifth-example.com' },
           { type: 'chip', value: [{ value: 'Tag 7', backgroundColor: 'pink', foregroundColor: '#000000' }] },
         ],
-        body: { description: 'Description for Completed Task 1' },
+        body: { summary: 'Description for Completed Task 1' },
         footer: [
           { type: 'avatar', label: 'Sarah Adams', photo: 'https://picsum.photos/204' },
           { type: 'budget', label: 'Budget', value: '$500' },
@@ -132,7 +139,7 @@ const kanbanData = [
           { type: 'link', label: 'EP-6333', url: 'https://sixth-example.com' },
           { type: 'chip', value: [{ value: 'Tag 8', backgroundColor: 'yellow', foregroundColor: '#000000' }] },
         ],
-        body: { description: 'Description for Completed Task 2' },
+        body: { summary: 'Description for Completed Task 2' },
         footer: [
           { type: 'avatar', label: 'Emily Wilson', photo: 'https://picsum.photos/205' },
           { type: 'budget', label: 'Budget', value: '$600' },
@@ -164,7 +171,7 @@ const kanbanDataWithSwimlanes = [
               },
               { type: 'chip', value: [{ value: 'Tag 1', backgroundColor: '#FFF1F1', foregroundColor: '#D3272A' }, { value: 'Tag 2', backgroundColor: '#009042' }] },
             ],
-            body: { description: 'User-Perceived Value Validation. User-Perceived Value Validation' },
+            body: { summary: 'User-Perceived Value Validation. User-Perceived Value Validation' },
             footer: [
               { type: 'avatar', label: 'Dinesh Rawat', photo: 'https://picsum.photos/201' },
               { type: 'budget', label: 'Budget', value: '$100' },
@@ -178,7 +185,7 @@ const kanbanDataWithSwimlanes = [
               { type: 'link', label: 'EP-2', url: 'https://another-example.com' },
               { type: 'chip', value: [{ value: 'Tag 3', backgroundColor: 'green' }, { value: 'Tag 4', backgroundColor: 'orange' }] },
             ],
-            body: { description: 'Description for Task 2' },
+            body: { summary: 'Description for Task 2' },
             footer: [
               { type: 'avatar', label: 'John Doe', photo: 'https://picsum.photos/200' },
               { type: 'budget', label: 'Budget', value: '$200' },
@@ -205,7 +212,7 @@ const kanbanDataWithSwimlanes = [
               { type: 'link', label: 'EP-3', url: 'https://third-example.com' },
               { type: 'chip', value: [{ value: 'Tag 5', backgroundColor: 'purple' }] },
             ],
-            body: { description: 'Description for Task 3' },
+            body: { summary: 'Description for Task 3' },
             footer: [
               { type: 'avatar', label: 'Jane Smith', photo: 'https://picsum.photos/202' },
               { type: 'budget', label: 'Budget', value: '$300' },
@@ -219,7 +226,7 @@ const kanbanDataWithSwimlanes = [
               { type: 'link', label: 'EP-4', url: 'https://fourth-example.com' },
               { type: 'chip', value: [{ value: 'Tag 6', backgroundColor: 'brown' }] },
             ],
-            body: { description: 'User-Perceived Value Validation' },
+            body: { summary: 'User-Perceived Value Validation' },
             footer: [
               { type: 'avatar', label: 'Michael Johnson', photo: 'https://picsum.photos/203' },
               { type: 'budget', label: 'Budget', value: '$400' },
@@ -240,7 +247,7 @@ const kanbanDataWithSwimlanes = [
               { type: 'link', label: 'EP-5', url: 'https://fifth-example.com' },
               { type: 'chip', value: [{ value: 'Tag 7', backgroundColor: 'pink', foregroundColor: '#000000' }] },
             ],
-            body: { description: 'Description for Completed Task 1' },
+            body: { summary: 'Description for Completed Task 1' },
             footer: [
               { type: 'avatar', label: 'Sarah Adams', photo: 'https://picsum.photos/204' },
               { type: 'budget', label: 'Budget', value: '$500' },
@@ -254,7 +261,7 @@ const kanbanDataWithSwimlanes = [
               { type: 'link', label: 'EP-6333', url: 'https://sixth-example.com' },
               { type: 'chip', value: [{ value: 'Tag 8', backgroundColor: 'yellow', foregroundColor: '#000000' }] },
             ],
-            body: { description: 'Description for Completed Task 2' },
+            body: { summary: 'Description for Completed Task 2' },
             footer: [
               { type: 'avatar', label: 'Emily Wilson', photo: 'https://picsum.photos/205' },
               { type: 'budget', label: 'Budget', value: '$600' },
@@ -285,7 +292,7 @@ const kanbanDataWithSwimlanes = [
               },
               { type: 'chip', value: [{ value: 'Tag 9', backgroundColor: '#FFF1F1', foregroundColor: '#D3272A' }, { value: 'Tag 10', backgroundColor: '#009042' }] },
             ],
-            body: { description: 'New Task in To Do' },
+            body: { summary: 'New Task in To Do' },
             footer: [
               { type: 'avatar', label: 'Alice Brown', photo: 'https://picsum.photos/206' },
               { type: 'budget', label: 'Budget', value: '$150' },
@@ -316,7 +323,7 @@ const kanbanDataWithSwimlanes = [
               },
               { type: 'chip', value: [{ value: 'Tag 11', backgroundColor: 'blue' }] },
             ],
-            body: { description: 'New Task in Progress' },
+            body: { summary: 'New Task in Progress' },
             footer: [
               { type: 'avatar', label: 'Bob Smith', photo: 'https://picsum.photos/207' },
               { type: 'budget', label: 'Budget', value: '$250' },
@@ -341,7 +348,7 @@ const kanbanDataWithSwimlanes = [
               },
               { type: 'chip', value: [{ value: 'Tag 12', backgroundColor: 'red', foregroundColor: '#ffffff' }] },
             ],
-            body: { description: 'New Completed Task' },
+            body: { summary: 'New Completed Task' },
             footer: [
               { type: 'avatar', label: 'Charlie Green', photo: 'https://picsum.photos/208' },
               { type: 'budget', label: 'Budget', value: '$350' },
@@ -937,7 +944,7 @@ const tableHeaders = [{
 export const Default: Story = {
   parameters: {
     docs: {
-      description: {
+      summary: {
         story: 'This example illustrates the default functionalities of the Kanban component. You can drag and drop cards across different states of the Kanban board by default.',
       },
     },
@@ -949,7 +956,7 @@ export const Default: Story = {
 export const Swimlane: Story = {
   parameters: {
     docs: {
-      description: {
+      summary: {
         story: 'This example showcases the swimlane features of the Kanban component. The property panel allows you to sort cards, enable drag-and-drop across swimlanes, display or hide empty rows, view item counts, and manage swimlane frozen rows. Additionally, you can expand or collapse swimlane rows within the Kanban board.',
       },
     },
@@ -962,7 +969,7 @@ export const Swimlane: Story = {
 export const Workflow: Story = {
   parameters: {
     docs: {
-      description: {
+      summary: {
         story: 'This example demonstrates the functionalities of a hierarchical structure with opportunities as root nodes, each having multiple solutions as children, and each solution further having multiple experiments. By interacting with the nodes, you can explore the relationships, revealing the hierarchy and flow.',
       },
     },
