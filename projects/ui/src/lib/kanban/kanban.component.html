@@ -56,7 +56,8 @@
 
               <!-- Body -->
               <div class="task-body" [innerHTML]="task.body?.summary"
-                [attr.contenteditable]="task.body?.summary?.contenteditable">
+                [attr.contenteditable]="task.body?.summary?.contenteditable"
+                (click)="!task.body?.summary?.contenteditable? addAction($event, task.body): null">
               </div>
 
               <!-- Footer -->
@@ -157,7 +158,8 @@
 
                 <!-- Body -->
                 <div class="task-body" [innerHTML]="task.body?.summary"
-                  [attr.contenteditable]="task.body?.summary?.contenteditable">
+                  [attr.contenteditable]="task.body?.summary?.contenteditable"
+                  (click)="!task.body?.summary?.contenteditable? addAction($event, task.body): null">
                 </div>
 
                 <!-- Footer -->
@@ -239,7 +241,8 @@
                 <!-- Body -->
                 <div class="task-body" *ngIf="opportunity.opportunity.body?.summary"
                   [innerHTML]="opportunity.opportunity.body?.summary"
-                  [attr.contenteditable]="opportunity.opportunity.body?.contenteditable">
+                  [attr.contenteditable]="opportunity.opportunity.body?.contenteditable"
+                  (click)="!opportunity.opportunity?.summary?.contenteditable? addAction($event, opportunity.opportunity): null">
                 </div>
 
                 <!-- Footer -->
@@ -301,7 +304,8 @@
                   <!-- Body -->
                   <div class="task-body" *ngIf="solution.solution.body?.summary"
                     [innerHTML]="solution.solution.body?.summary"
-                    [attr.contenteditable]="solution.solution.body?.contenteditable">
+                    [attr.contenteditable]="solution.solution.body?.contenteditable"
+                    (click)="!solution.solution.body?.contenteditable? addAction($event, solution.solution): null">
                   </div>
 
                   <!-- Footer -->
@@ -360,6 +364,7 @@
 
                     <!-- Body -->
                     <div class="task-body" *ngIf="experiment.body?.summary" [innerHTML]="experiment.body?.summary"
+                      (click)="!experiment.body?.contenteditable? addAction($event, experiment.body): null"
                       [attr.contenteditable]="experiment.body?.contenteditable">
                     </div>
 
@@ -416,7 +421,8 @@
                   <!-- Body -->
                   <div class="task-body" *ngIf="opportunity.opportunity.body?.summary"
                     [innerHTML]="opportunity.opportunity.body?.summary"
-                    [attr.contenteditable]="opportunity.opportunity.body?.contenteditable">
+                    [attr.contenteditable]="opportunity.opportunity.body?.contenteditable"
+                    (click)="!opportunity.opportunity.body?.contenteditable? addAction($event, opportunity.opportunity): null">
                   </div>
 
                   <!-- Footer -->
