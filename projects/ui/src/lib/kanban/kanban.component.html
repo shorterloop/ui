@@ -59,7 +59,7 @@
                 [class.content_editable]="task.body?.contenteditable"
                 (mousedown)="task.body?.contenteditable? $event.stopPropagation(): null"
                 [attr.contenteditable]="task.body?.contenteditable"
-                (click)="!task.body?.contenteditable? addAction($event, task.body): null">
+                (click)="!task.body?.contenteditable? addAction($event, task): null">
               </div>
 
               <!-- Footer -->
@@ -163,7 +163,7 @@
                   [class.content_editable]="task.body?.contenteditable"
                   (mousedown)="task.body?.contenteditable? $event.stopPropagation(): null"
                   [attr.contenteditable]="task.body?.contenteditable"
-                  (click)="!task.body?.contenteditable? addAction($event, task.body): null">
+                  (click)="!task.body?.contenteditable? addAction($event, task): null">
                 </div>
 
                 <!-- Footer -->
