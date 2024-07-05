@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, QueryList, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, QueryList, ViewChildren } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -69,6 +69,7 @@ export class KanbanComponent implements AfterViewInit {
   @Input() data: KanbanData = [];
   @Input() type = '';
   @Input() tableHeaders: any = [];
+  @Output() ItemOrderChanged = new EventEmitter();
 
   @ViewChildren('kanbanList') kanbanLists!: QueryList<ElementRef>;
 
@@ -90,6 +91,8 @@ export class KanbanComponent implements AfterViewInit {
       this.adjustColumnHeights(event.container.id);
       this.adjustColumnHeights(event.previousContainer.id);
     });
+
+    this.ItemOrderChanged.emit(event.container.data);
   }
 
   ngAfterViewInit() {
