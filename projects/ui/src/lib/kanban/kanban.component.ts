@@ -69,7 +69,7 @@ export class KanbanComponent implements AfterViewInit {
   @Input() data: KanbanData = [];
   @Input() type = '';
   @Input() tableHeaders: any = [];
-  @Output() ItemOrderChanged = new EventEmitter();
+  @Output() itemOrderChanged = new EventEmitter();
 
   @ViewChildren('kanbanList') kanbanLists!: QueryList<ElementRef>;
 
@@ -92,7 +92,7 @@ export class KanbanComponent implements AfterViewInit {
       this.adjustColumnHeights(event.previousContainer.id);
     });
 
-    this.ItemOrderChanged.emit(event.container.data);
+    this.itemOrderChanged.emit(event.container.data);
   }
 
   ngAfterViewInit() {
@@ -130,7 +130,7 @@ export class KanbanComponent implements AfterViewInit {
 
   addAction($event: any, column: any) {
     const currentTarget = $event.currentTarget;
-    debugger
+
     const isBody = currentTarget.classList.contains('task-body')
     if (isBody) {
       column?.body?.action?.event($event, column);
