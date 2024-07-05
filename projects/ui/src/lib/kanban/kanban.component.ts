@@ -125,8 +125,14 @@ export class KanbanComponent implements AfterViewInit {
     }
   }
 
-  addAction($event: any, column: Column) {
-    column?.action?.event($event, column);
+  addAction($event: any, column: any) {
+    const currentTarget = $event.currentTarget;
+    const isBody = currentTarget.classList.contains('task-body')
+    if (isBody) {
+      column?.body?.action?.event($event, column);
+    } else {
+      column?.action?.event($event, column);
+    }
   }
 
   toggleCollapse(column: Column) {

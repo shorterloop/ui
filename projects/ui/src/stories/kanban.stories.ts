@@ -371,8 +371,13 @@ const workflowItems = [
       "id": 1,
       "header": [],
       "body": {
-        "contenteditable": true,
-        "summary": "Conduct research and analysis on emerging trends in renewable energy and sustainable technologies"
+        // "contenteditable": true,
+        "summary": "Conduct research and analysis on emerging trends in renewable energy and sustainable technologies",
+        action: {
+          event: ($event: any, column: any) => {
+            console.log("Added new experiment action performed: ", column, $event);
+          }
+        }
       },
       "footer": [],
       "borderColor": "#4784fc",
@@ -930,7 +935,7 @@ const tableHeaders = [{
   label: 'Solutions',
   action: {
     event: ($event: any, column: any) => {
-      console.log("2Added new experiment action performed: ", column, $event);
+      console.log("Added new experiment action performed: ", column, $event);
     }
   }
 },
