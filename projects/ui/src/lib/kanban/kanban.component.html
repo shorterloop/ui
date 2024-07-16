@@ -55,7 +55,8 @@
               </div>
 
               <!-- Body -->
-              <div class="task-body" [innerHTML]="task.body?.summary" [class.input_empty_state]="!task.body?.summary"
+              <div class="task-body" (focusout)="saveCard(task, $event.target.textContent)"
+                [innerHTML]="task.body?.summary" [class.input_empty_state]="!task.body?.summary"
                 [class.content_editable]="task.body?.contenteditable"
                 (mousedown)="task.body?.contenteditable? $event.stopPropagation(): null"
                 [attr.contenteditable]="task.body?.contenteditable"
@@ -159,7 +160,8 @@
                 </div>
 
                 <!-- Body -->
-                <div class="task-body" [innerHTML]="task.body?.summary" [class.input_empty_state]="!task.body?.summary"
+                <div class="task-body" (focusout)="saveCard(task, $event.target.textContent)"
+                  [innerHTML]="task.body?.summary" [class.input_empty_state]="!task.body?.summary"
                   [class.content_editable]="task.body?.contenteditable"
                   (mousedown)="task.body?.contenteditable? $event.stopPropagation(): null"
                   [attr.contenteditable]="task.body?.contenteditable"
@@ -244,7 +246,8 @@
                 </div>
 
                 <!-- Body -->
-                <div class="task-body" [class.input_empty_state]="!opportunity.opportunity.body?.summary"
+                <div class="task-body" (focusout)="saveCard(opportunity.opportunity, $event.target.textContent)"
+                  [class.input_empty_state]="!opportunity.opportunity.body?.summary"
                   [class.content_editable]="opportunity.opportunity.body?.contenteditable"
                   (mousedown)="opportunity.opportunity.body?.contenteditable? $event.stopPropagation(): null"
                   [innerHTML]="opportunity.opportunity.body?.summary"
@@ -309,7 +312,8 @@
                   </div>
 
                   <!-- Body -->
-                  <div class="task-body" [class.input_empty_state]="!solution.solution.body?.summary"
+                  <div class="task-body" (focusout)="saveCard(solution.solution, $event.target.textContent)"
+                    [class.input_empty_state]="!solution.solution.body?.summary"
                     [class.content_editable]="solution.solution.body?.contenteditable"
                     (mousedown)="solution.solution.body?.contenteditable? $event.stopPropagation(): null"
                     [innerHTML]="solution.solution.body?.summary"
@@ -372,8 +376,8 @@
                     </div>
 
                     <!-- Body -->
-                    <div class="task-body" [innerHTML]="experiment.body?.summary"
-                      [class.input_empty_state]="!experiment.body?.summary"
+                    <div class="task-body" (focusout)="saveCard(experiment, $event.target.textContent)"
+                      [innerHTML]="experiment.body?.summary" [class.input_empty_state]="!experiment.body?.summary"
                       [class.content_editable]="experiment.body?.contenteditable"
                       (mousedown)="experiment.body?.contenteditable? $event.stopPropagation(): null"
                       (click)="!experiment.body?.contenteditable? addAction($event, experiment.body): null"
@@ -431,7 +435,8 @@
                   </div>
 
                   <!-- Body -->
-                  <div class="task-body" [class.input_empty_state]="!opportunity.opportunity.body?.summary"
+                  <div class="task-body" (focusout)="saveCard(opportunity.opportunity, $event.target.textContent)"
+                    [class.input_empty_state]="!opportunity.opportunity.body?.summary"
                     [innerHTML]="opportunity.opportunity.body?.summary"
                     [class.content_editable]="opportunity.opportunity.body?.contenteditable"
                     (mousedown)="opportunity.opportunity.body?.contenteditable? $event.stopPropagation(): null"

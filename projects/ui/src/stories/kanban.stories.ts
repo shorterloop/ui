@@ -23,135 +23,50 @@ type Story = StoryObj<KanbanComponent>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 const kanbanData = [
   {
-    id: 1,
-    heading: 'To Do',
-    preventDrag: true,
-    tasks: [
+    "id": 1,
+    "heading": "To-Do",
+    "tasks": [],
+    "action": {
+      "label": "+ Add opportunity"
+    }
+  },
+  {
+    "id": 2,
+    "heading": "In-Progress",
+    "tasks": [],
+    "action": {}
+  },
+  {
+    "id": 3,
+    "heading": "Done",
+    "tasks": [
       {
-        id: 1,
-        header: [
-          {
-            type: 'link', label: 'EP-1', event: ($event: any, column: any) => {
-              console.log("Added new experiment action performed: ", column, $event);
-            }
-          },
-          { type: 'chip', value: [{ value: 'To Do', backgroundColor: '#FFF1F1', foregroundColor: '#D3272A' }] },
-        ],
-        body: {
-          summary: 'User-Perceived Value Validation. User-Perceived Value Validation',
-          action: {
+        "id": 1,
+        "header": [],
+        "body": {
+          "summary": "Aditi singh wesh ok got it ok",
+          "action": {
             event: ($event: any, column: any) => {
-              console.log("Added new experiment action performed: ", column, $event)
+              debugger
             }
           }
         },
-        footer: [
-          { type: 'avatar', label: 'Dinesh Rawat', photo: 'https://picsum.photos/201' },
-          { type: 'budget', label: 'Budget', value: '$100' },
-          { type: 'timeFrame', label: 'Time Frame', value: '1 month' },
-        ],
-        borderColor: '#4784fc'
+        "footer": [],
+        "borderColor": " #4784FC"
       },
       {
-        id: 2,
-        header: [
-          { type: 'link', label: 'EP-2', url: 'https://another-example.com' },
-          { type: 'chip', value: [{ value: 'Tag 3', backgroundColor: 'green' }, { value: 'Tag 4', backgroundColor: 'orange' }] },
-        ],
-        body: { summary: 'Description for Task 2' },
-        footer: [
-          { type: 'avatar', label: 'John Doe', photo: 'https://picsum.photos/200' },
-          { type: 'budget', label: 'Budget', value: '$200' },
-          { type: 'timeFrame', label: 'Time Frame', value: '2 months' },
-        ],
-        borderColor: '#4784fc'
-      },
-    ],
-    toggleColumn: true,
-    action: {
-      label: '+ Add Experiment',
-      event: ($event: any, column: any) => {
-        console.log("Added new experiment action performed: ", column, $event)
+        "id": 2,
+        "header": [],
+        "body": {
+          "summary": "you are intelligent",
+          "action": {}
+        },
+        "footer": [],
+        "borderColor": " #4784FC"
       }
-    }
-  },
-  {
-    id: 2,
-    preventDrag: true,
-    heading: 'In Progress',
-    tasks: [
-      {
-        id: 3,
-        header: [
-          { type: 'link', label: 'EP-3', url: 'https://third-example.com' },
-          { type: 'chip', value: [{ value: 'Tag 5', backgroundColor: 'purple' }] },
-        ],
-        body: { summary: 'Description for Task 3' },
-        footer: [
-          { type: 'avatar', label: 'Jane Smith', photo: 'https://picsum.photos/202' },
-          { type: 'budget', label: 'Budget', value: '$300' },
-          { type: 'timeFrame', label: 'Time Frame', value: '3 months' },
-        ],
-        borderColor: '#FFCA11'
-      },
-      {
-        id: 4,
-        header: [
-          { type: 'link', label: 'EP-4', url: 'https://fourth-example.com' },
-          { type: 'chip', value: [{ value: 'Tag 6', backgroundColor: 'brown' }] },
-        ],
-        body: { summary: 'User-Perceived Value Validation' },
-        footer: [
-          { type: 'avatar', label: 'Michael Johnson', photo: 'https://picsum.photos/203' },
-          { type: 'budget', label: 'Budget', value: '$400' },
-          { type: 'timeFrame', label: 'Time Frame', value: '4 months' },
-        ],
-        borderColor: '#4784fc'
-      },
     ],
-    toggleColumn: true,
-    action: {
-      label: '+ Add Experiment',
-      event: ($event: any, column: any) => {
-        console.log("Added new experiment action performed: ", column, $event)
-      }
-    }
-  },
-  {
-    id: 3,
-    heading: 'Done',
-    tasks: [
-      {
-        id: 5,
-        header: [
-          { type: 'link', label: 'EP-5', url: 'https://fifth-example.com' },
-          { type: 'chip', value: [{ value: 'Tag 7', backgroundColor: 'pink', foregroundColor: '#000000' }] },
-        ],
-        body: { summary: 'Description for Completed Task 1', contenteditable: true },
-        footer: [
-          { type: 'avatar', label: 'Sarah Adams', photo: 'https://picsum.photos/204' },
-          { type: 'budget', label: 'Budget', value: '$500' },
-          { type: 'timeFrame', label: 'Time Frame', value: '5 months' },
-        ],
-        borderColor: '#FFCA11'
-      },
-      {
-        id: 6,
-        header: [
-          { type: 'link', label: 'EP-6333', url: 'https://sixth-example.com' },
-          { type: 'chip', value: [{ value: 'Tag 8', backgroundColor: 'yellow', foregroundColor: '#000000' }] },
-        ],
-        body: { summary: 'Description for Completed Task 2' },
-        footer: [
-          { type: 'avatar', label: 'Emily Wilson', photo: 'https://picsum.photos/205' },
-          { type: 'budget', label: 'Budget', value: '$600' },
-          { type: 'timeFrame', label: 'Time Frame', value: '6 months' },
-        ],
-        borderColor: '#4784fc'
-      },
-    ],
-    toggleColumn: true,
-  },
+    "action": {}
+  }
 ];
 
 const kanbanDataWithSwimlanes = [

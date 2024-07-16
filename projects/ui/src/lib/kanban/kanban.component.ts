@@ -70,6 +70,7 @@ export class KanbanComponent implements AfterViewInit {
   @Input() type = '';
   @Input() tableHeaders: any = [];
   @Output() itemOrderChanged = new EventEmitter();
+  @Output() cardUpdated = new EventEmitter();
 
   @ViewChildren('kanbanList') kanbanLists!: QueryList<ElementRef>;
 
@@ -137,6 +138,11 @@ export class KanbanComponent implements AfterViewInit {
     } else {
       column?.action?.event($event, column);
     }
+  }
+
+  saveCard(column: any, textContent: any) {
+    column.body.summary = textContent;
+    this.cardUpdated.emit(column);
   }
 
   toggleCollapse(column: Column) {
