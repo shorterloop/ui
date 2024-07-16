@@ -55,9 +55,9 @@
               </div>
 
               <!-- Body -->
-              <div class="task-body" (focusout)="saveCard(task, $event.target.textContent)"
-                [innerHTML]="task.body?.summary" [class.input_empty_state]="!task.body?.summary"
-                [class.content_editable]="task.body?.contenteditable"
+              <div class="task-body" (keydown.enter)="$event.target.blur()"
+                (focusout)="saveCard(task, $event.target.textContent)" [innerHTML]="task.body?.summary"
+                [class.input_empty_state]="!task.body?.summary" [class.content_editable]="task.body?.contenteditable"
                 (mousedown)="task.body?.contenteditable? $event.stopPropagation(): null"
                 [attr.contenteditable]="task.body?.contenteditable"
                 (click)="!task.body?.contenteditable? addAction($event, task): null">
@@ -160,9 +160,9 @@
                 </div>
 
                 <!-- Body -->
-                <div class="task-body" (focusout)="saveCard(task, $event.target.textContent)"
-                  [innerHTML]="task.body?.summary" [class.input_empty_state]="!task.body?.summary"
-                  [class.content_editable]="task.body?.contenteditable"
+                <div class="task-body" (keydown.enter)="$event.target.blur()"
+                  (focusout)="saveCard(task, $event.target.textContent)" [innerHTML]="task.body?.summary"
+                  [class.input_empty_state]="!task.body?.summary" [class.content_editable]="task.body?.contenteditable"
                   (mousedown)="task.body?.contenteditable? $event.stopPropagation(): null"
                   [attr.contenteditable]="task.body?.contenteditable"
                   (click)="!task.body?.contenteditable? addAction($event, task): null">
@@ -246,7 +246,8 @@
                 </div>
 
                 <!-- Body -->
-                <div class="task-body" (focusout)="saveCard(opportunity.opportunity, $event.target.textContent)"
+                <div class="task-body" (keydown.enter)="$event.target.blur()"
+                  (focusout)="saveCard(opportunity.opportunity, $event.target.textContent)"
                   [class.input_empty_state]="!opportunity.opportunity.body?.summary"
                   [class.content_editable]="opportunity.opportunity.body?.contenteditable"
                   (mousedown)="opportunity.opportunity.body?.contenteditable? $event.stopPropagation(): null"
@@ -312,7 +313,8 @@
                   </div>
 
                   <!-- Body -->
-                  <div class="task-body" (focusout)="saveCard(solution.solution, $event.target.textContent)"
+                  <div class="task-body" (keydown.enter)="$event.target.blur()"
+                    (focusout)="saveCard(solution.solution, $event.target.textContent)"
                     [class.input_empty_state]="!solution.solution.body?.summary"
                     [class.content_editable]="solution.solution.body?.contenteditable"
                     (mousedown)="solution.solution.body?.contenteditable? $event.stopPropagation(): null"
@@ -376,7 +378,8 @@
                     </div>
 
                     <!-- Body -->
-                    <div class="task-body" (focusout)="saveCard(experiment, $event.target.textContent)"
+                    <div class="task-body" (keydown.enter)="$event.target.blur()"
+                      (focusout)="saveCard(experiment, $event.target.textContent)"
                       [innerHTML]="experiment.body?.summary" [class.input_empty_state]="!experiment.body?.summary"
                       [class.content_editable]="experiment.body?.contenteditable"
                       (mousedown)="experiment.body?.contenteditable? $event.stopPropagation(): null"
@@ -435,7 +438,8 @@
                   </div>
 
                   <!-- Body -->
-                  <div class="task-body" (focusout)="saveCard(opportunity.opportunity, $event.target.textContent)"
+                  <div class="task-body" (keydown.enter)="$event.target.blur()"
+                    (focusout)="saveCard(opportunity.opportunity, $event.target.textContent)"
                     [class.input_empty_state]="!opportunity.opportunity.body?.summary"
                     [innerHTML]="opportunity.opportunity.body?.summary"
                     [class.content_editable]="opportunity.opportunity.body?.contenteditable"
