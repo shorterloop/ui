@@ -44,7 +44,7 @@ const kanbanData = [
         "id": 1,
         "header": [],
         "body": {
-          "summary": "Aditi singh wesh ok got it ok",
+          "summary": "Improve User Login Experience",
           "action": {
             event: ($event: any, column: any) => {
               debugger
@@ -58,7 +58,7 @@ const kanbanData = [
         "id": 2,
         "header": [],
         "body": {
-          "summary": "you are intelligent",
+          "summary": "Implement Task Dependencies",
           "action": {}
         },
         "footer": [],
