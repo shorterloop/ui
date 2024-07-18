@@ -30,7 +30,7 @@
           [{{column.tasks?.length}}] {{column.heading}}
         </div>
         <div cdkDropList [cdkDropListData]="column.tasks" class="kanban-list" #kanbanList
-          (cdkDropListDropped)="drop($event)" *ngIf="!column?.collapsed">
+          (cdkDropListDropped)="drop($event)" *ngIf="!column?.collapsed" [id]="column.heading">
           <div class="kanban-item" *ngFor="let task of column.tasks" cdkDrag [cdkDragDisabled]="column?.preventDrag"
             [style.borderTop]="task?.borderColor ? '3px solid ' + task?.borderColor : ''">
             <div class="task-card">
@@ -133,7 +133,7 @@
             [{{dataColumn.tasks?.length}}] {{dataColumn.heading}}
           </div>
 
-          <div cdkDropList [cdkDropListData]="dataColumn.tasks" class="kanban-list"
+          <div cdkDropList [cdkDropListData]="dataColumn.tasks" class="kanban-list" [id]="th?.label"
             attr.customId="swimlane_row_{{column?.id}}" #kanbanList (cdkDropListDropped)="drop($event)"
             *ngIf="!dataColumn?.collapsed">
             <div class="kanban-item" *ngFor="let task of dataColumn.tasks" cdkDrag

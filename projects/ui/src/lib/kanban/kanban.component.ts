@@ -93,7 +93,10 @@ export class KanbanComponent implements AfterViewInit {
       this.adjustColumnHeights(event.previousContainer.id);
     });
 
-    this.itemOrderChanged.emit(event.container.data);
+    this.itemOrderChanged.emit({
+      droppedInto: event.container.id,
+      data: event.container.data
+    });
   }
 
   ngAfterViewInit() {
