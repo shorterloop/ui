@@ -5,16 +5,15 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-// import { BrowserAnimationsModule,NoopAnimationsModule } from '@angular/platform-browser/animations';
+
 @Component({
-  selector: 'app-variant',
+  selector: 'shorterloop-experiment-evaluate-outcome',
   standalone: true,
   imports: [CommonModule, MatFormFieldModule, MatButtonToggleModule, MatInputModule, MatSelectModule, ReactiveFormsModule, FormsModule],
-  templateUrl: './variant.component.html',
-  styleUrls: ['./variant.component.css'],
-
+  templateUrl: './shorterloop-experiment-evaluate-outcome.component.html',
+  styleUrls: ['./shorterloop-experiment-evaluate-outcome.component.css']
 })
-export class VariantComponent implements OnInit {
+export class ExperimentEvaluateOutcomeComponent implements OnInit {
   isAddingVariant = false;
   variantForm: FormGroup = this.formBuilder.group({
     sampleSize: [],
