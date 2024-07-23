@@ -221,9 +221,8 @@
       <ng-container *ngFor="let opportunity of data; let i = index">
         <tr *ngIf="opportunity.solutions.length > 0; else noSolutions">
           <!-- First column for opportunity details -->
-          <td [attr.rowspan]="opportunity.solutions.length + 1" class="odd-section"
-            *ngIf="!(opportunity.opportunity | isEmptyObject)">
-            <div class="kanban-item"
+          <td [attr.rowspan]="opportunity.solutions.length + 1" class="odd-section">
+            <div class="kanban-item" *ngIf="!(opportunity.opportunity | isEmptyObject)"
               [style.borderTop]="opportunity.opportunity?.borderColor ? '3px solid ' + opportunity.opportunity?.borderColor : ''">
               <div class="task-card">
                 <!-- Header -->
@@ -353,7 +352,7 @@
 
             <!-- Experiments column -->
             <td class="odd-section" cdkDropListGroup cdkDropList [cdkDropListData]="solution.experiments"
-              (cdkDropListDropped)="drop($event)" *ngIf="solution?.experiments?.length">
+              (cdkDropListDropped)="drop($event)">
               <ng-container *ngFor="let experiment of solution.experiments" class="kanban-list">
                 <div class="kanban-item" cdkDrag
                   [style.borderTop]="experiment?.borderColor ? '3px solid ' + experiment?.borderColor : ''">
@@ -414,8 +413,8 @@
         <!-- Placeholder row if no solutions -->
         <ng-template #noSolutions>
           <tr>
-            <td class="odd-section" *ngIf="!(opportunity.opportunity | isEmptyObject)">
-              <div class="kanban-item"
+            <td class="odd-section">
+              <div class="kanban-item" *ngIf="!(opportunity.opportunity | isEmptyObject)"
                 [style.borderTop]="opportunity.opportunity?.borderColor ? '3px solid ' + opportunity.opportunity?.borderColor : ''">
                 <div class="task-card">
                   <!-- Header -->
