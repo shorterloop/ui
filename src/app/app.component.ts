@@ -47,7 +47,8 @@ export class AppComponent {
           "header": [],
           "body": {
             "summary": "Implement Task Dependencies",
-            "action": {}
+            "action": {},
+            contenteditable: true,
           },
           "footer": [],
           "borderColor": " #4784FC"
@@ -61,5 +62,11 @@ export class AppComponent {
   itemOrderChanged($event: any) {
     $event;
     debugger
+  }
+
+  cardUpdated($event: any) {
+    $event;
+    debugger
+
   }
 }

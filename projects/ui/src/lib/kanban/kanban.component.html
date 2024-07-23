@@ -205,7 +205,7 @@
         <th *ngFor="let th of tableHeaders; let i=index" [style.width.%]="100 / tableHeaders.length">
           <span class="workflow-table-heading">{{ th.label }}</span>
 
-          <span class="add_action_button" (click)="addAction($event, th)">
+          <span class="add_action_button add-next" (click)="addAction($event, th)">
             <svg class="add-next" width="32" height="32" viewBox="0 0 32 32" fill="none"
               xmlns="http://www.w3.org/2000/svg">
               <rect width="32" height="32" rx="4" fill="#F8F6FE" />
@@ -278,7 +278,7 @@
               <a (click)="addAction($event, opportunity.opportunity)" class="d-flex">
                 <span *ngIf="opportunity.opportunity?.action?.icon"
                   [innerHTML]="sanitizer.bypassSecurityTrustHtml(opportunity.opportunity?.action?.icon)"></span>
-                <span class="add_action_button">{{ opportunity.opportunity?.action?.label }}</span>
+                <span class="add_action_button add-next">{{ opportunity.opportunity?.action?.label }}</span>
               </a>
             </div>
           </td>
@@ -345,7 +345,7 @@
                 <a (click)="addAction($event, solution.solution)" class="d-flex">
                   <span *ngIf="solution.solution?.action?.icon"
                     [innerHTML]="sanitizer.bypassSecurityTrustHtml(solution.solution?.action?.icon)"></span>
-                  <span class="add_action_button">{{ solution.solution?.action?.label }}</span>
+                  <span class="add_action_button add-next">{{ solution.solution?.action?.label }}</span>
                 </a>
               </div>
             </td>
@@ -470,7 +470,7 @@
                 <a (click)="addAction($event, opportunity.opportunity)" class="d-flex">
                   <span *ngIf="opportunity.opportunity?.action?.icon"
                     [innerHTML]="sanitizer.bypassSecurityTrustHtml(opportunity.opportunity?.action?.icon)"></span>
-                  <span class="add_action_button">{{ opportunity.opportunity?.action?.label }}</span>
+                  <span class="add_action_button add-next">{{ opportunity.opportunity?.action?.label }}</span>
                 </a>
               </div>
             </td>
