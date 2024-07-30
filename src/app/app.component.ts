@@ -34,7 +34,14 @@ export class AppComponent {
       "tasks": [
         {
           "id": 1,
-          "header": [],
+          "header": [
+            {
+              type: 'link', label: 'EP-1', event: ($event: any, column: any) => {
+                console.log("Added new experiment action performed: ", column, $event);
+              }
+            },
+            { type: 'chip', value: [{ value: 'Tag 1', backgroundColor: '#FFF1F1', foregroundColor: '#D3272A' }, { value: 'Tag 2', backgroundColor: '#009042' }] },
+          ],
           "body": {
             "summary": "Improve User Login Experience",
             "action": {}
@@ -44,7 +51,14 @@ export class AppComponent {
         },
         {
           "id": 2,
-          "header": [],
+          "header": [
+            {
+              type: 'link', label: 'EP-2', event: ($event: any, column: any) => {
+                console.log("Added new experiment action performed: ", column, $event);
+              }
+            },
+            { type: 'chip', value: [{ value: 'Tag 1', backgroundColor: '#FFF1F1', foregroundColor: '#D3272A' }, { value: 'Tag 2', backgroundColor: '#009042' }] },
+          ],
           "body": {
             "summary": "Implement Task Dependencies",
             "action": {},

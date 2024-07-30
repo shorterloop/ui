@@ -77,9 +77,10 @@ export class KanbanComponent implements AfterViewInit {
   constructor(public sanitizer: DomSanitizer) { }
 
   drop(event: CdkDragDrop<Task[]>) {
-    const dropCard = event.container.data[event.previousIndex];
+    let dropCard = {};
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      dropCard = event.container.data[event.currentIndex];
     } else {
       transferArrayItem(
         event.previousContainer.data,
@@ -87,6 +88,7 @@ export class KanbanComponent implements AfterViewInit {
         event.previousIndex,
         event.currentIndex
       );
+      dropCard = event.container.data[event.currentIndex];
     }
 
     setTimeout((_: any) => {
