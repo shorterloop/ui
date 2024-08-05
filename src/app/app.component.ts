@@ -13,7 +13,97 @@ export class AppComponent {
   title = 'Ui testing';
 
 
-  workflowItems = [{ opportunity: { id: 1, header: [], body: { summary: 'Conduct research and analysis on emerging trends in renewable energy and sustainable technologies', action: {} }, footer: [], borderColor: '#4784fc', action: { label: '+ Add Solution' } }, solutions: [{ solution: { id: 1, header: [], body: { summary: 'Community Engagement Initiative' }, footer: [], borderColor: '#4784fc', action: { label: '+ Add Experiment' } }, experiments: [{ id: 520, header: [{ type: 'link', label: 'EXP-1' }, { type: 'chip', value: [] }], body: { summary: 'etee' }, footer: [{ type: 'budget', label: 'Budget', value: '$50.00' }, { type: 'timeFrame', label: 'Time Frame', value: '1 month' }], borderColor: '#4784fc' }, { id: 521, header: [{ type: 'link', label: 'EXP-2' }, { type: 'chip', value: [] }], body: { summary: 'Hilooo' }, footer: [{ type: 'budget', label: 'Budget', value: '0.00' }, { type: 'timeFrame', label: 'Time Frame', value: '1 month' }], borderColor: '#4784fc' }, { id: 522, header: [{ type: 'link', label: 'EXP-3' }, { type: 'chip', value: [] }], body: { summary: 'Conduct research and analysis on emerging trends in renewable energy and sustainable technologies' }, footer: [{ type: 'budget', label: 'Budget', value: '00.00' }, { type: 'timeFrame', label: 'Time Frame', value: '1 month' }], borderColor: '#4784fc' }] }, { solution: { id: 1, header: [], body: { summary: 'I am testing' }, footer: [], borderColor: '#4784fc', action: { label: '+ Add Experiment' } }, experiments: [{ id: 520, header: [{ type: 'link', label: 'EXP-1' }, { type: 'chip', value: [] }], body: { summary: 'Test experiment' }, footer: [{ type: 'budget', label: 'Budget', value: '$50.00' }, { type: 'timeFrame', label: 'Time Frame', value: '1 month' }], borderColor: '#4784fc' }, { id: 521, header: [{ type: 'link', label: 'EXP-2' }, { type: 'chip', value: [] }], body: { summary: 'Hilooo' }, footer: [{ type: 'budget', label: 'Budget', value: '0.00' }, { type: 'timeFrame', label: 'Time Frame', value: '1 month' }], borderColor: '#4784fc' }, { id: 522, header: [{ type: 'link', label: 'EXP-3' }, { type: 'chip', value: [] }], body: { summary: 'Conduct research and analysis on emerging trends in renewable energy and sustainable technologies' }, footer: [{ type: 'budget', label: 'Budget', value: '00.00' }, { type: 'timeFrame', label: 'Time Frame', value: '1 month' }], borderColor: '#4784fc' }] }, { solution: { id: 1, header: [], body: { summary: 'I am testing 2.0' }, footer: [], borderColor: '#4784fc', action: { label: '+ Add Experiment' } }, experiments: [{ id: 520, header: [{ type: 'link', label: 'EXP-1' }, { type: 'chip', value: [] }], body: { summary: 'Volcano EruptionWrite a secret message with lemon juice and reveal it by heating the paper' }, footer: [{ type: 'budget', label: 'Budget', value: '$50.00' }, { type: 'timeFrame', label: 'Time Frame', value: '1 month' }], borderColor: '#4784fc' }, { id: 521, header: [{ type: 'link', label: 'EXP-2' }, { type: 'chip', value: [] }], body: { summary: 'Create a fizzy explosion by mixing baking soda and vinegar' }, footer: [{ type: 'budget', label: 'Budget', value: '0.00' }, { type: 'timeFrame', label: 'Time Frame', value: '1 month' }], borderColor: '#4784fc' }, { id: 522, header: [{ type: 'link', label: 'EXP-3' }, { type: 'chip', value: [] }], body: { summary: 'Conduct research and analysis on emerging trends in renewable energy and sustainable technologies' }, footer: [{ type: 'budget', label: 'Budget', value: '00.00' }, { type: 'timeFrame', label: 'Time Frame', value: '1 month' }], borderColor: '#4784fc' }] }] }, { opportunity: { id: 2, header: [], body: { summary: 'Collaborate with cross-functional teams to develop strategies for integrating green technologies into everyday applications.\n' }, footer: [], borderColor: '#4784fc', action: { label: '+ Add Solution', icon: '<svg width=\'16\' height=\'16\' viewBox=\'0 0 16 16\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M2 2.667a.667.667 0 0 0-.662.588l-.005.078v4.334a2.333 2.333 0 0 0 2.206 2.33l.128.003h8.723l-2.195 2.195a.67.67 0 0 0-.055.88l.055.063a.67.67 0 0 0 .88.055l.063-.055 3.333-3.333a1 1 0 0 0 .065-.075l.047-.073.036-.076.024-.07.016-.078.005-.04.003-.06-.002-.05-.012-.084-.02-.074-.029-.074-.035-.065-.042-.061-.056-.063-3.333-3.333a.667.667 0 0 0-.998.88l.055.062 2.195 2.196H3.667a1 1 0 0 1-.996-.904l-.004-.096V3.333A.667.667 0 0 0 2 2.667\' fill=\'#573DF4\'/></svg>' } }, solutions: [{ solution: { id: 1, header: [], body: { summary: 'I am testing' }, footer: [], borderColor: '#4784fc', action: { label: '+ Add Experiment' } }, experiments: [{ id: 520, header: [{ type: 'link', label: 'EXP-1' }, { type: 'chip', value: [] }], body: { summary: 'etee' }, footer: [{ type: 'budget', label: 'Budget', value: '$50.00' }, { type: 'timeFrame', label: 'Time Frame', value: '1 month' }], borderColor: '#4784fc' }, { id: 521, header: [{ type: 'link', label: 'EXP-2' }, { type: 'chip', value: [] }], body: { summary: 'Hilooo' }, footer: [{ type: 'budget', label: 'Budget', value: '0.00' }, { type: 'timeFrame', label: 'Time Frame', value: '1 month' }], borderColor: '#4784fc' }, { id: 522, header: [{ type: 'link', label: 'EXP-3' }, { type: 'chip', value: [] }], body: { summary: 'Conduct research and analysis on emerging trends in renewable energy and sustainable technologies' }, footer: [{ type: 'budget', label: 'Budget', value: '00.00' }, { type: 'timeFrame', label: 'Time Frame', value: '1 month' }], borderColor: '#4784fc' }] }, { solution: { id: 1, header: [], body: { summary: 'I am testing 2.0' }, footer: [], borderColor: '#4784fc', action: { label: '+ Add Experiment' } }, experiments: [{ id: 520, header: [{ type: 'link', label: 'EXP-1' }, { type: 'chip', value: [] }], body: { summary: 'etee' }, footer: [{ type: 'budget', label: 'Budget', value: '$50.00' }, { type: 'timeFrame', label: 'Time Frame', value: '1 month' }], borderColor: '#4784fc' }, { id: 521, header: [{ type: 'link', label: 'EXP-2' }, { type: 'chip', value: [] }], body: { summary: 'Hilooo' }, footer: [{ type: 'budget', label: 'Budget', value: '0.00' }, { type: 'timeFrame', label: 'Time Frame', value: '1 month' }], borderColor: '#4784fc' }, { id: 522, header: [{ type: 'link', label: 'EXP-3' }, { type: 'chip', value: [] }], body: { summary: 'Conduct research and analysis on emerging trends in renewable energy and sustainable technologies' }, footer: [{ type: 'budget', label: 'Budget', value: '00.00' }, { type: 'timeFrame', label: 'Time Frame', value: '1 month' }], borderColor: '#4784fc' }] }] }];
+  workflowItems = [
+    {
+      "opportunityId": 0,
+      "solutions": []
+    },
+    {
+      "opportunityId": 199,
+      "solutions": [
+        {
+          "solutionId": 0,
+          "experiments": []
+        },
+        {
+          "solutionId": 43,
+          "experiments": [
+            {
+              "experimentId": 22,
+              "id": 22,
+              "experimentName": "new experiemnt",
+              "externalKey": "EXP-11",
+              "userId": "[]",
+              "initiativeId": 1121,
+              "artifactTableName": null,
+              "artifactId": null,
+              "wikiPageId": 0,
+              "artifactExternalKey": null,
+              "artifactCardId": null,
+              "hypothesis": null,
+              "cost": null,
+              "startAt": null,
+              "endAt": null,
+              "steps": "",
+              "criteria": null,
+              "result": false,
+              "color": "#4784fc",
+              "urls": "[]",
+              "complexity": null,
+              "progress": "to-do",
+              "status": "active",
+              "order": 11,
+              "planOrder": 11,
+              "teamId": 0,
+              "createdAt": "2024-08-05T09:43:18.000Z",
+              "updatedAt": "2024-08-05T09:43:18.000Z",
+              "summary": "new experiemnt"
+            }
+          ],
+          "id": 43,
+          "summary": "new sol",
+          "description": "",
+          "externalKey": "SOL-15",
+          "userId": "[]",
+          "color": "#4784fc",
+          "status": "active",
+          "teamId": 0,
+          "urls": "[]",
+          "reach": "0",
+          "impact": "0",
+          "confidence": "0",
+          "effort": "0",
+          "progress": "to-do",
+          "subscriptionId": 1325,
+          "initiativeId": 1121,
+          "wikiPageId": 0,
+          "order": 15,
+          "planOrder": 15,
+          "createdAt": "2024-08-05T09:43:06.000Z",
+          "updatedAt": "2024-08-05T09:43:06.000Z"
+        }
+      ],
+      "id": 199,
+      "summary": "new opport",
+      "description": "",
+      "externalKey": "OPP-18",
+      "userId": "[]",
+      "color": "#4784fc",
+      "urls": "[]",
+      "spread": "0",
+      "intensity": "0",
+      "progress": "to-do",
+      "status": "active",
+      "teamId": 0,
+      "subscriptionId": 1325,
+      "initiativeId": 1121,
+      "wikiPageId": 0,
+      "order": 18,
+      "planOrder": 18,
+      "createdAt": "2024-08-05T09:42:59.000Z",
+      "updatedAt": "2024-08-05T09:42:59.000Z"
+    }
+  ];
 
 
   itemOrderChanged($event: any) {

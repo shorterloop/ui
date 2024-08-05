@@ -239,7 +239,7 @@
                 [style.borderTop]="opportunity.opportunity?.borderColor ? '3px solid ' + opportunity.opportunity?.borderColor : ''">
                 <div class="task-card">
                   <!-- Header -->
-                  <div class="task-header" *ngIf="opportunity.opportunity.header?.length">
+                  <div class="task-header" *ngIf="opportunity.opportunity?.header?.length">
                     <ng-container *ngFor="let item of opportunity.opportunity.header">
                       <ng-container *ngIf="item.type === 'link'">
                         <span class="link">
@@ -261,17 +261,17 @@
                   <!-- Body -->
                   <div class="task-body" (keydown.enter)="$event.target.blur()"
                     (focusout)="saveCard(opportunity.opportunity, $event.target.textContent)"
-                    [class.input_empty_state]="!opportunity.opportunity.body?.summary"
-                    [class.content_editable]="opportunity.opportunity.body?.contenteditable"
-                    (mousedown)="opportunity.opportunity.body?.contenteditable? $event.stopPropagation(): null"
-                    [innerHTML]="opportunity.opportunity.body?.summary"
-                    [attr.contenteditable]="opportunity.opportunity.body?.contenteditable"
+                    [class.input_empty_state]="!opportunity.opportunity?.body?.summary"
+                    [class.content_editable]="opportunity.opportunity?.body?.contenteditable"
+                    (mousedown)="opportunity.opportunity?.body?.contenteditable? $event.stopPropagation(): null"
+                    [innerHTML]="opportunity.opportunity?.body?.summary"
+                    [attr.contenteditable]="opportunity.opportunity?.body?.contenteditable"
                     (click)="!opportunity.opportunity?.contenteditable? addAction($event, opportunity.opportunity): null">
                   </div>
 
                   <!-- Footer -->
-                  <div class="task-footer" *ngIf="opportunity.opportunity.footer?.length">
-                    <ng-container *ngFor="let item of opportunity.opportunity.footer">
+                  <div class="task-footer" *ngIf="opportunity.opportunity?.footer?.length">
+                    <ng-container *ngFor="let item of opportunity.opportunity?.footer">
                       <div class="avatar" *ngIf="item.type === 'avatar'">
                         <img *ngIf="item?.photo" [src]="item?.photo" alt="{{ item.label }}" />
                         <span>{{ item.label }}</span>
@@ -307,8 +307,8 @@
                 [style.borderTop]="solution.solution?.borderColor ? '3px solid ' + solution.solution?.borderColor : ''">
                 <div class="task-card">
                   <!-- Header -->
-                  <div class="task-header" *ngIf="solution.solution.header?.length">
-                    <ng-container *ngFor="let item of solution.solution.header">
+                  <div class="task-header" *ngIf="solution.solution?.header?.length">
+                    <ng-container *ngFor="let item of solution.solution?.header">
                       <ng-container *ngIf="item.type === 'link'">
                         <span class="link">
                           <a href="javascript:void(0)" (click)="addAction($event, item)">{{ item.label }}</a>
@@ -329,17 +329,17 @@
                   <!-- Body -->
                   <div class="task-body" (keydown.enter)="$event.target.blur()"
                     (focusout)="saveCard(solution.solution, $event.target.textContent)"
-                    [class.input_empty_state]="!solution.solution.body?.summary"
-                    [class.content_editable]="solution.solution.body?.contenteditable"
-                    (mousedown)="solution.solution.body?.contenteditable? $event.stopPropagation(): null"
-                    [innerHTML]="solution.solution.body?.summary"
-                    [attr.contenteditable]="solution.solution.body?.contenteditable"
-                    (click)="!solution.solution.body?.contenteditable? addAction($event, solution.solution): null">
+                    [class.input_empty_state]="!solution.solution?.body?.summary"
+                    [class.content_editable]="solution.solution?.body?.contenteditable"
+                    (mousedown)="solution.solution?.body?.contenteditable? $event.stopPropagation(): null"
+                    [innerHTML]="solution.solution?.body?.summary"
+                    [attr.contenteditable]="solution.solution?.body?.contenteditable"
+                    (click)="!solution.solution?.body?.contenteditable? addAction($event, solution.solution): null">
                   </div>
 
                   <!-- Footer -->
-                  <div class="task-footer" *ngIf="solution.solution.footer?.length">
-                    <ng-container *ngFor="let item of solution.solution.footer">
+                  <div class="task-footer" *ngIf="solution.solution?.footer?.length">
+                    <ng-container *ngFor="let item of solution.solution?.footer">
                       <div class="avatar" *ngIf="item.type === 'avatar'">
                         <img *ngIf="item?.photo" [src]="item?.photo" alt="{{ item.label }}" />
                         <span>{{ item.label }}</span>
@@ -432,7 +432,7 @@
                 [style.borderTop]="opportunity.opportunity?.borderColor ? '3px solid ' + opportunity.opportunity?.borderColor : ''">
                 <div class="task-card">
                   <!-- Header -->
-                  <div class="task-header" *ngIf="opportunity.opportunity.header?.length">
+                  <div class="task-header" *ngIf="opportunity.opportunity?.header?.length">
                     <ng-container *ngFor="let item of opportunity.opportunity.header">
                       <ng-container *ngIf="item.type === 'link'">
                         <span class="link">
@@ -454,17 +454,17 @@
                   <!-- Body -->
                   <div class="task-body" (keydown.enter)="$event.target.blur()"
                     (focusout)="saveCard(opportunity.opportunity, $event.target.textContent)"
-                    [class.input_empty_state]="!opportunity.opportunity.body?.summary"
-                    [innerHTML]="opportunity.opportunity.body?.summary"
-                    [class.content_editable]="opportunity.opportunity.body?.contenteditable"
-                    (mousedown)="opportunity.opportunity.body?.contenteditable? $event.stopPropagation(): null"
-                    [attr.contenteditable]="opportunity.opportunity.body?.contenteditable"
-                    (click)="!opportunity.opportunity.body?.contenteditable? addAction($event, opportunity.opportunity): null">
+                    [class.input_empty_state]="!opportunity.opportunity?.body?.summary"
+                    [innerHTML]="opportunity.opportunity?.body?.summary"
+                    [class.content_editable]="opportunity.opportunity?.body?.contenteditable"
+                    (mousedown)="opportunity.opportunity?.body?.contenteditable? $event.stopPropagation(): null"
+                    [attr.contenteditable]="opportunity.opportunity?.body?.contenteditable"
+                    (click)="!opportunity.opportunity?.body?.contenteditable? addAction($event, opportunity.opportunity): null">
                   </div>
 
                   <!-- Footer -->
-                  <div class="task-footer" *ngIf="opportunity.opportunity.footer?.length">
-                    <ng-container *ngFor="let item of opportunity.opportunity.footer">
+                  <div class="task-footer" *ngIf="opportunity.opportunity?.footer?.length">
+                    <ng-container *ngFor="let item of opportunity.opportunity?.footer">
                       <div class="avatar" *ngIf="item.type === 'avatar'">
                         <img *ngIf="item?.photo" [src]="item?.photo" alt="{{ item.label }}" />
                         <span>{{ item.label }}</span>
