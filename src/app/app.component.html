@@ -1,2 +1,2 @@
-<shorterloop-kanban [data]="workflowItems" (itemOrderChanged)="itemOrderChanged($event)"
-  (cardUpdated)="cardUpdated($event)"></shorterloop-kanban>
+<shorterloop-kanban [data]="workflowItems" [type]="'workflow'"
+  [tableHeaders]="[{label: 'Opportunities', action: {}}, {label: 'Solutions', action: {}}, {label: 'Experiments', action: {}}]"></shorterloop-kanban>

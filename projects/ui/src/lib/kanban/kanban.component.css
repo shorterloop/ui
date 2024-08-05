@@ -92,15 +92,22 @@ h2 {
   border: 1px solid #e0e0e0;
   margin-bottom: 10px;
   font-size: 14px;
-}
 
-.cdk-drag.kanban-item {
-  cursor: grab;
-}
+  .cdk-drag-handle {
+    visibility: hidden;
+  }
 
-.cdk-drag.kanban-item:active,
-.kanban-board:active {
-  cursor: grabbing;
+
+  &:hover {
+    .cdk-drag-handle {
+      visibility: visible;
+      cursor: all-scroll;
+
+      svg {
+        cursor: all-scroll;
+      }
+    }
+  }
 }
 
 .icon_center {

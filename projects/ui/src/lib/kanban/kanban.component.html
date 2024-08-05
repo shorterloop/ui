@@ -231,70 +231,72 @@
     </thead>
     <tbody>
       <ng-container *ngFor="let opportunity of data; let i = index">
-        <tr *ngIf="opportunity.solutions.length > 0; else noSolutions">
-          <!-- First column for opportunity details -->
-          <td [attr.rowspan]="opportunity.solutions.length + 1" class="odd-section">
-            <div class="kanban-item" *ngIf="!(opportunity.opportunity | isEmptyObject)"
-              [style.borderTop]="opportunity.opportunity?.borderColor ? '3px solid ' + opportunity.opportunity?.borderColor : ''">
-              <div class="task-card">
-                <!-- Header -->
-                <div class="task-header" *ngIf="opportunity.opportunity.header?.length">
-                  <ng-container *ngFor="let item of opportunity.opportunity.header">
-                    <ng-container *ngIf="item.type === 'link'">
-                      <span class="link">
-                        <a href="javascript:void(0)" (click)="addAction($event, item)">{{ item.label }}</a>
-                      </span>
-                    </ng-container>
-                    <ng-container *ngIf="item.type === 'chip'">
-                      <span class="chip-container">
-                        <span *ngFor="let chip of item.value" class="chip"
-                          [style.backgroundColor]="chip?.backgroundColor" [style.color]="chip?.foregroundColor">
-                          {{ chip?.value }}
+        <ng-container *ngIf="opportunity.solutions.length > 0; else noSolutions">
+          <tr *appRemoveEmptyRow="opportunity; isEmpty: opportunity.opportunity | isEmptyObject">
+            <!-- First column for opportunity details -->
+            <td [attr.rowspan]="opportunity.solutions.length + 1" class="odd-section">
+              <div class="kanban-item" *ngIf="!(opportunity.opportunity | isEmptyObject)"
+                [style.borderTop]="opportunity.opportunity?.borderColor ? '3px solid ' + opportunity.opportunity?.borderColor : ''">
+                <div class="task-card">
+                  <!-- Header -->
+                  <div class="task-header" *ngIf="opportunity.opportunity.header?.length">
+                    <ng-container *ngFor="let item of opportunity.opportunity.header">
+                      <ng-container *ngIf="item.type === 'link'">
+                        <span class="link">
+                          <a href="javascript:void(0)" (click)="addAction($event, item)">{{ item.label }}</a>
                         </span>
-                      </span>
+                      </ng-container>
+                      <ng-container *ngIf="item.type === 'chip'">
+                        <span class="chip-container">
+                          <span *ngFor="let chip of item.value" class="chip"
+                            [style.backgroundColor]="chip?.backgroundColor" [style.color]="chip?.foregroundColor">
+                            {{ chip?.value }}
+                          </span>
+                        </span>
+                      </ng-container>
+                      <!-- Add more header types as needed -->
                     </ng-container>
-                    <!-- Add more header types as needed -->
-                  </ng-container>
-                </div>
+                  </div>
 
-                <!-- Body -->
-                <div class="task-body" (keydown.enter)="$event.target.blur()"
-                  (focusout)="saveCard(opportunity.opportunity, $event.target.textContent)"
-                  [class.input_empty_state]="!opportunity.opportunity.body?.summary"
-                  [class.content_editable]="opportunity.opportunity.body?.contenteditable"
-                  (mousedown)="opportunity.opportunity.body?.contenteditable? $event.stopPropagation(): null"
-                  [innerHTML]="opportunity.opportunity.body?.summary"
-                  [attr.contenteditable]="opportunity.opportunity.body?.contenteditable"
-                  (click)="!opportunity.opportunity?.contenteditable? addAction($event, opportunity.opportunity): null">
-                </div>
+                  <!-- Body -->
+                  <div class="task-body" (keydown.enter)="$event.target.blur()"
+                    (focusout)="saveCard(opportunity.opportunity, $event.target.textContent)"
+                    [class.input_empty_state]="!opportunity.opportunity.body?.summary"
+                    [class.content_editable]="opportunity.opportunity.body?.contenteditable"
+                    (mousedown)="opportunity.opportunity.body?.contenteditable? $event.stopPropagation(): null"
+                    [innerHTML]="opportunity.opportunity.body?.summary"
+                    [attr.contenteditable]="opportunity.opportunity.body?.contenteditable"
+                    (click)="!opportunity.opportunity?.contenteditable? addAction($event, opportunity.opportunity): null">
+                  </div>
 
-                <!-- Footer -->
-                <div class="task-footer" *ngIf="opportunity.opportunity.footer?.length">
-                  <ng-container *ngFor="let item of opportunity.opportunity.footer">
-                    <div class="avatar" *ngIf="item.type === 'avatar'">
-                      <img *ngIf="item?.photo" [src]="item?.photo" alt="{{ item.label }}" />
-                      <span>{{ item.label }}</span>
-                    </div>
-                    <ng-container *ngIf="item.type === 'budget'">
-                      <div>{{item?.label}}: {{ item.value }}</div>
+                  <!-- Footer -->
+                  <div class="task-footer" *ngIf="opportunity.opportunity.footer?.length">
+                    <ng-container *ngFor="let item of opportunity.opportunity.footer">
+                      <div class="avatar" *ngIf="item.type === 'avatar'">
+                        <img *ngIf="item?.photo" [src]="item?.photo" alt="{{ item.label }}" />
+                        <span>{{ item.label }}</span>
+                      </div>
+                      <ng-container *ngIf="item.type === 'budget'">
+                        <div>{{item?.label}}: {{ item.value }}</div>
+                      </ng-container>
+                      <ng-container *ngIf="item.type === 'timeFrame'">
+                        <div>{{item?.label}}: {{ item.value }}</div>
+                      </ng-container>
+                      <!-- Add more footer types as needed -->
                     </ng-container>
-                    <ng-container *ngIf="item.type === 'timeFrame'">
-                      <div>{{item?.label}}: {{ item.value }}</div>
-                    </ng-container>
-                    <!-- Add more footer types as needed -->
-                  </ng-container>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div *ngIf="opportunity.opportunity?.action" class="workflow-kanban-action">
-              <a (click)="addAction($event, opportunity.opportunity)" class="d-flex">
-                <span *ngIf="opportunity.opportunity?.action?.icon"
-                  [innerHTML]="sanitizer.bypassSecurityTrustHtml(opportunity.opportunity?.action?.icon)"></span>
-                <span class="add_action_button add-next">{{ opportunity.opportunity?.action?.label }}</span>
-              </a>
-            </div>
-          </td>
-        </tr>
+              <div *ngIf="opportunity.opportunity?.action" class="workflow-kanban-action">
+                <a (click)="addAction($event, opportunity.opportunity)" class="d-flex">
+                  <span *ngIf="opportunity.opportunity?.action?.icon"
+                    [innerHTML]="sanitizer.bypassSecurityTrustHtml(opportunity.opportunity?.action?.icon)"></span>
+                  <span class="add_action_button add-next">{{ opportunity.opportunity?.action?.label }}</span>
+                </a>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
 
         <!-- Rows for each solution and its experiments -->
         <ng-container *ngFor="let solution of opportunity.solutions; let j = index">
