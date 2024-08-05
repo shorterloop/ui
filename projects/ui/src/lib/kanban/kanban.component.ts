@@ -8,7 +8,6 @@ import { ColumnNamesPipe } from './column-names.pipe';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatMenuModule } from '@angular/material/menu';
 import { IsEmptyObjectPipe } from './is-empty-object.pipe';
-import { RemoveEmptyRowDirective } from './hide-empty-row.directive';
 
 
 interface LibraryItem {
@@ -62,7 +61,7 @@ type KanbanData = Column[] | Swimlane[] | any[];
 @Component({
   selector: 'shorterloop-kanban',
   standalone: true,
-  imports: [CommonModule, DragDropModule, MatIconModule, MatExpansionModule, MatMenuModule, IsEmptyObjectPipe, ColumnNamesPipe, RemoveEmptyRowDirective],
+  imports: [CommonModule, DragDropModule, MatIconModule, MatExpansionModule, MatMenuModule, IsEmptyObjectPipe, ColumnNamesPipe],
   templateUrl: './kanban.component.html',
   styleUrls: ['./kanban.component.css'],
 })
