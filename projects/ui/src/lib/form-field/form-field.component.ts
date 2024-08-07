@@ -1,4 +1,4 @@
-import { Component, ContentChildren, QueryList, AfterContentInit, forwardRef } from '@angular/core';
+import { AfterContentInit, Component, ContentChildren, forwardRef, QueryList } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
 
 @Component({
@@ -11,7 +11,10 @@ import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl } from 
       multi: true
     }
   ],
-  standalone: true
+  standalone: true,
+  host: {
+    class: 'shorterloop-form-field'
+  }
 })
 export class FormFieldComponent implements ControlValueAccessor, AfterContentInit {
   @ContentChildren(NgControl, { descendants: true }) controlsArray!: QueryList<NgControl>;
@@ -43,13 +46,7 @@ export class FormFieldComponent implements ControlValueAccessor, AfterContentIni
             const requiredControls = this.getRequiredControlNames(controls);
             const data = this.extractControlValues(controls, requiredControls);
 
-            const recommendedSampleSize = this.calculateSampleSize({
-              confidenceLevel: data?.confidenceLevel,
-              populationSize: data?.populationSize,
-              resultMinValue: data?.minExpectedResults,
-              resultMaxValue: data?.maxExpectedResults,
-              targetMarginOfError: data?.targetMarginError
-            });
+            const recommendedSampleSize = this.calculateSampleSize(data);
 
             //@ts-ignore
             recommendedSampleSizeControl.control.setValue(recommendedSampleSize);

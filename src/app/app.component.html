@@ -2,50 +2,52 @@
   [tableHeaders]="[{label: 'Opportunities', action: {}}, {label: 'Solutions', action: {}}, {label: 'Experiments', action: {}}]"></shorterloop-kanban>
    -->
 
-<form [formGroup]="experimentForm">
+<form [formGroup]="calculatorForm">
   <h1>Set Up the Experiment</h1>
   <hr />
 
   <shorterloop-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Population Size</mat-label>
-      <input matInput placeholder="e.g. 330,000,000 (Population of the US)" formControlName="populationSize" />
-    </mat-form-field>
+    <div class="short_calculator_container">
+      <ng-container *ngFor="let section of sections">
+        <div class="short_section" [ngClass]="section.class">
+          <label class="short_fields_label">{{ section.label }}</label>
+          <mat-form-field class="short_calculator_fields" appearance="outline">
+            <ng-container [ngSwitch]="section.type">
+              <input *ngSwitchCase="'input'" matInput [formControlName]="section.formControlName" type="number" />
+              <mat-select *ngSwitchCase="'select'" [formControlName]="section.formControlName">
+                <mat-option *ngFor="let option of section.options" [value]="option.value">
+                  {{ option.label }}
+                </mat-option>
+              </mat-select>
+            </ng-container>
+          </mat-form-field>
+        </div>
+      </ng-container>
+      <div class="short_section">
+        <mat-label>Range of Expected Results</mat-label>
+        <!-- <mat-form-field appearance="outline"> -->
+        <div class="range-container">
+          <mat-form-field appearance="outline">
+            <input matInput placeholder="Min" formControlName="resultMinValue" />
+            <mat-icon matSuffix>percent</mat-icon>
+          </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Confidence Level</mat-label>
-      <input matInput placeholder="95%" formControlName="confidenceLevel" />
-      <mat-icon matSuffix>percent</mat-icon>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Target Margin of Error</mat-label>
-      <input matInput placeholder="5%" formControlName="targetMarginError" />
-      <mat-icon matSuffix>percent</mat-icon>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Range of Expected Results</mat-label>
-      <div class="range-container">
+          <mat-form-field appearance="outline">
+            <input matInput placeholder="Max" formControlName="resultMaxValue" />
+            <mat-icon matSuffix>percent</mat-icon>
+          </mat-form-field>
+        </div>
+        <!-- </mat-form-field> -->
+      </div>
+      <div class="short_section">
+        <mat-label>Recommended Sample Size</mat-label>
         <mat-form-field appearance="outline">
-          <mat-label>Min</mat-label>
-          <input matInput placeholder="Min" formControlName="minExpectedResults" />
-          <mat-icon matSuffix>percent</mat-icon>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Max</mat-label>
-          <input matInput placeholder="Max" formControlName="maxExpectedResults" />
-          <mat-icon matSuffix>percent</mat-icon>
+          <input matInput formControlName="recommendedSampleSize" />
         </mat-form-field>
       </div>
-    </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Recommended Sample Size</mat-label>
-      <input matInput formControlName="recommendedSampleSize" />
-    </mat-form-field>
+    </div>
+
   </shorterloop-form-field>
 
-  {{experimentForm?.value | json}}
 </form>
