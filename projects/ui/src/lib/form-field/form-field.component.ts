@@ -2,21 +2,21 @@ import { AfterContentInit, Component, ContentChildren, forwardRef, QueryList } f
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
 
 @Component({
-  selector: 'shorterloop-form-field',
+  selector: 'shorterloop-sample-size-calculator',
   template: `<ng-content></ng-content>`,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => FormFieldComponent),
+      useExisting: forwardRef(() => SampleSizeCalculator),
       multi: true
     }
   ],
   standalone: true,
   host: {
-    class: 'shorterloop-form-field'
+    class: 'shorterloop-sample-size-calculator'
   }
 })
-export class FormFieldComponent implements ControlValueAccessor, AfterContentInit {
+export class SampleSizeCalculator implements ControlValueAccessor, AfterContentInit {
   @ContentChildren(NgControl, { descendants: true }) controlsArray!: QueryList<NgControl>;
 
   // Callbacks
@@ -24,13 +24,6 @@ export class FormFieldComponent implements ControlValueAccessor, AfterContentIni
   onTouched: any = () => { };
 
   ngAfterContentInit() {
-    // // Check if controlsArray is populated
-    // this.controlsArray.forEach(control => {
-    //   console.log('Control value:', control.value);
-    //   // Example: Setting value
-    //   debugger
-    //   control.control?.setValue('new value');
-    // });
     const controls = this.controlsArray.toArray();
     //@ts-ignore
     const recommendedSampleSizeControl = controls.find((control: any) => control.name === 'recommendedSampleSize') as FormControl;
