@@ -1,2 +1,51 @@
-<shorterloop-kanban [data]="workflowItems" [type]="'workflow'"
+<!-- <shorterloop-kanban [data]="workflowItems" [type]="'workflow'"
   [tableHeaders]="[{label: 'Opportunities', action: {}}, {label: 'Solutions', action: {}}, {label: 'Experiments', action: {}}]"></shorterloop-kanban>
+   -->
+
+<form [formGroup]="experimentForm">
+  <h1>Set Up the Experiment</h1>
+  <hr />
+
+  <shorterloop-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Population Size</mat-label>
+      <input matInput placeholder="e.g. 330,000,000 (Population of the US)" formControlName="populationSize" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Confidence Level</mat-label>
+      <input matInput placeholder="95%" formControlName="confidenceLevel" />
+      <mat-icon matSuffix>percent</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Target Margin of Error</mat-label>
+      <input matInput placeholder="5%" formControlName="targetMarginError" />
+      <mat-icon matSuffix>percent</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Range of Expected Results</mat-label>
+      <div class="range-container">
+        <mat-form-field appearance="outline">
+          <mat-label>Min</mat-label>
+          <input matInput placeholder="Min" formControlName="minExpectedResults" />
+          <mat-icon matSuffix>percent</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Max</mat-label>
+          <input matInput placeholder="Max" formControlName="maxExpectedResults" />
+          <mat-icon matSuffix>percent</mat-icon>
+        </mat-form-field>
+      </div>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Recommended Sample Size</mat-label>
+      <input matInput formControlName="recommendedSampleSize" />
+    </mat-form-field>
+  </shorterloop-form-field>
+
+  {{experimentForm?.value | json}}
+</form>
