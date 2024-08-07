@@ -42,7 +42,7 @@ export class SampleSizeCalculator implements ControlValueAccessor, AfterContentI
             const recommendedSampleSize = this.calculateSampleSize(data);
 
             //@ts-ignore
-            recommendedSampleSizeControl.control.setValue(recommendedSampleSize);
+            recommendedSampleSizeControl.control.setValue(recommendedSampleSize, { emitEvent: false });
           }
         });
       }
