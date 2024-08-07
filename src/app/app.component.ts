@@ -4,11 +4,13 @@ import { FormFieldComponent, KanbanComponent } from '../../projects/ui/src/publi
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, MatFormFieldModule, FormsModule, ReactiveFormsModule, KanbanComponent, FormFieldComponent],
+  imports: [RouterOutlet, CommonModule, MatFormFieldModule, MatInputModule, MatIconModule, FormsModule, ReactiveFormsModule, KanbanComponent, FormFieldComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -24,8 +26,8 @@ export class AppComponent {
       populationSize: [''],
       confidenceLevel: [95],
       targetMarginError: [5],
-      minExpectedResults: [''],
-      maxExpectedResults: [''],
+      minExpectedResults: [1],
+      maxExpectedResults: [1],
       recommendedSampleSize: ['']
     });
   }
