@@ -395,3 +395,15 @@ td {
   border: none;
   background-color: transparent;
 }
+
+.belongs_to {
+  margin-top: 0;
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%;
+  color: #000;
+}
