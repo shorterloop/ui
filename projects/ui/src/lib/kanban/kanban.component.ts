@@ -27,6 +27,7 @@ interface LibraryItem {
 interface Task {
   id: number;
   header: LibraryItem[];
+  belongsTo: object;
   body: {
     description: string;
     contenteditable?: boolean

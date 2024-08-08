@@ -74,10 +74,10 @@
                 (click)="!task.body?.contenteditable? addAction($event, task): null">
               </div>
 
-              <ng-container *ngIf="task?.belongsTo && task?.belongsTo?.link">
-                <div class="belongs_to"><b>{{task?.belongsTo?.label}}</b>: <a [a.href]="task?.belongsTo?.link"
+              <ng-container *ngIf="column?.belongsTo && column?.belongsTo?.link">
+                <div class="belongs_to"><b>{{column?.belongsTo?.label}}</b>: <a [href]="column?.belongsTo?.link"
                     target="_blank">{{
-                    task?.belongsTo?.value }}</a>
+                    column?.belongsTo?.value }}</a>
                 </div>
               </ng-container>
 
@@ -187,7 +187,7 @@
                 </div>
 
                 <ng-container *ngIf="task?.belongsTo && task?.belongsTo?.link">
-                  <div class="belongs_to"><b>{{task?.belongsTo?.label}}</b>: <a [a.href]="task?.belongsTo?.link"
+                  <div class="belongs_to"><b>{{task?.belongsTo?.label}}</b>: <a [href]="task?.belongsTo?.link"
                       target="_blank">{{
                       task?.belongsTo?.value }}</a>
                   </div>
@@ -283,7 +283,7 @@
 
                 <ng-container *ngIf="opportunity.opportunity?.belongsTo && opportunity.opportunity?.belongsTo?.link">
                   <div class="belongs_to"><b>{{opportunity.opportunity?.belongsTo?.label}}</b>: <a
-                      [a.href]="opportunity.opportunity?.belongsTo?.link" target="_blank">{{
+                      [href]="opportunity.opportunity?.belongsTo?.link" target="_blank">{{
                       opportunity.opportunity?.belongsTo?.value }}</a>
                   </div>
                 </ng-container>
@@ -357,7 +357,7 @@
 
                   <ng-container *ngIf="solution.solution?.belongsTo && solution.solution?.belongsTo?.link">
                     <div class="belongs_to"><b>{{solution.solution?.belongsTo?.label}}</b>: <a
-                        [a.href]="solution.solution?.belongsTo?.link" target="_blank">{{
+                        [href]="solution.solution?.belongsTo?.link" target="_blank">{{
                         solution.solution?.belongsTo?.value }}</a>
                     </div>
                   </ng-container>
@@ -430,7 +430,7 @@
                     </div>
                     <ng-container *ngIf="experiment?.belongsTo && experiment?.belongsTo?.link">
                       <div class="belongs_to"><b>{{experiment?.belongsTo?.label}}</b>: <a
-                          [a.href]="experiment?.belongsTo?.link" target="_blank">{{
+                          [href]="experiment?.belongsTo?.link" target="_blank">{{
                           experiment?.belongsTo?.value }}</a>
                       </div>
                     </ng-container>
