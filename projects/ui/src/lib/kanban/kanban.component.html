@@ -244,7 +244,7 @@
     </thead>
     <tbody>
       <ng-container *ngFor="let opportunity of data; let i = index">
-        <tr *ngIf="opportunity.solutions.length > 0">
+        <tr>
           <!-- First column for opportunity details -->
           <td [attr.rowspan]="opportunity.solutions.length + 1" class="odd-section">
             <div class="kanban-item" *ngIf="!(opportunity.opportunity | isEmptyObject)"
@@ -314,8 +314,9 @@
               </a>
             </div>
           </td>
+          <td *ngIf="!opportunity.solutions?.length"></td>
+          <td *ngIf="!opportunity.solutions?.length" class="odd-section"></td>
         </tr>
-
         <!-- Rows for each solution and its experiments -->
         <ng-container *ngFor="let solution of opportunity.solutions; let j = index">
           <tr>

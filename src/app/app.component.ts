@@ -73,7 +73,660 @@ export class AppComponent {
       class: 'margin_section',
     },
   ];
-  workflowItems = [{ "id": 1, "heading": "To-Do", "tasks": [{ "id": 677, "header": [{ "type": "link", "label": "EXP-9", "action": {} }], "belongsTo": { "link": "https://google.com", "label": "test:", "value": "hii" }, "body": { "summary": "dinesh", "contenteditable": true }, "footer": [{ "type": "avatar", "label": "Dinesh Rawat", "photo": "https://lh3.googleusercontent.com/a/ACg8ocJTugolJHj_GPAbzRHaM5jBBxKuNnFfpqzA10jlaTdwcHMndg=s96-c" }], "borderColor": "#4784fc" }, { "id": 671, "header": [{ "type": "link", "label": "EXP-3", "action": {} }], "belongsTo": { "link": "https://google.com", "label": "test:", "value": "hii" }, "body": { "summary": "new exp hello workd d kshitij", "contenteditable": true }, "footer": [], "borderColor": "#4784fc" }, { "id": 673, "header": [{ "type": "link", "label": "EXP-5", "action": {} }], "belongsTo": { "link": "https://google.com", "label": "test:", "value": "hii" }, "body": { "summary": "asd", "contenteditable": true }, "footer": [], "borderColor": "#4784fc" }], "action": { "label": "+ Add experiment" } }, { "id": 2, "heading": "In-Progress", "tasks": [{ "id": 672, "header": [{ "type": "link", "label": "EXP-4", "action": {} }], "belongsTo": { "link": "https://google.com", "label": "test:", "value": "hii" }, "body": { "summary": "asd", "contenteditable": true }, "footer": [], "borderColor": "#4784fc" }, { "id": 674, "header": [{ "type": "link", "label": "EXP-6", "action": {} }], "belongsTo": { "link": "https://google.com", "label": "test:", "value": "hii" }, "body": { "summary": "Gmail", "contenteditable": true }, "footer": [], "borderColor": "#4784fc" }], "action": {} }, { "id": 3, "heading": "Review", "tasks": [{ "id": 626, "header": [{ "type": "link", "label": "EXP-1", "action": {} }], "belongsTo": { "link": "https://google.com", "label": "test:", "value": "hii" }, "body": { "summary": "ttt", "contenteditable": true }, "footer": [{ "type": "budget", "label": "Budget", "value": "$20.00" }, { "type": "timeFrame", "label": "Due Date", "value": "30 Jun 2024" }], "borderColor": "#ff5c7f" }, { "id": 676, "header": [{ "type": "link", "label": "EXP-8", "action": {} }], "belongsTo": { "link": "https://google.com", "label": "test:", "value": "hii" }, "body": { "summary": "Exp", "contenteditable": true }, "footer": [], "borderColor": "#4784fc" }], "action": {} }, { "id": 4, "heading": "Done", "tasks": [{ "id": 670, "header": [{ "type": "link", "label": "EXP-2", "action": {} }], "belongsTo": { "link": "https://google.com", "label": "test:", "value": "hii" }, "body": { "summary": "New Experiment", "contenteditable": true }, "footer": [], "borderColor": "#4784fc" }, { "id": 675, "header": [{ "type": "link", "label": "EXP-7", "action": {} }], "belongsTo": { "link": "https://google.com", "label": "test:", "value": "hii" }, "body": { "summary": "e", "contenteditable": true }, "footer": [], "borderColor": "#4784fc" }], "action": {} }]
+  workflowItems = [
+    {
+      "opportunity": {
+        "id": 1,
+        "header": [],
+        "body": {
+          // "contenteditable": true,
+          "summary": "Conduct research and analysis on emerging trends in renewable energy and sustainable technologies",
+          action: {
+            event: ($event: any, column: any) => {
+              console.log("Added new experiment action performed: ", column, $event);
+            }
+          }
+        },
+        "footer": [],
+        "borderColor": "#4784fc",
+        "action": {
+          "label": "+ Add Solution",
+        }
+      },
+      "solutions": [
+        {
+          "solution": {
+            "id": 1,
+            "header": [],
+            "body": {
+              "summary": "Community Engagement Initiative"
+            },
+            "footer": [],
+            "borderColor": "#4784fc",
+            "action": {
+              "label": "+ Add Experiment",
+            }
+          },
+          "experiments": [
+            {
+              "id": 520,
+              "header": [
+                {
+                  "type": "link",
+                  "label": "EXP-1"
+                },
+                {
+                  "type": "chip",
+                  "value": []
+                }
+              ],
+              "body": {
+                "summary": "etee"
+              },
+              "footer": [
+                {
+                  "type": "budget",
+                  "label": "Budget",
+                  "value": "$50.00"
+                },
+                {
+                  "type": "timeFrame",
+                  "label": "Time Frame",
+                  "value": "1 month"
+                }
+              ],
+              "borderColor": "#4784fc"
+            },
+            {
+              "id": 521,
+              "header": [
+                {
+                  "type": "link",
+                  "label": "EXP-2"
+                },
+                {
+                  "type": "chip",
+                  "value": []
+                }
+              ],
+              "body": {
+                "summary": "Hilooo"
+              },
+              "footer": [
+                {
+                  "type": "budget",
+                  "label": "Budget",
+                  "value": "$20.00"
+                },
+                {
+                  "type": "timeFrame",
+                  "label": "Time Frame",
+                  "value": "1 month"
+                }
+              ],
+              "borderColor": "#4784fc"
+            },
+            {
+              "id": 522,
+              "header": [
+                {
+                  "type": "link",
+                  "label": "EXP-3"
+                },
+                {
+                  "type": "chip",
+                  "value": []
+                }
+              ],
+              "body": {
+                "summary": "Conduct research and analysis on emerging trends in renewable energy and sustainable technologies"
+              },
+              "footer": [
+                {
+                  "type": "budget",
+                  "label": "Budget",
+                  "value": "$200.00"
+                },
+                {
+                  "type": "timeFrame",
+                  "label": "Time Frame",
+                  "value": "1 month"
+                }
+              ],
+              "borderColor": "#4784fc"
+            }
+          ]
+        },
+        {
+          "solution": {
+            "id": 1,
+            "header": [],
+            "body": {
+              "summary": "I am testing"
+            },
+            "footer": [],
+            "borderColor": "#4784fc",
+            "action": {
+              "label": "+ Add Experiment",
+            }
+          },
+          "experiments": [
+            {
+              "id": 520,
+              "header": [
+                {
+                  "type": "link",
+                  "label": "EXP-1"
+                },
+                {
+                  "type": "chip",
+                  "value": []
+                }
+              ],
+              "body": {
+                "summary": "Test experiment"
+              },
+              "footer": [
+                {
+                  "type": "budget",
+                  "label": "Budget",
+                  "value": "$50.00"
+                },
+                {
+                  "type": "timeFrame",
+                  "label": "Time Frame",
+                  "value": "1 month"
+                }
+              ],
+              "borderColor": "#4784fc"
+            },
+            {
+              "id": 521,
+              "header": [
+                {
+                  "type": "link",
+                  "label": "EXP-2"
+                },
+                {
+                  "type": "chip",
+                  "value": []
+                }
+              ],
+              "body": {
+                "summary": "Hilooo"
+              },
+              "footer": [
+                {
+                  "type": "budget",
+                  "label": "Budget",
+                  "value": "$20.00"
+                },
+                {
+                  "type": "timeFrame",
+                  "label": "Time Frame",
+                  "value": "1 month"
+                }
+              ],
+              "borderColor": "#4784fc"
+            },
+            {
+              "id": 522,
+              "header": [
+                {
+                  "type": "link",
+                  "label": "EXP-3"
+                },
+                {
+                  "type": "chip",
+                  "value": []
+                }
+              ],
+              "body": {
+                "summary": "Conduct research and analysis on emerging trends in renewable energy and sustainable technologies"
+              },
+              "footer": [
+                {
+                  "type": "budget",
+                  "label": "Budget",
+                  "value": "$200.00"
+                },
+                {
+                  "type": "timeFrame",
+                  "label": "Time Frame",
+                  "value": "1 month"
+                }
+              ],
+              "borderColor": "#4784fc"
+            }
+          ]
+        },
+        {
+          "solution": {
+            "id": 1,
+            "header": [],
+            "body": {
+              "summary": "I am testing 2.0"
+            },
+            "footer": [],
+            "borderColor": "#4784fc",
+            "action": {
+              "label": "+ Add Experiment",
+            }
+          },
+          "experiments": [
+            {
+              "id": 520,
+              "header": [
+                {
+                  "type": "link",
+                  "label": "EXP-1"
+                },
+                {
+                  "type": "chip",
+                  "value": []
+                }
+              ],
+              "body": {
+                "summary": "Volcano EruptionWrite a secret message with lemon juice and reveal it by heating the paper"
+              },
+              "footer": [
+                {
+                  "type": "budget",
+                  "label": "Budget",
+                  "value": "$50.00"
+                },
+                {
+                  "type": "timeFrame",
+                  "label": "Time Frame",
+                  "value": "1 month"
+                }
+              ],
+              "borderColor": "#4784fc"
+            },
+            {
+              "id": 521,
+              "header": [
+                {
+                  "type": "link",
+                  "label": "EXP-2"
+                },
+                {
+                  "type": "chip",
+                  "value": []
+                }
+              ],
+              "body": {
+                "summary": "Create a fizzy explosion by mixing baking soda and vinegar"
+              },
+              "footer": [
+                {
+                  "type": "budget",
+                  "label": "Budget",
+                  "value": "$20.00"
+                },
+                {
+                  "type": "timeFrame",
+                  "label": "Time Frame",
+                  "value": "1 month"
+                }
+              ],
+              "borderColor": "#4784fc"
+            },
+            {
+              "id": 522,
+              "header": [
+                {
+                  "type": "link",
+                  "label": "EXP-3"
+                },
+                {
+                  "type": "chip",
+                  "value": []
+                }
+              ],
+              "body": {
+                "summary": "Conduct research and analysis on emerging trends in renewable energy and sustainable technologies"
+              },
+              "footer": [
+                {
+                  "type": "budget",
+                  "label": "Budget",
+                  "value": "$200.00"
+                },
+                {
+                  "type": "timeFrame",
+                  "label": "Time Frame",
+                  "value": "1 month"
+                }
+              ],
+              "borderColor": "#4784fc"
+            }
+          ]
+        },
+      ]
+    },
+    {
+      "opportunity": {
+        "id": 2,
+        "header": [],
+        "body": {
+          "summary": "Collaborate with cross-functional teams to develop strategies for integrating green technologies into everyday applications.\n"
+        },
+        "footer": [],
+        "borderColor": "#4784fc",
+        "action": {
+          "label": "+ Add Solution",
+          "icon": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M2 2.667a.667.667 0 0 0-.662.588l-.005.078v4.334a2.333 2.333 0 0 0 2.206 2.33l.128.003h8.723l-2.195 2.195a.67.67 0 0 0-.055.88l.055.063a.67.67 0 0 0 .88.055l.063-.055 3.333-3.333a1 1 0 0 0 .065-.075l.047-.073.036-.076.024-.07.016-.078.005-.04.003-.06-.002-.05-.012-.084-.02-.074-.029-.074-.035-.065-.042-.061-.056-.063-3.333-3.333a.667.667 0 0 0-.998.88l.055.062 2.195 2.196H3.667a1 1 0 0 1-.996-.904l-.004-.096V3.333A.667.667 0 0 0 2 2.667\" fill=\"#573DF4\"/></svg>"
+        }
+      },
+
+      "solutions": [
+        {
+          "solution": {
+            "id": 1,
+            "header": [],
+            "body": {
+              "summary": "I am testing"
+            },
+            "footer": [],
+            "borderColor": "#4784fc",
+            "action": {
+              "label": "+ Add Experiment",
+            }
+          },
+          "experiments": [
+            {
+              "id": 520,
+              "header": [
+                {
+                  "type": "link",
+                  "label": "EXP-1"
+                },
+                {
+                  "type": "chip",
+                  "value": []
+                }
+              ],
+              "body": {
+                "summary": "etee"
+              },
+              "footer": [
+                {
+                  "type": "budget",
+                  "label": "Budget",
+                  "value": "$50.00"
+                },
+                {
+                  "type": "timeFrame",
+                  "label": "Time Frame",
+                  "value": "1 month"
+                }
+              ],
+              "borderColor": "#4784fc"
+            },
+            {
+              "id": 521,
+              "header": [
+                {
+                  "type": "link",
+                  "label": "EXP-2"
+                },
+                {
+                  "type": "chip",
+                  "value": []
+                }
+              ],
+              "body": {
+                "summary": "Hilooo"
+              },
+              "footer": [
+                {
+                  "type": "budget",
+                  "label": "Budget",
+                  "value": "$20.00"
+                },
+                {
+                  "type": "timeFrame",
+                  "label": "Time Frame",
+                  "value": "1 month"
+                }
+              ],
+              "borderColor": "#4784fc"
+            },
+            {
+              "id": 522,
+              "header": [
+                {
+                  "type": "link",
+                  "label": "EXP-3"
+                },
+                {
+                  "type": "chip",
+                  "value": []
+                }
+              ],
+              "body": {
+                "summary": "Conduct research and analysis on emerging trends in renewable energy and sustainable technologies"
+              },
+              "footer": [
+                {
+                  "type": "budget",
+                  "label": "Budget",
+                  "value": "$200.00"
+                },
+                {
+                  "type": "timeFrame",
+                  "label": "Time Frame",
+                  "value": "1 month"
+                }
+              ],
+              "borderColor": "#4784fc"
+            }
+          ]
+        },
+        {
+          "solution": {
+            "id": 1,
+            "header": [],
+            "body": {
+              "summary": "I am testing 2.0"
+            },
+            "footer": [],
+            "borderColor": "#4784fc",
+            "action": {
+              "label": "+ Add Experiment",
+            }
+          },
+          "experiments": [
+            {
+              "id": 520,
+              "header": [
+                {
+                  "type": "link",
+                  "label": "EXP-1"
+                },
+                {
+                  "type": "chip",
+                  "value": []
+                }
+              ],
+              "body": {
+                "summary": "etee"
+              },
+              "footer": [
+                {
+                  "type": "budget",
+                  "label": "Budget",
+                  "value": "$50.00"
+                },
+                {
+                  "type": "timeFrame",
+                  "label": "Time Frame",
+                  "value": "1 month"
+                }
+              ],
+              "borderColor": "#4784fc"
+            },
+            {
+              "id": 521,
+              "header": [
+                {
+                  "type": "link",
+                  "label": "EXP-2"
+                },
+                {
+                  "type": "chip",
+                  "value": []
+                }
+              ],
+              "body": {
+                "summary": "Hilooo"
+              },
+              "footer": [
+                {
+                  "type": "budget",
+                  "label": "Budget",
+                  "value": "$20.00"
+                },
+                {
+                  "type": "timeFrame",
+                  "label": "Time Frame",
+                  "value": "1 month"
+                }
+              ],
+              "borderColor": "#4784fc"
+            },
+            {
+              "id": 522,
+              "header": [
+                {
+                  "type": "link",
+                  "label": "EXP-3"
+                },
+                {
+                  "type": "chip",
+                  "value": []
+                }
+              ],
+              "body": {
+                "summary": "Conduct research and analysis on emerging trends in renewable energy and sustainable technologies"
+              },
+              "footer": [
+                {
+                  "type": "budget",
+                  "label": "Budget",
+                  "value": "$200.00"
+                },
+                {
+                  "type": "timeFrame",
+                  "label": "Time Frame",
+                  "value": "1 month"
+                }
+              ],
+              "borderColor": "#4784fc"
+            }
+          ]
+        },
+      ]
+    }
+    ,
+    {
+      "opportunity": {
+        "id": -1,
+        "header": [],
+        "body": {
+          "summary": "",
+          "contenteditable": true
+        },
+        "footer": [],
+        "borderColor": "#4784fc"
+      },
+      "solutions": []
+    },
+    {
+      "opportunity": {},
+      "solutions": [{
+        solution: {
+          "id": -1,
+          "header": [],
+          "body": {
+            "summary": "",
+            "contenteditable": true
+          },
+          "footer": [],
+          "borderColor": "#4784fc"
+        }
+      }]
+    },
+    {
+      "opportunity": {},
+      "solutions": [{
+        solution: {},
+        experiments: [{
+          "id": -1,
+          "header": [],
+          "body": {
+            "summary": "",
+            "contenteditable": true
+          },
+          "footer": [],
+          "borderColor": "#4784fc"
+        }]
+      }]
+    }
+    ,
+    {
+      "opportunity": {},
+      "solutions": [{
+        solution: {},
+        experiments: [{
+          "id": -1,
+          "header": [],
+          "body": {
+            "summary": "",
+            "contenteditable": true
+          },
+          "footer": [],
+          "borderColor": "#4784fc"
+        }]
+      }]
+    },
+    {
+      "opportunity": {
+        "id": 1,
+        "header": [],
+        "body": {
+          // "contenteditable": true,
+          "summary": "Conduct research and analysis on emerging trends in renewable energy and sustainable technologies",
+          action: {
+            event: ($event: any, column: any) => {
+              console.log("Added new experiment action performed: ", column, $event);
+            }
+          }
+        },
+        "footer": [],
+        "borderColor": "#4784fc"
+      },
+      "solutions": [{
+        solution: {},
+        experiments: [{
+          "id": 1,
+          "header": [],
+          "body": {
+            // "contenteditable": true,
+            "summary": "Conduct research and analysis on emerging trends in renewable energy and sustainable technologies",
+            action: {
+              event: ($event: any, column: any) => {
+                console.log("Added new experiment action performed: ", column, $event);
+              }
+            }
+          },
+          "footer": [],
+          "borderColor": "#4784fc"
+        }]
+      }]
+    },
+  ]
 
 
   constructor(private fb: FormBuilder) {
