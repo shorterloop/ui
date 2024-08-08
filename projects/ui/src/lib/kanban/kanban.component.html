@@ -74,10 +74,10 @@
                 (click)="!task.body?.contenteditable? addAction($event, task): null">
               </div>
 
-              <ng-container *ngIf="column?.belongsTo && column?.belongsTo?.link">
-                <div class="belongs_to"><b>{{column?.belongsTo?.label}}</b>: <a [href]="column?.belongsTo?.link"
+              <ng-container *ngIf="task?.belongsTo && task?.belongsTo?.link">
+                <div class="belongs_to"><b>{{task?.belongsTo?.label}}</b>: <a [href]="task?.belongsTo?.link"
                     target="_blank">{{
-                    column?.belongsTo?.value }}</a>
+                    task?.belongsTo?.value }}</a>
                 </div>
               </ng-container>
 
