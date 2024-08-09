@@ -230,7 +230,7 @@
         <th *ngFor="let th of tableHeaders; let i=index" [style.width.%]="100 / tableHeaders.length">
           <span class="workflow-table-heading">{{ th.label }}</span>
 
-          <span class="add_action_button add-next" (click)="addAction($event, th)">
+          <span class="add_action_button add-next" (click)="addAction($event, th)" *ngIf="!th?.shouldNotAllowAdding">
             <svg class="add-next" width="32" height="32" viewBox="0 0 32 32" fill="none"
               xmlns="http://www.w3.org/2000/svg">
               <rect width="32" height="32" rx="4" fill="#F8F6FE" />
@@ -394,10 +394,9 @@
             </td>
 
             <!-- Experiments column -->
-            <td class="odd-section" cdkDropListGroup cdkDropList [cdkDropListData]="solution.experiments"
-              (cdkDropListDropped)="drop($event)">
+            <td class="odd-section">
               <ng-container *ngFor="let experiment of solution.experiments" class="kanban-list">
-                <div class="kanban-item" cdkDrag
+                <div class="kanban-item"
                   [style.borderTop]="experiment?.borderColor ? '3px solid ' + experiment?.borderColor : ''">
                   <div class="task-card">
                     <!-- Header -->
