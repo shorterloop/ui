@@ -137,9 +137,11 @@ export class KanbanComponent implements AfterViewInit {
     }
   }
 
-  addAction($event: any, column: any) {
+  addAction($event: any, column: any, columnType = '') {
     const currentTarget = $event.currentTarget;
-
+    if (columnType) {
+      column.columnType = columnType
+    }
     const isBody = currentTarget.classList.contains('task-body')
     if (isBody && column?.body?.action && column?.body?.action?.event) {
       column?.body?.action?.event($event, column);
