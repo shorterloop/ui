@@ -1,6 +1,6 @@
 {
   "name": "shorterloop",
-  "version": "12.2.3",
+  "version": "12.2.4",
   "peerDependencies": {
     "@angular/common": "^17.3.0",
     "@angular/core": "^17.3.0",

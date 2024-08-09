@@ -308,7 +308,7 @@
               </div>
             </div>
             <div *ngIf="opportunity.opportunity?.action" class="workflow-kanban-action">
-              <a (click)="addAction($event, opportunity.opportunity, 'opportunities')" class="d-flex">
+              <a (click)="addAction($event, opportunity.opportunity, 'solutions')" class="d-flex">
                 <span *ngIf="opportunity.opportunity?.action?.icon"
                   [innerHTML]="sanitizer.bypassSecurityTrustHtml(opportunity.opportunity?.action?.icon)"></span>
                 <span class="add_action_button add-next">{{ opportunity.opportunity?.action?.label }}</span>
@@ -386,7 +386,7 @@
                 </div>
               </div>
               <div *ngIf="solution.solution?.action" class="workflow-kanban-action">
-                <a (click)="addAction($event, solution.solution,'solutions')" class="d-flex">
+                <a (click)="addAction($event, solution.solution,'experiments')" class="d-flex">
                   <span *ngIf="solution.solution?.action?.icon"
                     [innerHTML]="sanitizer.bypassSecurityTrustHtml(solution.solution?.action?.icon)"></span>
                   <span class="add_action_button add-next">{{ solution.solution?.action?.label }}</span>
