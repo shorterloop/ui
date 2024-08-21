@@ -39,7 +39,7 @@
                 <div class="header_core_items">
                   <ng-container *ngFor="let item of task.header">
                     <ng-container *ngIf="item.type === 'link'">
-                      <span class="link">
+                      <span class="link item_external_key">
                         <a href="javascript:void(0)" (click)="addAction($event, item)">{{ item.label }}</a>
                       </span>
                     </ng-container>
