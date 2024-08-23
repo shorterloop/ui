@@ -1,8 +1,8 @@
 <!-- <shorterloop-kanban [data]="workflowItems"></shorterloop-kanban> -->
-<shorterloop-kanban [data]="workflowItems" [type]="'workflow'"
-  [tableHeaders]="[{label: 'Opportunities', action: {}}, {label: 'Solutions', action: {}}, {label: 'Experiments', action: {}}]"></shorterloop-kanban>
+<!-- <shorterloop-kanban [data]="workflowItems" [type]="'workflow'"
+  [tableHeaders]="[{label: 'Opportunities', action: {}}, {label: 'Solutions', action: {}}, {label: 'Experiments', action: {}}]"></shorterloop-kanban> -->
 
-<form [formGroup]="calculatorForm">
+<!-- <form [formGroup]="calculatorForm">
   <h1>Set Up the Experiment</h1>
   <hr />
 
@@ -25,7 +25,6 @@
       </ng-container>
       <div class="short_section">
         <mat-label>Range of Expected Results</mat-label>
-        <!-- <mat-form-field appearance="outline"> -->
         <div class="range-container">
           <mat-form-field appearance="outline">
             <input matInput placeholder="Min" formControlName="resultMinValue" />
@@ -37,7 +36,6 @@
             <mat-icon matSuffix>percent</mat-icon>
           </mat-form-field>
         </div>
-        <!-- </mat-form-field> -->
       </div>
       <div class="short_section">
         <mat-label>Recommended Sample Size</mat-label>
@@ -50,4 +48,95 @@
 
   </shorterloop-sample-size-calculator>
 
+</form> -->
+
+<form [formGroup]="criteriaForm">
+  <shorterloop-evaluate-experiment-variants (winnerVariantFound)="onWinnerVariantFound($event)">
+    <div class="variant_container">
+      <div class="variant_section">
+        <div class="variant_field">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M4.13351 13.8833C3.95537 13.8833 3.79964 13.8166 3.66631 13.6833C3.53298 13.55 3.46631 13.4001 3.46631 13.2337V3.46649C3.46631 3.28889 3.53031 3.13609 3.65831 3.00809C3.78578 2.88063 3.93858 2.81689 4.11671 2.81689H8.78311C8.95004 2.81689 9.09164 2.86409 9.20791 2.95849C9.32471 3.05289 9.39991 3.17236 9.43351 3.31689L9.59991 4.11689H12.5503C12.7279 4.11689 12.8804 4.18063 13.0079 4.30809C13.1359 4.43609 13.1999 4.58889 13.1999 4.76649V10.0001C13.1999 10.1777 13.1359 10.3305 13.0079 10.4585C12.8804 10.586 12.7279 10.6497 12.5503 10.6497H9.18311C9.01671 10.6497 8.87511 10.6025 8.75831 10.5081C8.64151 10.4137 8.56658 10.2889 8.53351 10.1337L8.36631 9.33369H4.78311V13.2337C4.78311 13.4001 4.71644 13.55 4.58311 13.6833C4.44978 13.8166 4.29991 13.8833 4.13351 13.8833Z"
+              fill="#929292" />
+          </svg>
+          <label class="criteria_label">GOAL</label>
+          <img src="assets/images/info-icon.svg" alt="guide">
+        </div>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="goal">
+            <mat-option value="HIGHEST_RESULT">Highest results</mat-option>
+            <mat-option value="LOWEST_RESULT">Lowest results</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="variant_section">
+        <div class="variant_field">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M2.7335 13.3337C2.3447 13.3337 2.01403 13.1974 1.7415 12.9249C1.4695 12.6529 1.3335 12.3225 1.3335 11.9337V4.0665C1.3335 3.6777 1.4695 3.3473 1.7415 3.0753C2.01403 2.80277 2.3447 2.6665 2.7335 2.6665H13.2663C13.6551 2.6665 13.9858 2.80277 14.2583 3.0753C14.5303 3.3473 14.6663 3.6777 14.6663 4.0665V11.9337C14.6663 12.3225 14.5303 12.6529 14.2583 12.9249C13.9858 13.1974 13.6551 13.3337 13.2663 13.3337H2.7335ZM4.3663 9.9665H5.1503V6.0337H4.5503L3.3663 6.8665L3.7999 7.4665L4.3663 7.0497V9.9665ZM6.4167 9.9665H8.9999V9.3169H7.4495L7.4335 9.2833C7.67776 9.06144 7.86923 8.87264 8.0079 8.7169C8.1471 8.56117 8.25563 8.44437 8.3335 8.3665C8.54416 8.1553 8.69696 7.9553 8.7919 7.7665C8.8863 7.5777 8.9335 7.37237 8.9335 7.1505C8.9335 6.82784 8.8111 6.56117 8.5663 6.3505C8.32203 6.1393 8.0111 6.0337 7.6335 6.0337C7.34443 6.0337 7.0831 6.1169 6.8495 6.2833C6.61643 6.45024 6.45536 6.66704 6.3663 6.9337L7.0495 7.2169C7.0943 7.07237 7.1695 6.95557 7.2751 6.8665C7.3807 6.77797 7.50016 6.7337 7.6335 6.7337C7.7887 6.7337 7.9191 6.7753 8.0247 6.8585C8.1303 6.9417 8.1831 7.04997 8.1831 7.1833C8.1831 7.30544 8.16096 7.4193 8.1167 7.5249C8.0719 7.6305 7.9775 7.75557 7.8335 7.9001L7.3415 8.3921L6.4167 9.3169V9.9665ZM11.2999 9.9665C11.6999 9.9665 12.0194 9.85824 12.2583 9.6417C12.4972 9.42517 12.6167 9.13904 12.6167 8.7833C12.6167 8.5833 12.5639 8.41104 12.4583 8.2665C12.3527 8.12197 12.2055 8.00544 12.0167 7.9169V7.8833C12.1719 7.80544 12.2884 7.69717 12.3663 7.5585C12.4442 7.41984 12.4831 7.25584 12.4831 7.0665C12.4831 6.76677 12.3692 6.51957 12.1415 6.3249C11.9138 6.13077 11.622 6.0337 11.2663 6.0337C10.9778 6.0337 10.714 6.11424 10.4751 6.2753C10.2362 6.43637 10.089 6.63344 10.0335 6.8665L10.7167 7.1337C10.7498 7.00037 10.8164 6.89477 10.9167 6.8169C11.0164 6.73904 11.133 6.7001 11.2663 6.7001C11.3996 6.7001 11.5135 6.73904 11.6079 6.8169C11.7028 6.89477 11.7503 6.99477 11.7503 7.1169C11.7503 7.25024 11.6946 7.3641 11.5831 7.4585C11.4722 7.5529 11.3332 7.6001 11.1663 7.6001H10.8495V8.2833H11.1999C11.4223 8.2833 11.5916 8.32224 11.7079 8.4001C11.8247 8.47797 11.8831 8.59477 11.8831 8.7505C11.8831 8.8945 11.8247 9.0193 11.7079 9.1249C11.5916 9.2305 11.4556 9.2833 11.2999 9.2833C11.1111 9.2833 10.9695 9.2417 10.8751 9.1585C10.7807 9.0753 10.6946 8.9281 10.6167 8.7169L9.9503 8.9833C10.0164 9.30544 10.169 9.54997 10.4079 9.7169C10.6468 9.8833 10.9442 9.9665 11.2999 9.9665Z"
+              fill="#929292" />
+          </svg>
+          <label class="criteria_label">FUNCTION</label>
+          <img src="assets/images/info-icon.svg" alt="guide">
+        </div>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="function">
+            <mat-option value="automatic">Automatic</mat-option>
+            <mat-option value="ztest">Z-test</mat-option>
+            <mat-option value="ttest">T-test</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="variant_section">
+        <div class="variant_field">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M1.9998 12.7999C1.66647 12.7999 1.38327 12.6831 1.1502 12.4495C0.916605 12.2164 0.799805 11.9332 0.799805 11.5999C0.799805 11.2666 0.916605 10.9834 1.1502 10.7503C1.38327 10.5167 1.66647 10.3999 1.9998 10.3999C2.05527 10.3999 2.10807 10.4026 2.1582 10.4079C2.20834 10.4138 2.26114 10.4223 2.3166 10.4335L5.6334 7.1167C5.6222 7.06124 5.61367 7.00844 5.6078 6.9583C5.60247 6.90817 5.5998 6.85537 5.5998 6.7999C5.5998 6.46657 5.7166 6.18337 5.9502 5.9503C6.18327 5.7167 6.46647 5.5999 6.7998 5.5999C7.13314 5.5999 7.41634 5.7167 7.6494 5.9503C7.883 6.18337 7.9998 6.46657 7.9998 6.7999C7.9998 6.85537 7.9886 6.96097 7.9662 7.1167L10.083 9.2335C10.1385 9.2223 10.1913 9.21377 10.2414 9.2079C10.2915 9.20257 10.3443 9.1999 10.3998 9.1999C10.4553 9.1999 10.5081 9.20257 10.5582 9.2079C10.6083 9.21377 10.6611 9.2223 10.7166 9.2335L12.8334 7.1167C12.8222 7.06124 12.8137 7.00844 12.8078 6.9583C12.8025 6.90817 12.7998 6.85537 12.7998 6.7999C12.7998 6.46657 12.9166 6.18337 13.1502 5.9503C13.3833 5.7167 13.6665 5.5999 13.9998 5.5999C14.3331 5.5999 14.6163 5.7167 14.8494 5.9503C15.083 6.18337 15.1998 6.46657 15.1998 6.7999C15.1998 7.13324 15.083 7.41644 14.8494 7.6495C14.6163 7.8831 14.3331 7.9999 13.9998 7.9999C13.9443 7.9999 13.8915 7.99724 13.8414 7.9919C13.7913 7.98604 13.7385 7.9775 13.683 7.9663L11.5662 10.0831C11.5774 10.1386 11.5859 10.1914 11.5918 10.2415C11.5971 10.2916 11.5998 10.3444 11.5998 10.3999C11.5998 10.7332 11.483 11.0164 11.2494 11.2495C11.0163 11.4831 10.7331 11.5999 10.3998 11.5999C10.0665 11.5999 9.78327 11.4831 9.5502 11.2495C9.3166 11.0164 9.1998 10.7332 9.1998 10.3999C9.1998 10.3444 9.20247 10.2916 9.2078 10.2415C9.21367 10.1914 9.2222 10.1386 9.2334 10.0831L7.1166 7.9663C7.06114 7.9775 7.00834 7.98604 6.9582 7.9919C6.90807 7.99724 6.85527 7.9999 6.7998 7.9999C6.74434 7.9999 6.63874 7.9887 6.483 7.9663L3.1662 11.2831C3.1774 11.3386 3.18594 11.3914 3.1918 11.4415C3.19714 11.4916 3.1998 11.5444 3.1998 11.5999C3.1998 11.9332 3.083 12.2164 2.8494 12.4495C2.61634 12.6831 2.33314 12.7999 1.9998 12.7999ZM2.7998 6.3999L2.4166 5.5831L1.5998 5.1999L2.4166 4.8167L2.7998 3.9999L3.183 4.8167L3.9998 5.1999L3.183 5.5831L2.7998 6.3999ZM9.9998 6.3999L9.383 5.0167L7.9998 4.3999L9.383 3.7831L9.9998 2.3999L10.6166 3.7831L11.9998 4.3999L10.6166 5.0167L9.9998 6.3999Z"
+              fill="#929292" />
+          </svg>
+          <label class="criteria_label">THRESHOLD</label>
+        </div>
+        <mat-form-field class="threshold_field" appearance="outline">
+          <input matInput type="number" formControlName="threshold">
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div formArrayName="variants">
+      <div *ngFor="let variant of variantsFormArray.controls; let i = index" [formGroupName]="i" [ngClass]="{
+          'winner-background': variant.get('winningStatus')?.value === true,
+          'non-winner-background': variant.get('winningStatus')?.value !== true
+        }">
+        <div>
+          <input type="text" formControlName="id" hidden>
+        </div>
+        <div>
+          {{variant.get('variantName')?.value}}
+        </div>
+        <div class="variant_section">
+          <label class="variant_field">SAMPLE SIZE</label>
+          <mat-form-field class="threshold_field" appearance="outline">
+            <input matInput placeholder="in numbers" formControlName="sampleSize" type="number">
+          </mat-form-field>
+        </div>
+
+        <div class="variant_section">
+          <label class="variant_field">RESULTS</label>
+          <mat-form-field class="threshold_field" appearance="outline">
+            <input matInput type="number" formControlName="result">
+            <span matSuffix>
+              <mat-button-toggle-group formControlName="resultSymbol">
+                <mat-button-toggle value="#">#</mat-button-toggle>
+                <mat-button-toggle value="%">%</mat-button-toggle>
+              </mat-button-toggle-group>
+            </span>
+          </mat-form-field>
+        </div>
+        <hr>
+      </div>
+    </div>
+
+    <button type="button" (click)="addVariant()">Add Variant</button>
+  </shorterloop-evaluate-experiment-variants>
 </form>
