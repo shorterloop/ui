@@ -2,22 +2,22 @@
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Meta, Story, moduleMetadata } from '@storybook/angular';
-import { ShorterloopSampleCalculatorComponent } from '../lib/shorterloop-sample-calculator/shorterloop-sample-calculator.component';
+import { SampleSizeCalculator } from '../lib/form-field/form-field.component';
 
 // More on default export: https://storybook.js.org/docs/angular/writing-stories/introduction#default-export
-const meta: Meta<ShorterloopSampleCalculatorComponent> = {
+const meta: Meta<SampleSizeCalculator> = {
   title: 'Components/Calculator',
   decorators: [
     moduleMetadata({
       imports: [BrowserAnimationsModule],
     }),
   ],
-  component: ShorterloopSampleCalculatorComponent,
+  component: SampleSizeCalculator,
   tags: ['autodocs']
 };
 export default meta;
 // More on component templates: https://storybook.js.org/docs/angular/writing-stories/introduction#using-args
-const Template: Story<ShorterloopSampleCalculatorComponent> = (args: ShorterloopSampleCalculatorComponent) => ({
+const Template: Story<SampleSizeCalculator> = (args: SampleSizeCalculator) => ({
   props: args,
 });
 
