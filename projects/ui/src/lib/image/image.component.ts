@@ -8,7 +8,7 @@ interface IRestrictions {
   AcceptedType: any,
 }
 @Component({
-  selector: 'prodeasy-image',
+  selector: 'shorterloop-image',
   templateUrl: './image.component.html',
   styleUrls: ['./image.component.scss']
 })
@@ -55,7 +55,7 @@ export class ImageComponent implements OnInit {
   imageUpload($event: any, imageContainer: any) {
     $event.preventDefault();
     $event.stopImmediatePropagation();
-    const imgSrc: any = imageContainer.querySelector('prodeasy-image #imgSrc');
+    const imgSrc: any = imageContainer.querySelector('shorterloop-image #imgSrc');
     const file = $event.target.files[0];
     this.getImageDetails(file).then(details => {
       if (this.isImageValid(details) === true) {
