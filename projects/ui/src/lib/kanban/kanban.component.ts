@@ -24,6 +24,7 @@ interface LibraryItem {
   };
 }
 
+
 interface Task {
   id: number;
   header: LibraryItem[];
@@ -45,10 +46,13 @@ interface Column {
   heading: string;
   tasks: Task[];
   collapsed?: boolean;
-  action?: {
+  action?:[ {
     label: string;
     event: ($event: any, column: Column) => void;
-  };
+  }, {
+    label: string;
+    event: ($event: any, column: Column) => void;
+  }]
 }
 
 interface Swimlane {

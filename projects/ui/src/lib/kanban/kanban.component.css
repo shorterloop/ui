@@ -407,3 +407,9 @@ td {
   line-height: 130%;
   color: #000;
 }
+
+.kanban_column_action_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
