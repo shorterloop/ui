@@ -31,11 +31,11 @@ export class AppModule { }
 Add Form Field in app.component.html
 
 ```html
-<prodeasy-photograph>
+<shorterloop-photograph>
   ...
   ...
   ...
-</prodeasy-photograph>
+</shorterloop-photograph>
 ```
 
 ## Storybook?

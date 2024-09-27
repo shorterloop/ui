@@ -21,5 +21,5 @@ import { ProgressModule } from 'prodeasy';
 
 ### How to use with APIs
 ```
-<prodeasy-progress-bar percentage="70"></prodeasy-progress-bar>
+<shorterloop-progress-bar percentage="70"></shorterloop-progress-bar>
 ```

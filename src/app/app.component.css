@@ -14,3 +14,12 @@
     width: 50%;
   }
 }
+
+.winner-background {
+  background-color: #f1fff3;
+  ;
+}
+
+.non-winner-background {
+  background-color: #fff1f1;
+}

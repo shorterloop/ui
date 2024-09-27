@@ -1,14 +1,14 @@
 <shorterloop-photograph>
   <div class="photograph-container">
-    <prodeasy-image [imageSrc]="imgUrl" (imageChanged)="uploadImage($event)"
-      (error)="showError($event)"></prodeasy-image>
+    <shorterloop-image [imageSrc]="imgUrl" (imageChanged)="uploadImage($event)"
+      (error)="showError($event)"></shorterloop-image>
     <div class="name_field">
-      <prodeasy-input></prodeasy-input>
+      <shorterloop-input></shorterloop-input>
       <p class="upload_text">
         Upload a company logo of size 100px X 100px in .png or .jpeg format, not
         bigger than 2MB in size
       </p>
-      <prodeasy-error *ngIf="showErrorMessage" [message]="errorMessage"></prodeasy-error>
+      <shorterloop-error *ngIf="showErrorMessage" [message]="errorMessage"></shorterloop-error>
     </div>
   </div>
 </shorterloop-photograph>

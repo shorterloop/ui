@@ -39,8 +39,8 @@
                 <div class="header_core_items">
                   <ng-container *ngFor="let item of task.header">
                     <ng-container *ngIf="item.type === 'link'">
-                      <span class="link">
-                        <a href="javascript:void(0)" (click)="addAction($event, item)">{{ item.label }}</a>
+                      <span class="link item_external_key">
+                        <a (click)="addAction($event, item)">{{ item.label }}</a>
                       </span>
                     </ng-container>
                     <ng-container *ngIf="item.type === 'chip'">
@@ -175,7 +175,7 @@
                   <ng-container *ngFor="let item of task.header">
                     <ng-container *ngIf="item.type === 'link'">
                       <span class="link">
-                        <a href="javascript:void(0)" (click)="addAction($event, item)">{{ item.label }}</a>
+                        <a (click)="addAction($event, item)">{{ item.label }}</a>
                       </span>
                     </ng-container>
                     <ng-container *ngIf="item.type === 'chip'">
@@ -269,7 +269,7 @@
                   <ng-container *ngFor="let item of opportunity.opportunity.header">
                     <ng-container *ngIf="item.type === 'link'">
                       <span class="link">
-                        <a href="javascript:void(0)" (click)="addAction($event, item)">{{ item.label }}</a>
+                        <a (click)="addAction($event, item)">{{ item.label }}</a>
                       </span>
                     </ng-container>
                     <ng-container *ngIf="item.type === 'chip'">
@@ -344,7 +344,7 @@
                     <ng-container *ngFor="let item of solution.solution?.header">
                       <ng-container *ngIf="item.type === 'link'">
                         <span class="link">
-                          <a href="javascript:void(0)" (click)="addAction($event, item)">{{ item.label }}</a>
+                          <a (click)="addAction($event, item)">{{ item.label }}</a>
                         </span>
                       </ng-container>
                       <ng-container *ngIf="item.type === 'chip'">
@@ -418,7 +418,7 @@
                       <ng-container *ngFor="let item of experiment.header">
                         <ng-container *ngIf="item.type === 'link'">
                           <span class="link">
-                            <a href="javascript:void(0)" (click)="addAction($event, item)">{{ item.label }}</a>
+                            <a (click)="addAction($event, item)">{{ item.label }}</a>
                           </span>
                         </ng-container>
                         <ng-container *ngIf="item.type === 'chip'">

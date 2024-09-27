@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'prodeasy-profile',
+  selector: 'shorterloop-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
   imgUrl = '';
-  errorMessage ='';
+  errorMessage = '';
   showErrorMessage = false;
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  showError(message:any){
+  showError(message: any) {
     this.errorMessage = message;
     this.showErrorMessage = true;
   }

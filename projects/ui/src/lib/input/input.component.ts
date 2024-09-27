@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'prodeasy-input',
+  selector: 'shorterloop-input',
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss']
 })

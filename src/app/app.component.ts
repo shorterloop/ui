@@ -1,23 +1,25 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterOutlet } from '@angular/router';
-import { SampleSizeCalculator, KanbanComponent } from '../../projects/ui/src/public-api';
+import { EvaluateExperimentVariantsComponent } from "../../projects/ui/src/lib/evaluate-experiment-variants/evaluate-experiment-variants.component";
+import { KanbanComponent, SampleSizeCalculator } from '../../projects/ui/src/public-api';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, MatSelectModule, MatIconModule, MatButtonToggleModule, MatInputModule, MatFormFieldModule, FormsModule, ReactiveFormsModule, KanbanComponent, SampleSizeCalculator],
+  imports: [RouterOutlet, CommonModule, MatSelectModule, MatIconModule, MatButtonToggleModule, MatInputModule, MatFormFieldModule, FormsModule, ReactiveFormsModule, KanbanComponent, SampleSizeCalculator, EvaluateExperimentVariantsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   calculatorForm: FormGroup;
+  criteriaForm: FormGroup;
 
   title = 'Ui testing';
   criteria = {
@@ -38,6 +40,36 @@ export class AppComponent {
     { value: 2.33, label: '98%' },
     { value: 2.58, label: '99%' }
   ];
+
+  variants = [{
+    id: 1,
+    variantName: 'Vaibhav',
+    sampleSize: 160000,
+    result: 90000,
+    resultSymbol: '#',
+    winningStatus: true
+  }, {
+    id: 2,
+    variantName: 'Vaibhav2',
+    sampleSize: 130000,
+    result: 10,
+    resultSymbol: '%',
+    winningStatus: false
+  }, {
+    id: 3,
+    variantName: 'Vaibhav3',
+    sampleSize: 190000,
+    result: 25,
+    resultSymbol: '%',
+    winningStatus: false
+  }, {
+    id: 4,
+    variantName: 'Vaibhav4',
+    sampleSize: 170000,
+    result: 30,
+    resultSymbol: '%',
+    winningStatus: false
+  }]
 
   marginOptions = [
     { value: 0.01, label: '1%' },
@@ -839,7 +871,50 @@ export class AppComponent {
       resultMaxValue: this.criteria.resultMaxValue || '',
       recommendedSampleSize: this.criteria.recommendedSampleSize || 0
     });
+    this.criteriaForm = this.fb.group({
+      goal: ['HIGHEST_RESULT'],
+      function: ['automatic'],
+      threshold: [30],
+      variants: this.fb.array([])
+    });
   }
+
+  ngOnInit(): void {
+    this.setVariants(this.variants);
+  }
+
+  get variantsFormArray(): FormArray {
+    return this.criteriaForm.get('variants') as FormArray;
+  }
+
+  setVariants(variants: any[]): void {
+    const variantsFGs = variants.map(variant => this.fb.group(variant));
+    const variantsFormArray = this.fb.array(variantsFGs);
+    this.criteriaForm.setControl('variants', variantsFormArray);
+  }
+
+  addVariant(): void {
+    this.variantsFormArray.push(this.fb.group({
+      id: [''],
+      variantName: [''],
+      sampleSize: [''],
+      result: [''],
+      resultSymbol: ['#'],
+      winningStatus: [Boolean]
+    }));
+  }
+
+  onWinnerVariantFound(winnerVariant: any) {
+
+    this.variantsFormArray.controls.forEach((control) => {
+      // Check if the variantKey matches
+      const isMatch = control.get('id')?.value === winnerVariant.winner?.id;
+
+      // Update the 'winningStatus' FormControl to true if it matches, otherwise false
+      control.get('winningStatus')?.setValue(isMatch);
+    });
+  }
+
 
   itemOrderChanged($event: any) {
     $event;

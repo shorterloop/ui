@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'prodeasy-error',
+  selector: 'shorterloop-error',
   templateUrl: './error.component.html',
   styleUrls: ['./error.component.css']
 })

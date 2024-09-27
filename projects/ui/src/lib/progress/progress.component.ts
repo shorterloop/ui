@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
-  selector: 'prodeasy-progress-bar',
+  selector: 'shorterloop-progress-bar',
   templateUrl: './progress.component.html',
   styleUrls: ['./progress.component.css']
 })
@@ -12,7 +12,7 @@ export class ProgressBarComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.percentageMarker = Math.floor( ( this.percentage / 100) * 50 );
+    this.percentageMarker = Math.floor((this.percentage / 100) * 50);
   }
 
   ngOnChanges(change: SimpleChanges) {
@@ -25,7 +25,7 @@ export class ProgressBarComponent implements OnInit {
       currentValue.percentage.currentValue
     ) {
       this.percentage = currentValue.percentage.currentValue;
-      this.percentageMarker = Math.floor( ( this.percentage / 100) * 50 );
+      this.percentageMarker = Math.floor((this.percentage / 100) * 50);
     }
   }
 
