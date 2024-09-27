@@ -141,7 +141,7 @@ export class KanbanComponent implements AfterViewInit {
     }
   }
 
-  addAction($event: any, column: any, columnType = '') {
+  addAction($event: any, column: any, columnType : any) {
     const currentTarget = $event.currentTarget;
     if (columnType) {
       column.columnType = columnType
@@ -149,6 +149,8 @@ export class KanbanComponent implements AfterViewInit {
     const isBody = currentTarget.classList.contains('task-body')
     if (isBody && column?.body?.action && column?.body?.action?.event) {
       column?.body?.action?.event($event, column);
+    } else if( columnType && columnType?.action ) {
+      columnType?.action?.event($event, column);
     } else {
       column?.action?.event($event, column);
     }
