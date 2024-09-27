@@ -73,6 +73,99 @@ export class AppComponent {
       class: 'margin_section',
     },
   ];
+  kanbanData = [
+    {
+      "id": 1,
+      "heading": "To-do",
+      "tasks": [
+        {
+          "id": 1,
+          "header": [],
+          "body": {
+            "summary": "Improve Experience",
+            "action": {}
+          },
+          "footer": [],
+          "borderColor": " #4784FC"
+        },
+        {
+          "id": 2,
+          "header": [],
+          "body": {
+            "summary": " Dependencies",
+            "action": {}
+          },
+          "footer": [],
+          "borderColor": " #4784FC"
+        }
+      ],
+      "action": [ {
+          "label": "+ Add Solution",
+          "action": {
+            event: ($event: any, column: any) => {
+              console.log("Added new experiment action performed: ", column, $event);
+            }
+          }
+        }, {
+          "label": "+ Add Work",
+        }]
+    },
+    {
+      "id": 2,
+      "heading": "In-progress",
+      "tasks": [
+        {
+          "id": 1,
+          "header": [],
+          "body": {
+            "summary": "Experience",
+            "action": {}
+          },
+          "footer": [],
+          "borderColor": " #4784FC"
+        },
+        {
+          "id": 2,
+          "header": [],
+          "body": {
+            "summary": "Implement Task",
+            "action": {}
+          },
+          "footer": [],
+          "borderColor": " #4784FC"
+        }
+      ],
+   "action": {
+          "label": "+ Add Solution",
+        }
+    },
+    {
+    "id": 3,
+    "heading": "Done",
+    "tasks": [
+      {
+        "id": 1,
+        "header": [],
+        "body": {
+          "summary": "Improve User Login Experience",
+          "action": {}
+        },
+        "footer": [],
+        "borderColor": " #4784FC"
+      },
+      {
+        "id": 2,
+        "header": [],
+        "body": {
+          "summary": "Implement Task Dependencies",
+          "action": {}
+        },
+        "footer": [],
+        "borderColor": " #4784FC"
+      }
+    ],
+    "action": {}
+  }]
   workflowItems = [
     {
       "opportunity": {
