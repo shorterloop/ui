@@ -131,16 +131,21 @@ export class AppComponent {
           "borderColor": " #4784FC"
         }
       ],
-      "action": [ {
-          "label": "+ Add Solution",
-          "action": {
-            event: ($event: any, column: any) => {
-              console.log("Added new experiment action performed: ", column, $event);
-            }
+      "action": [{
+        "label": "+ Add Solution",
+        "action": {
+          event: ($event: any, column: any) => {
+            console.log("Added new experiment action performed: ", column, $event);
           }
-        }, {
-          "label": "+ Add Work",
-        }]
+        }
+      }, {
+        "label": "+ Add Work",
+        "action": {
+          event: ($event: any, column: any) => {
+            console.log("Added new experiment action performed: ", column, $event);
+          }
+        }
+      }]
     },
     {
       "id": 2,
@@ -167,37 +172,42 @@ export class AppComponent {
           "borderColor": " #4784FC"
         }
       ],
-   "action": {
-          "label": "+ Add Solution",
+      "action": {
+        "label": "+ Add Solution",
+        "action": {
+          event: ($event: any, column: any) => {
+            console.log("Added new experiment action performed: ", column, $event);
+          }
         }
+      }
     },
     {
-    "id": 3,
-    "heading": "Done",
-    "tasks": [
-      {
-        "id": 1,
-        "header": [],
-        "body": {
-          "summary": "Improve User Login Experience",
-          "action": {}
+      "id": 3,
+      "heading": "Done",
+      "tasks": [
+        {
+          "id": 1,
+          "header": [],
+          "body": {
+            "summary": "Improve User Login Experience",
+            "action": {}
+          },
+          "footer": [],
+          "borderColor": " #4784FC"
         },
-        "footer": [],
-        "borderColor": " #4784FC"
-      },
-      {
-        "id": 2,
-        "header": [],
-        "body": {
-          "summary": "Implement Task Dependencies",
-          "action": {}
-        },
-        "footer": [],
-        "borderColor": " #4784FC"
-      }
-    ],
-    "action": {}
-  }]
+        {
+          "id": 2,
+          "header": [],
+          "body": {
+            "summary": "Implement Task Dependencies",
+            "action": {}
+          },
+          "footer": [],
+          "borderColor": " #4784FC"
+        }
+      ],
+      "action": {}
+    }]
   workflowItems = [
     {
       "opportunity": {
@@ -216,6 +226,11 @@ export class AppComponent {
         "borderColor": "#4784fc",
         "action": {
           "label": "+ Add Solution",
+          "action": {
+            event: ($event: any, column: any) => {
+              console.log("Added new experiment action performed: ", column, $event);
+            }
+          }
         }
       },
       "solutions": [
@@ -541,6 +556,11 @@ export class AppComponent {
         "borderColor": "#4784fc",
         "action": {
           "label": "+ Add Solution",
+          "action": {
+            event: ($event: any, column: any) => {
+              console.log("Added new experiment action performed: ", column, $event);
+            }
+          },
           "icon": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M2 2.667a.667.667 0 0 0-.662.588l-.005.078v4.334a2.333 2.333 0 0 0 2.206 2.33l.128.003h8.723l-2.195 2.195a.67.67 0 0 0-.055.88l.055.063a.67.67 0 0 0 .88.055l.063-.055 3.333-3.333a1 1 0 0 0 .065-.075l.047-.073.036-.076.024-.07.016-.078.005-.04.003-.06-.002-.05-.012-.084-.02-.074-.029-.074-.035-.065-.042-.061-.056-.063-3.333-3.333a.667.667 0 0 0-.998.88l.055.062 2.195 2.196H3.667a1 1 0 0 1-.996-.904l-.004-.096V3.333A.667.667 0 0 0 2 2.667\" fill=\"#573DF4\"/></svg>"
         }
       },
