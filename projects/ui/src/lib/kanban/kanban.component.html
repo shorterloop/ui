@@ -111,7 +111,7 @@
           <div class="kanban_column_action_container">
             <ng-container *ngFor="let interval of column?.action">
               <div class="kanban-column-action">
-                <a class="add-button" (click)="addAction($event, interval)">{{ interval?.label }}</a>
+                <a class="add-button" (click)="addAction($event, column, interval)">{{ interval?.label }}</a>
               </div>
             </ng-container>
           </div>
