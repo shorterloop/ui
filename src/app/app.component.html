@@ -1,6 +1,29 @@
-<shorterloop-kanban [data]="kanbanData"></shorterloop-kanban>
+<!-- content slider -->
+<shorterloop-content-slider>
+  <ng-container>
+    <ul class="content_slider_list">
+      <li><span class="content_slider_listcount">1.</span>In other words, the width of the slide with unprovided width will be set according to how much space in visible carousel window the slide must take. E.g. if there must be 2 visible slides, the width of the item will be half of the carousel window.</li>
+      <li><span class="content_slider_listcount">2.</span> In other words, the width of the slide with unprovided width will be set according to how much space in visible carousel window the slide must take. E.g. if there must be 2 visible slides, the width of the item will be half of the carousel window.</li>
+      <li><span class="content_slider_listcount">3.</span> In other words, the width of the slide with unprovided width will be set according to how much space in visible carousel window the slide must take. E.g. if there must be 2 visible slides, the width of the item will be half of the carousel window.</li>
+      <li><span class="content_slider_listcount">4.</span> In other words, the width of the slide with unprovided width will be set according to how much space in visible carousel window the slide must take. E.g. if there must be 2 visible slides, the width of the item will be half of the carousel window.</li>
+    </ul>
+  </ng-container>
+  <ng-container>
+    <ul class="content_slider_list">
+      <li><span class="content_slider_listcount">5.</span>In other words, the width of the slide with unprovided width will be set according to how much space in visible carousel window the slide must take. E.g. if there must be 2 visible slides, the width of the item will be half of the carousel window.</li>
+      <li><span class="content_slider_listcount">6.</span> In other words, the width of the slide with unprovided width will be set according to how much space in visible carousel window the slide must take. E.g. if there must be 2 visible slides, the width of the item will be half of the carousel window.</li>
+      <li><span class="content_slider_listcount">3.</span> In other words, the width of the slide with unprovided width will be set according to how much space in visible carousel window the slide must take. E.g. if there must be 2 visible slides, the width of the item will be half of the carousel window.</li>
+      <li><span class="content_slider_listcount">4.</span> In other words, the width of the slide with unprovided width will be set according to how much space in visible carousel window the slide must take. E.g. if there must be 2 visible slides, the width of the item will be half of the carousel window.</li>
+    </ul>
+  </ng-container>
+</shorterloop-content-slider>
+
+<!-- image slider -->
+<!-- <shorterloop-image-slider></shorterloop-image-slider> -->
+
+<!-- <shorterloop-kanban [data]="kanbanData"></shorterloop-kanban>
 <shorterloop-kanban [data]="workflowItems" [type]="'workflow'"
-  [tableHeaders]="[{label: 'Opportunities', action: {}}, {label: 'Solutions', action: {}}, {label: 'Experiments', action: {}}]"></shorterloop-kanban>
+  [tableHeaders]="[{label: 'Opportunities', action: {}}, {label: 'Solutions', action: {}}, {label: 'Experiments', action: {}}]"></shorterloop-kanban> -->
 
 <!-- <form [formGroup]="calculatorForm">
   <h1>Set Up the Experiment</h1>
@@ -50,7 +73,7 @@
 
 </form> -->
 
-<form [formGroup]="criteriaForm">
+<!-- <form [formGroup]="criteriaForm">
   <shorterloop-evaluate-experiment-variants (winnerVariantFound)="onWinnerVariantFound($event)">
     <div class="variant_container">
       <div class="variant_section">
@@ -139,4 +162,4 @@
 
     <button type="button" (click)="addVariant()">Add Variant</button>
   </shorterloop-evaluate-experiment-variants>
-</form>
+</form> -->

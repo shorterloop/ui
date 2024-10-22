@@ -9,11 +9,13 @@ import { MatSelectModule } from '@angular/material/select';
 import { RouterOutlet } from '@angular/router';
 import { EvaluateExperimentVariantsComponent } from "../../projects/ui/src/lib/evaluate-experiment-variants/evaluate-experiment-variants.component";
 import { KanbanComponent, SampleSizeCalculator } from '../../projects/ui/src/public-api';
+import { ContentSliderModule } from '../../projects/ui/src/lib/content-slider';
+import { ImageSliderModule } from '../../projects/ui/src/lib/image-slider';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, MatSelectModule, MatIconModule, MatButtonToggleModule, MatInputModule, MatFormFieldModule, FormsModule, ReactiveFormsModule, KanbanComponent, SampleSizeCalculator, EvaluateExperimentVariantsComponent],
+  imports: [RouterOutlet, CommonModule, MatSelectModule, MatIconModule, MatButtonToggleModule, MatInputModule, MatFormFieldModule, FormsModule, ReactiveFormsModule, KanbanComponent, SampleSizeCalculator, EvaluateExperimentVariantsComponent, ContentSliderModule, ImageSliderModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -872,7 +874,6 @@ export class AppComponent {
       }]
     },
   ]
-
 
   constructor(private fb: FormBuilder) {
     this.calculatorForm = this.fb.group({

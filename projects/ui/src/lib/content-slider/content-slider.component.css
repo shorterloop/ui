@@ -1,17 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
-@import "@angular/material/prebuilt-themes/indigo-pink.css";
-
-html,
-body {
-  height: 100%;
+* {
+  font-family: system-ui;
 }
 
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+/* slider */
+/* .content_slider_list{
+  padding: 0;
 }
-
-/* .owl-theme .owl-nav [class*=owl-] {
+.content_slider_list li{
+  padding-left: 15px;
+  position: relative;
+  list-style: none;
+  margin-bottom: 7px;
+  font-size: 14px;
+}
+.content_slider_list li .content_slider_listcount{
+  position: absolute;
+  left: 0px;
+  top: 0;
+  font-size: 14px;
+}
+.owl-theme .owl-nav [class*=owl-] {
   color: #000 !important;
   font-size: 14px;
   margin: 5px;
@@ -31,13 +39,7 @@ body {
   background-repeat: no-repeat;
   left: 10px;
   top: 4px;
-  width: 14px;
-  height: 10px;
-}
-.content_slider_list li{
-  list-style: none;
-}
-
-.owl-nav{
-  float: right;
+  width: 20px;
+  height: 20px;
+  background-size: 20px;
 } */

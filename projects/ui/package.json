@@ -4,7 +4,8 @@
   "peerDependencies": {
     "@angular/common": "^17.3.0",
     "@angular/core": "^17.3.0",
-    "@angular/material": "^17.3.10"
+    "@angular/material": "^17.3.10",
+    "@angular/ngx-owl-carousel-o": "^18.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
