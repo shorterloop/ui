@@ -292,7 +292,7 @@
                   (mousedown)="opportunity.opportunity?.body?.contenteditable? $event.stopPropagation(): null"
                   [innerHTML]="opportunity.opportunity?.body?.summary"
                   [attr.contenteditable]="opportunity.opportunity?.body?.contenteditable"
-                  (click)="opportunity.opportunity?.contenteditable? addAction($event, opportunity.opportunity): null">
+                  (click)="!opportunity.opportunity?.contenteditable? addAction($event, opportunity.opportunity): null">
                 </div>
 
                 <ng-container *ngIf="opportunity.opportunity?.belongsTo && opportunity.opportunity?.belongsTo?.link">
