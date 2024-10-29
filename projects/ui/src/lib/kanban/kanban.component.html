@@ -71,7 +71,7 @@
                 [class.input_empty_state]="!task.body?.summary" [class.content_editable]="task.body?.contenteditable"
                 (mousedown)="task.body?.contenteditable? $event.stopPropagation(): null"
                 [attr.contenteditable]="task.body?.contenteditable"
-                (click)="!task.body?.contenteditable? addAction($event, task): null">
+                (click)="task.body?.contenteditable? addAction($event, task): null">
               </div>
 
               <ng-container *ngIf="task?.belongsTo && task?.belongsTo?.link">
@@ -196,7 +196,7 @@
                   [class.input_empty_state]="!task.body?.summary" [class.content_editable]="task.body?.contenteditable"
                   (mousedown)="task.body?.contenteditable? $event.stopPropagation(): null"
                   [attr.contenteditable]="task.body?.contenteditable"
-                  (click)="!task.body?.contenteditable? addAction($event, task): null">
+                  (click)="task.body?.contenteditable? addAction($event, task): null">
                 </div>
 
                 <ng-container *ngIf="task?.belongsTo && task?.belongsTo?.link">
@@ -367,7 +367,7 @@
                     (mousedown)="solution.solution?.body?.contenteditable? $event.stopPropagation(): null"
                     [innerHTML]="solution.solution?.body?.summary"
                     [attr.contenteditable]="solution.solution?.body?.contenteditable"
-                    (click)="!solution.solution?.body?.contenteditable? addAction($event, solution.solution): null">
+                    (click)="solution.solution?.body?.contenteditable? addAction($event, solution.solution): null">
                   </div>
 
                   <ng-container *ngIf="solution.solution?.belongsTo && solution.solution?.belongsTo?.link">
@@ -439,7 +439,7 @@
                       [innerHTML]="experiment.body?.summary" [class.input_empty_state]="!experiment.body?.summary"
                       [class.content_editable]="experiment.body?.contenteditable"
                       (mousedown)="experiment.body?.contenteditable? $event.stopPropagation(): null"
-                      (click)="!experiment.body?.contenteditable? addAction($event, experiment.body): null"
+                      (click)="experiment.body?.contenteditable? addAction($event, experiment): null"
                       [attr.contenteditable]="experiment.body?.contenteditable">
                     </div>
                     <ng-container *ngIf="experiment?.belongsTo && experiment?.belongsTo?.link">
