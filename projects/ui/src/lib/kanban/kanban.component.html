@@ -261,8 +261,7 @@
         <tr>
           <!-- First column for opportunity details -->
           <td [attr.rowspan]="opportunity.solutions.length + 1" class="odd-section"
-            [style.border]="!(opportunity.opportunity | isEmptyObject) ? '1px solid #e0e0e0' : 'none'"
-            [class.empty_box]="(opportunity.opportunity | isEmptyObject)">
+            [style.borderTop.px]="!(opportunity.opportunity | isEmptyObject) ? '1' : '0'">
             <div class="kanban-item" *ngIf="!(opportunity.opportunity | isEmptyObject)"
               [style.borderTop]="opportunity.opportunity?.borderColor ? '3px solid ' + opportunity.opportunity?.borderColor : ''">
               <div class="task-card">
