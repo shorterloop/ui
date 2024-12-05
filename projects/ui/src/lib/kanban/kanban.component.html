@@ -104,7 +104,7 @@
         <ng-container *ngIf="!column?.action?.length">
           <div class="kanban-column-action" *ngIf="column?.action && !column?.collapsed">
             <a class="add-button" (click)="addAction($event, column)">{{ column?.action?.label }}</a>
-          </div> 
+          </div>
         </ng-container>
 
         <ng-container *ngIf="column?.action?.length">
@@ -115,7 +115,7 @@
               </div>
             </ng-container>
           </div>
-        </ng-container> 
+        </ng-container>
 
       </div>
     </div>
@@ -260,7 +260,9 @@
       <ng-container *ngFor="let opportunity of data; let i = index">
         <tr>
           <!-- First column for opportunity details -->
-          <td [attr.rowspan]="opportunity.solutions.length + 1" class="odd-section">
+          <td [attr.rowspan]="opportunity.solutions.length + 1" class="odd-section"
+            [style.border]="!(opportunity.opportunity | isEmptyObject) ? '1px solid #e0e0e0' : 'none'"
+            [class.empty_box]="(opportunity.opportunity | isEmptyObject)">
             <div class="kanban-item" *ngIf="!(opportunity.opportunity | isEmptyObject)"
               [style.borderTop]="opportunity.opportunity?.borderColor ? '3px solid ' + opportunity.opportunity?.borderColor : ''">
               <div class="task-card">
