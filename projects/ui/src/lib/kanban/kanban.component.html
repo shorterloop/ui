@@ -32,7 +32,7 @@
         <div cdkDropList [cdkDropListData]="column.tasks" class="kanban-list" #kanbanList
           (cdkDropListDropped)="drop($event)" *ngIf="!column?.collapsed" [id]="column.heading">
           <div class="kanban-item" *ngFor="let task of column.tasks" cdkDrag [cdkDragDisabled]="column?.preventDrag"
-            [style.borderTop]="task?.borderColor ? '3px solid ' + task?.borderColor : ''">
+            [style.borderLeft]="task?.borderColor ? '4px solid ' + task?.borderColor : ''">
             <div class="task-card">
               <!-- Header -->
               <div class="task-header d-flex" *ngIf="task.header?.length">
@@ -168,7 +168,7 @@
             attr.customId="swimlane_row_{{column?.id}}" #kanbanList (cdkDropListDropped)="drop($event)"
             *ngIf="!dataColumn?.collapsed">
             <div class="kanban-item" *ngFor="let task of dataColumn.tasks" cdkDrag
-              [style.borderTop]="task?.borderColor ? '3px solid ' + task?.borderColor : ''">
+              [style.borderLeft]="task?.borderColor ? '4px solid ' + task?.borderColor : ''">
               <div class="task-card">
                 <!-- Header -->
                 <div class="task-header" *ngIf="task?.header?.length">
@@ -261,10 +261,10 @@
         <tr>
           <!-- First column for opportunity details -->
           <td [attr.rowspan]="opportunity.solutions.length + 1" class="odd-section"
-            [style.borderTop.px]="(data?.length === 2 && (opportunity.opportunity | isEmptyObject)) ? '1' : '0'"
+            [style.borderLeft.px]="(data?.length === 2 && (opportunity.opportunity | isEmptyObject)) ? '1' : '0'"
             [style.height.px]="(data?.length === 2 && (opportunity.opportunity | isEmptyObject)) ? '0' : 'auto'">
             <div class="kanban-item" *ngIf="!(opportunity.opportunity | isEmptyObject)"
-              [style.borderTop]="opportunity.opportunity?.borderColor ? '3px solid ' + opportunity.opportunity?.borderColor : ''">
+              [style.borderLeft]="opportunity.opportunity?.borderColor ? '4px solid ' + opportunity.opportunity?.borderColor : ''">
               <div class="task-card">
                 <!-- Header -->
                 <div class="task-header" *ngIf="opportunity.opportunity?.header?.length">
@@ -331,10 +331,10 @@
             </div>
           </td>
           <td *ngIf="!opportunity.solutions?.length"
-            [style.borderTop.px]="(data?.length === 2 && (opportunity.opportunity | isEmptyObject)) ? '1' : '0'"
+            [style.borderLeft.px]="(data?.length === 2 && (opportunity.opportunity | isEmptyObject)) ? '1' : '0'"
             [style.height.px]="(data?.length === 2 && (opportunity.opportunity | isEmptyObject)) ? '0' : 'auto'"></td>
           <td *ngIf="!opportunity.solutions?.length" class="odd-section"
-            [style.borderTop.px]="(data?.length === 2 && (opportunity.opportunity | isEmptyObject)) ? '1' : '0'"
+            [style.borderLeft.px]="(data?.length === 2 && (opportunity.opportunity | isEmptyObject)) ? '1' : '0'"
             [style.height.px]="(data?.length === 2 && (opportunity.opportunity | isEmptyObject)) ? '0' : 'auto'"></td>
         </tr>
         <!-- Rows for each solution and its experiments -->
@@ -343,7 +343,7 @@
             <!-- Solution column -->
             <td>
               <div class="kanban-item" *ngIf="!(solution.solution | isEmptyObject)"
-                [style.borderTop]="solution.solution?.borderColor ? '3px solid ' + solution.solution?.borderColor : ''">
+                [style.borderLeft]="solution.solution?.borderColor ? '4px solid ' + solution.solution?.borderColor : ''">
                 <div class="task-card">
                   <!-- Header -->
                   <div class="task-header" *ngIf="solution.solution?.header?.length">
@@ -417,7 +417,7 @@
             <td class="odd-section">
               <ng-container *ngFor="let experiment of solution.experiments" class="kanban-list">
                 <div class="kanban-item"
-                  [style.borderTop]="experiment?.borderColor ? '3px solid ' + experiment?.borderColor : ''">
+                  [style.borderLeft]="experiment?.borderColor ? '4px solid ' + experiment?.borderColor : ''">
                   <div class="task-card">
                     <!-- Header -->
                     <div class="task-header" *ngIf="experiment.header?.length">
