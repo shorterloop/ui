@@ -1,6 +1,7 @@
-import { NgModule } from '@angular/core';
+import { DoBootstrap, Injector, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PricingComponent } from './pricing.component';
+import { createCustomElement } from '@angular/elements';
 
 
 @NgModule({
@@ -14,4 +15,11 @@ import { PricingComponent } from './pricing.component';
     CommonModule
   ]
 })
-export class PricingModule { }
+export class PricingModule implements DoBootstrap {
+  constructor(private injector: Injector) {}
+
+  ngDoBootstrap() {
+    const pricingElement = createCustomElement(PricingComponent, { injector: this.injector });
+    customElements.define('shorterloop-pricing-table', pricingElement);
+  }
+}
