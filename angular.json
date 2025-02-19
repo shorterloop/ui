@@ -174,95 +174,93 @@
         }
       }
     },
-    "pricing-element": {
-      "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
+"pricing-element": {
+  "projectType": "application",
+  "schematics": {
+    "@schematics/angular:component": {
+      "style": "scss"
+    }
+  },
+  "root": "projects/pricing-element",
+  "sourceRoot": "projects/pricing-element/src",
+  "prefix": "app",
+  "architect": {
+    "build": {
+      "builder": "@angular-devkit/build-angular:application",
+      "options": {
+        "outputPath": "dist/pricing-element",
+        "index": "projects/pricing-element/src/index.html",
+        "browser": "projects/pricing-element/src/main.ts",
+        "polyfills": [],
+        "tsConfig": "projects/pricing-element/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+        ],
+        "styles": [
+          "projects/pricing-element/src/sl-pricing-table.scss"
+        ],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "none"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
         }
       },
-      "root": "projects/pricing-element",
-      "sourceRoot": "projects/pricing-element/src",
-      "prefix": "app",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:application",
-          "options": {
-            "outputPath": "dist/pricing-element",
-            "index": "projects/pricing-element/src/index.html",
-            "browser": "projects/pricing-element/src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
-            "tsConfig": "projects/pricing-element/tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-            ],
-            "styles": [
-              "projects/pricing-element/src/sl-pricing-table.scss"
-            ],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
-                }
-              ],
-              "outputHashing": "all"
-            },
-            "development": {
-              "optimization": false,
-              "extractLicenses": false,
-              "sourceMap": true
-            }
-          },
-          "defaultConfiguration": "production"
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "builder": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "pricing-element:build:production"
         },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "configurations": {
-            "production": {
-              "buildTarget": "pricing-element:build:production"
-            },
-            "development": {
-              "buildTarget": "pricing-element:build:development"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "buildTarget": "pricing-element:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
-            "tsConfig": "projects/pricing-element/tsconfig.spec.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-            ],
-            "styles": [
-              "projects/pricing-element/src/sl-pricing-table.scss"
-            ],
-            "scripts": []
-          }
+        "development": {
+          "buildTarget": "pricing-element:build:development"
         }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "builder": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "pricing-element:build"
+      }
+    },
+    "test": {
+      "builder": "@angular-devkit/build-angular:karma",
+      "options": {
+        "polyfills": [
+          "zone.js",
+          "zone.js/testing"
+        ],
+        "tsConfig": "projects/pricing-element/tsconfig.spec.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+        ],
+        "styles": [
+          "projects/pricing-element/src/sl-pricing-table.scss"
+        ],
+        "scripts": []
       }
     }
+  }
+}
   }
 }
