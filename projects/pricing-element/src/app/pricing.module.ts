@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PricingComponent } from './pricing.component';
 import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { BrowserModule } from '@angular/platform-browser';
   ],
   imports: [
     BrowserModule,
-    CommonModule
+    CommonModule,
+    HttpClientModule
   ]
 })
 export class PricingModule implements DoBootstrap {

@@ -1,214 +1,175 @@
-$primary-color: #573df4;
-$secondary-color: #e9ecef;
-$text-color: #495057;
-$background-color: #f8f9fa;
-$border-radius: 12px;
-$card-hover-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
-$transition-duration: 0.4s;
-
 .pricing-page {
-  max-width: 1200px;
   margin: 0 auto;
   text-align: center;
   animation: fadeIn 1s ease-in-out;
 }
-
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
-
 .pricing-header {
   margin-bottom: 2rem;
-
-  h1 {
-    color: $primary-color;
-    font-size: 3rem;
-    margin-bottom: 0.5rem;
-    letter-spacing: 1px;
-  }
-
-  p {
-    font-size: 1.125rem;
-    color: $text-color;
-    margin-bottom: 1.5rem;
-  }
-
-  .toggle-container {
-    display: inline-flex;
-    border: 1px solid $secondary-color;
-    border-radius: $border-radius;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-
-    .toggle-button {
-      background: transparent;
-      border: none;
-      padding: 1rem 2rem;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: background $transition-duration, color $transition-duration;
-      color: $text-color;
-
-      &:hover {
-        background: lighten($primary-color, 40%);
-      }
-
-      &.active {
-        background: $primary-color;
-        color: white;
-      }
-    }
-  }
 }
-
+.pricing-header h1 {
+  color: #573df4;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+.pricing-header p {
+  font-size: 1.125rem;
+  color: #495057;
+  margin-bottom: 1.5rem;
+}
+.pricing-header .toggle-container {
+  display: inline-flex;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px #0000000d;
+}
+.pricing-header .toggle-container .toggle-button {
+  background: transparent;
+  border: none;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background 0.4s, color 0.4s;
+  color: #495057;
+}
+.pricing-header .toggle-container .toggle-button:hover {
+  background: #fefeff;
+}
+.pricing-header .toggle-container .toggle-button.active {
+  background: #573df4;
+  color: #fff;
+}
 .pricing-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
   padding: 1rem;
 }
-
 .pricing-card {
-  background: white;
-  border-radius: $border-radius;
+  background: #fff;
+  border-radius: 12px;
   padding: 2.5rem 2rem;
-  border: 1px solid $secondary-color;
-  transition: box-shadow $transition-duration, background $transition-duration;
+  border: 1px solid #e9ecef;
+  transition: box-shadow 0.4s, background 0.4s;
   display: flex;
   flex-direction: column;
   text-align: left;
-
-  &:hover {
-    box-shadow: $card-hover-shadow;
-    background: lighten(white, 2%);
-  }
-
-  .card-header {
-    margin-bottom: 1.5rem;
-
-    .product-name {
-      color: $primary-color;
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .product-description {
-      color: $text-color;
-      font-size: 1rem;
-      line-height: 1.5;
-    }
-  }
-
-  .plan-wrapper {
-    margin-bottom: 1.5rem;
-
-    .plan-section {
-      border-top: 1px solid $secondary-color;
-      padding: 1rem 0;
-
-      &:first-of-type {
-        border-top: none;
-      }
-
-      .plan-info {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        .plan-name {
-          font-weight: 600;
-          color: $text-color;
-          font-size: 1.1rem;
-        }
-
-        .plan-price {
-          font-size: 1.75rem;
-          color: $primary-color;
-          font-weight: 700;
-        }
-      }
-
-      .plan-description {
-        margin-top: 0.5rem;
-        font-size: 0.9rem;
-        color: $text-color;
-      }
-    }
-  }
-
-  .features-section {
-    margin-bottom: 1.5rem;
-
-    .feature-category {
-      color: $primary-color;
-      font-weight: 600;
-      font-size: 1rem;
-      margin: 1rem 0 0.5rem;
-      text-transform: uppercase;
-    }
-
-    .feature-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-
-      .feature-item {
-        padding: 0.5rem 0;
-        font-size: 0.95rem;
-        color: $text-color;
-        border-bottom: 1px dotted $secondary-color;
-
-        &:last-child {
-          border-bottom: none;
-        }
-      }
-    }
-  }
-
-  .restrictions {
-    background: $background-color;
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
-
-    .restriction-title {
-      font-weight: 600;
-      font-size: 1rem;
-      color: $primary-color;
-      margin-bottom: 0.5rem;
-    }
-
-    .restriction-item {
-      font-size: 0.9rem;
-      color: $text-color;
-      margin: 0.25rem 0;
-    }
-  }
-
-  .select-button {
-    background: $primary-color;
-    color: white;
-    border: none;
-    padding: 1rem 2rem;
-    border-radius: 6px;
-    width: 100%;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: background $transition-duration, box-shadow $transition-duration;
-    cursor: pointer;
-
-    &:hover {
-      background: darken($primary-color, 8%);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-  }
 }
-
+.pricing-card:hover {
+  box-shadow: 0 12px 24px #0000001f;
+  background: #fff;
+}
+.pricing-card .card-header {
+  margin-bottom: 1.5rem;
+}
+.pricing-card .card-header .product-name {
+  color: #573df4;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.pricing-card .card-header .product-description {
+  color: #495057;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.pricing-card .plan-wrapper {
+  margin-bottom: 1.5rem;
+}
+.pricing-card .plan-wrapper .plan-section {
+  border-top: 1px solid #e9ecef;
+  padding: 1rem 0;
+}
+.pricing-card .plan-wrapper .plan-section:first-of-type {
+  border-top: none;
+}
+.pricing-card .plan-wrapper .plan-section .plan-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pricing-card .plan-wrapper .plan-section .plan-info .plan-name {
+  font-weight: 600;
+  color: #495057;
+  font-size: 1.1rem;
+}
+.pricing-card .plan-wrapper .plan-section .plan-info .plan-price {
+  font-size: 1.75rem;
+  color: #573df4;
+  font-weight: 700;
+}
+.pricing-card .plan-wrapper .plan-section .plan-description {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #495057;
+}
+.pricing-card .features-section {
+  margin-bottom: 1.5rem;
+}
+.pricing-card .features-section .feature-category {
+  color: #573df4;
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 1rem 0 0.5rem;
+  text-transform: uppercase;
+}
+.pricing-card .features-section .feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.pricing-card .features-section .feature-list .feature-item {
+  padding: 0.5rem 0;
+  font-size: 0.95rem;
+  color: #495057;
+  border-bottom: 1px dotted #e9ecef;
+}
+.pricing-card .features-section .feature-list .feature-item:last-child {
+  border-bottom: none;
+}
+.pricing-card .restrictions {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+.pricing-card .restrictions .restriction-title {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #573df4;
+  margin-bottom: 0.5rem;
+}
+.pricing-card .restrictions .restriction-item {
+  font-size: 0.9rem;
+  color: #495057;
+  margin: 0.25rem 0;
+}
+.pricing-card .select-button {
+  background: #573df4;
+  color: #fff;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 6px;
+  width: 100%;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background 0.4s, box-shadow 0.4s;
+  cursor: pointer;
+}
+.pricing-card .select-button:hover {
+  background: #3616f2;
+  box-shadow: 0 4px 8px #0000001a;
+}
 @media (max-width: 768px) {
   body {
     padding: 1rem;
