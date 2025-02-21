@@ -1,0 +1,253 @@
+.dialog_wrap {
+  position: relative;
+
+  .mat_title {
+    margin: 0;
+    padding: 10px 15px 7px;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 20px;
+    color: #000;
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+
+  .modal_body {
+    padding: 13px 15px;
+    margin: 0 !important;
+
+    .close_icon {
+      right: 20px;
+      height: 30px;
+      width: 30px;
+      line-height: 30px;
+      position: absolute;
+      top: 0;
+    }
+  }
+
+  .delete_card_content {
+    padding-right: 40px;
+
+    p {
+      font-size: 16px !important;
+      color: #000 !important;
+      line-height: 24px !important;
+    }
+  }
+
+  .mat_title {
+    margin: 0;
+    padding: 10px 15px;
+  }
+
+  .modal_footer {
+    .cancel_btn {
+      background-color: #fff !important;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      width: auto;
+      color: #000;
+    }
+  }
+}
+
+.download_btn {
+  border: 1px solid #e0e0e0;
+  width: auto;
+  color: #000;
+  margin-right: 220px;
+}
+
+::ng-deep {
+  strong {
+    color: #000 !important;
+  }
+}
+
+:host ::ng-deep {
+  .email_form {
+    margin-top: 24px;
+  }
+
+  .file_names {
+    cursor: text !important;
+    display: flex;
+    width: 60%;
+
+    span {
+      width: fit-content;
+      width: fit-content;
+      max-width: 100%;
+      min-width: 50%;
+    }
+
+    a mat-icon {
+      font-size: 21px;
+      color: red;
+    }
+  }
+}
+
+.limit_exceeded {
+  height: 64px;
+  /* Alert */
+  border: 0.5px solid #ef8f00;
+  box-sizing: border-box;
+  border-radius: 4px;
+  margin-bottom: 24px;
+
+  div {
+    height: 32px;
+    padding: 15px 51px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+    align-items: center;
+    text-align: center;
+    color: #424b5a;
+  }
+}
+
+.csv_upload_wrap {
+  display: flex;
+  color: #573df4;
+
+  .upload_file {
+    background-color: transparent;
+    border: none;
+    margin-top: 8px;
+  }
+
+  .csv_upload_text {
+    font-size: 12px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+}
+
+button {
+  color: #573df4;
+}
+
+.attachment_area {
+  margin: 20px 0;
+
+  h5 {
+    color: #484848;
+    font-size: 14px;
+    margin-bottom: 30px;
+  }
+
+  // upload file
+  .add_attachements {
+    position: relative;
+    width: 420px;
+
+    .file_upload_hidden {
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+    }
+
+    .attachments_result {
+      margin-bottom: 10px;
+      position: relative;
+      padding: 8px;
+      overflow: hidden;
+
+      .attachment_icon {
+        float: left;
+        margin-right: 10px;
+        width: 18px;
+      }
+
+      .attachment_right_icon {
+        width: 20%;
+        display: block;
+        z-index: 99999;
+        position: absolute;
+        right: 10px;
+        padding: 0;
+
+        li {
+          float: right;
+          list-style: none;
+
+          .attachment_action_icon {
+            svg {
+              fill: #929292;
+            }
+
+            .in_process_icon {
+              display: none;
+            }
+
+            &.active {
+              svg {
+                fill: #573df4;
+              }
+            }
+          }
+        }
+      }
+
+      .filename_field {
+        font-size: 14px;
+        line-height: 16px;
+        color: #000000;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: 100%;
+        display: inline-block;
+        width: 80%;
+        float: left;
+      }
+    }
+
+    .more_option_label {
+      color: #6b6b6b;
+      text-transform: uppercase;
+      font-size: 12px;
+
+      > img {
+        margin-right: 10px;
+        top: 4px;
+        position: relative;
+      }
+    }
+
+    .add_more_attachments {
+      border: 1px solid #e0e0e0;
+      padding: 20px;
+      border-radius: 8px;
+
+      .add_files_wrap {
+        float: right;
+
+        .add_files {
+          border: 1px solid #e0e0e0;
+          vertical-align: middle;
+          padding: 10px;
+          cursor: pointer;
+
+          mat-icon {
+            color: #573df4;
+            margin-right: 5px;
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+
+::ng-deep {
+  .cdk-overlay-pane {
+    height: auto !important;
+  }
+}
+.label {
+  text-transform: capitalize;
+}

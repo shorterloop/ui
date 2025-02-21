@@ -1,5 +1,30 @@
 import { Component } from '@angular/core';
 import { PricingTableService } from './pricing-table.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AlertDialogComponent } from './alert-dialog.component';
+const STRIPE_PAYMENT_FAILURES = [
+  'incomplete',
+  'incomplete_expired',
+  'past_due',
+  'canceled',
+  'unpaid',
+];
+export const PRICING_PLANS = {
+  startupUsdMonthly: 'startup-USD-Monthly',
+  startupUsdYearly: 'startup-USD-Yearly',
+
+  scaleupUsdMonthly: 'scaleup-USD-Monthly',
+  scaleupUsdYearly: 'scaleup-USD-Yearly',
+
+  enterprise: 'enterprise',
+  enterpriseMonthly: 'enterprise-USD-Monthly',
+  enterpriseYearly: 'enterprise-USD-Yearly',
+  enterpriseMonthlyNoDash: 'enterpriseMonthly',
+  enterpriseYearlyNoDash: 'enterpriseYearly',
+};
+export const STRIPE_PAYMENT_SUCCESS = ['active', 'trialing'];
+export const STRIPE_TRIALING = 'trialing';
+export const PLAN_TYPES = ['free', ...Object.values(PRICING_PLANS)];
 
 interface Plan {
   id: number;
@@ -24,16 +49,393 @@ interface Product {
 @Component({
   selector: 'shorterloop-pricing-table',
   templateUrl: './pricing.component.html',
-  styleUrls: ['./pricing.component.scss']
+  styleUrls: ['./pricing.component.scss'],
 })
 export class PricingComponent {
   // Selected plan period: 'month' or 'year'
   selectedPlan: string = 'month';
+  isSubscriptionOwner = false;
+  currentPlanText = 'Current Plan';
+  subscription = { planType: '', planStatus: '', allowedUsers: 0 };
+  currentPlan = '';
+
+  buttonLabels: any = {};
+  buttonActions: any = {};
   products = [];
-  constructor(private pricing: PricingTableService) {
-    this.pricing.getPlanDetails().subscribe(result => {
+  constructor(
+    private pricing: PricingTableService,
+    private dialog: MatDialog,
+  ) {
+    this.pricing.getPlanDetails().subscribe((result) => {
       this.products = result || [];
     });
+  }
+
+  ngOnInit() {
+    this.pricing.getCustomerCurrentPlan().subscribe((result) => {
+      this.isSubscriptionOwner = result?.data?.isSubscriptionOwner;
+      this.subscription = result.data.subscription_payment_plan;
+      this.currentPlan = this.subscription.planType;
+
+      if (
+        !(
+          this.currentPlan === 'free' ||
+          this.currentPlan === '' ||
+          this.currentPlan === 'enterprise'
+        )
+      ) {
+        const lastIndex = this.currentPlan.lastIndexOf('-');
+        const mode = this.currentPlan
+          .substring(lastIndex + 1)
+          ?.toLocaleLowerCase();
+        this.selectedPlan = mode?.replace('ly', '');
+        this.getButtonLabels();
+      } else {
+        this.getButtonLabels();
+      }
+    });
+  }
+
+  payNow(switchTo: any) {
+    if (!this.isSubscriptionOwner) {
+      this.disallowUpgradeDueToPermission();
+      return true;
+    }
+    let shouldUpgradeOrDowngrade = this.upgradeOrDowngrade(
+      this.currentPlan,
+      switchTo,
+    );
+
+    let { message, confimationButton, heading } = this.getConfirmationMessages(
+      switchTo,
+      shouldUpgradeOrDowngrade,
+    );
+
+    const isTrialing = this.subscription?.planStatus === 'trialing';
+    if (
+      (isTrialing && this.currentPlan === switchTo) ||
+      !this.currentPlan ||
+      this.currentPlan === 'free'
+    ) {
+      this.goForPayment(switchTo);
+      return true;
+    }
+    if (shouldUpgradeOrDowngrade === 'NO_CHANGE') {
+      return true;
+    }
+
+    const dialogRef = this.dialog.open(AlertDialogComponent, {
+      width: '576px',
+      data: {
+        message,
+        buttonText: {
+          ok: confimationButton,
+          cancel: 'Cancel',
+        },
+        heading: heading,
+        showHeading: true,
+      },
+    });
+    // Check user's confimation
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      debugger;
+      if (confirmed) {
+        this.goForPayment(switchTo);
+      }
+    });
+    return true;
+  }
+
+  downgradeToFree() {
+    if (!this.isSubscriptionOwner) {
+      this.disallowUpgradeDueToPermission();
+      return true;
+    }
+    const dialogRef = this.dialog.open(AlertDialogComponent, {
+      width: '576px',
+      data: {
+        message:
+          'Are you sure you want to cancel your subscription and switch to Free Forever plan?',
+        buttonText: {
+          ok: 'Yes',
+          cancel: 'Cancel',
+        },
+        heading: 'Delete story map',
+      },
+    });
+
+    // Check user's confimation
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        this.pricing.deleteStripeSubscription().subscribe((result: any) => {
+          window.location.href = '/settings/billing';
+        });
+      }
+    });
+    return true;
+  }
+  openEnterprisePlan() {
+    window.open('https://shorterloop.com/sales-contact', '_blank');
+  }
+
+  getButtonLabels() {
+    const labels: any = {};
+    const plans = PLAN_TYPES;
+    debugger;
+
+    let currentPlanFound = false; // Variable to track if the current plan is found in the predefined plans
+    const currentPlanIndex = plans.indexOf(this.currentPlan);
+
+    let actions: any = {};
+    const isNotTrying =
+      STRIPE_PAYMENT_FAILURES.indexOf(this.subscription.planStatus) > -1;
+    for (let i = 0; i < plans.length; i++) {
+      let planName = plans[i];
+      const planIndex = i;
+      const isFree = !planName || planName === 'free';
+
+      if (this.currentPlan === planName) {
+        if (this.subscription.planStatus === 'unpaid') {
+          labels[planName] = 'Subscribe';
+        } else {
+          labels[planName] = this.currentPlanText;
+        }
+        currentPlanFound = true;
+      } else if (planIndex < currentPlanIndex) {
+        labels[planName] = 'Downgrade';
+      } else if (planIndex > currentPlanIndex) {
+        labels[planName] = 'Upgrade';
+      } else {
+        labels[planName] = 'Subscribe';
+      }
+
+      actions[planName] = isNotTrying
+        ? this.payNow.bind(this)
+        : this.updateDowngradeUserSubscription.bind(this);
+      if (isFree) {
+        actions[planName] = this.downgradeToFree.bind(this);
+      }
+      // For enterprise plan, set the label to 'Contact Sales'
+      if (
+        planName === 'enterprise' ||
+        planName === 'enterpriseMonthly' ||
+        planName === 'enterpriseYearly'
+      ) {
+        labels[planName] = 'Contact Sales';
+        actions[planName] = '';
+        if (this.currentPlan === planName) {
+          labels[planName] = this.currentPlanText;
+          currentPlanFound = true;
+        }
+      } else {
+        // Check if trialing
+        if (this.subscription.planStatus === STRIPE_TRIALING) {
+          if (this.currentPlan !== planName) {
+            if (isFree) {
+              labels[planName] = 'Downgrade';
+              actions[planName] = this.downgradeToFree.bind(this);
+            } else {
+              labels[planName] = 'Start for 14 days';
+              actions[planName] =
+                this.updateDowngradeUserSubscription.bind(this);
+            }
+          } else {
+            labels[planName] = 'Upgrade';
+            actions[planName] = this.payNow.bind(this);
+          }
+        }
+        if (this.subscription.planStatus === 'user_created') {
+          if (!isFree) {
+            labels[planName] = 'Start for 14 days';
+            actions[planName] = this.startTrial.bind(this);
+          } else {
+            labels[planName] = this.currentPlanText;
+            actions[planName] = '';
+          }
+        }
+      }
+    }
+
+    // If the current plan is not found in predefined plans and the subscription is not in trialing status, set its label to this.currentPlanText
+    if (!currentPlanFound && this.subscription.planStatus !== STRIPE_TRIALING) {
+      labels[this.currentPlan] = this.currentPlanText;
+      actions[this.currentPlan] = this.payNow.bind(this);
+    }
+
+    this.buttonLabels = labels;
+    this.buttonActions = actions;
+    return true;
+  }
+
+  startTrial(plan: any) {
+    this.planChangeLocally(plan);
+    this.pricing.startMyTrial(plan).subscribe((_) => {
+      // this.toast.success('Your 14 days trial has started.');
+      setTimeout((_: any) => {
+        window.location.href = window.location.href;
+      }, 1500);
+    });
+  }
+
+  /**
+   * Extracts the plan and mode from the given plan name.
+   * @param {string} planName - The plan name string.
+   * @returns {Object|null} An object containing the extracted plan and mode, or null if the plan name does not match the expected format.
+   */
+  extractPlanAndMode(planName: any) {
+    const regex = /^(.*?)(?:-USD)?-(Monthly|Yearly)$/;
+    const matches = planName.match(regex);
+
+    if (matches && matches.length === 3) {
+      const plan = matches[1];
+      const mode = matches[2].toLowerCase(); // Convert mode to lowercase
+      return { plan, mode };
+    } else {
+      return null; // or throw an error, depending on your preference
+    }
+  }
+
+  private getConfirmationMessages(
+    switchTo: any,
+    shouldUpgradeOrDowngrade: string | boolean,
+  ) {
+    let message = '';
+    let confimationButton = '';
+    let heading = '';
+    const currentPlanAndModel: any = this.extractPlanAndMode(this.currentPlan);
+    const switchToPlanAndModel: any = this.extractPlanAndMode(switchTo);
+    if (shouldUpgradeOrDowngrade === 'UPGRADE') {
+      heading = 'You are upgrading from startup to scale up plan.';
+      message = `<div>
+          <strong>You are upgrading from ${currentPlanAndModel.plan} to ${switchToPlanAndModel.plan} plan.</strong>
+        </div> You can manage multiple products and much more.`;
+      confimationButton = `Upgrade to ${switchToPlanAndModel.plan}`;
+
+      if (currentPlanAndModel.plan === switchToPlanAndModel.plan) {
+        heading = `Change to ${switchToPlanAndModel.mode} subscription`;
+        message = `You are changing from ${currentPlanAndModel.plan} ${currentPlanAndModel.mode} to  ${switchToPlanAndModel.mode} plan.`;
+        confimationButton = 'Change plan';
+      }
+    }
+
+    if (shouldUpgradeOrDowngrade === 'DOWNGRADE') {
+      heading = 'Downgrade to startup subscription';
+      message = `<div>
+          <strong>You are downgrading from ${currentPlanAndModel.plan} to ${switchToPlanAndModel.plan}.</strong>
+        </div> You can manage only one product after downgrade.`;
+      confimationButton = `Downgrade to ${switchToPlanAndModel.plan}`;
+
+      if (currentPlanAndModel.plan === switchToPlanAndModel.plan) {
+        heading = `Change to ${switchToPlanAndModel.mode} subscription`;
+        message = `You are changing from ${currentPlanAndModel.plan} ${currentPlanAndModel.mode} to ${switchToPlanAndModel.mode} plan.`;
+        confimationButton = 'Change plan';
+      }
+    }
+    return { message, confimationButton, heading };
+  }
+
+  private disallowUpgradeDueToPermission() {
+    this.dialog.open(AlertDialogComponent, {
+      width: '576px',
+      data: {
+        message:
+          "Unfortunately, only the subscription owner can modify the plan. Kindly get in touch with the super admin or contact us for assistance at <href='mailto:support@shorterloop.com'>support@shorterloop.com</a>.",
+        buttonText: {
+          ok: 'Ok',
+        },
+        hideCancel: true,
+        heading: 'Plan Modification Authorization Update',
+        showHeading: true,
+      },
+    });
+  }
+
+  updateDowngradeUserSubscription(switchTo = '') {
+    if (!this.isSubscriptionOwner) {
+      this.disallowUpgradeDueToPermission();
+      return true;
+    }
+
+    const shouldUpgradeOrDowngrade = this.upgradeOrDowngrade(
+      this.currentPlan,
+      switchTo,
+    );
+
+    let { message, confimationButton, heading } = this.getConfirmationMessages(
+      switchTo,
+      shouldUpgradeOrDowngrade,
+    );
+    const isTrialing = this.subscription?.planStatus === 'trialing';
+    if (
+      (isTrialing && this.currentPlan === switchTo) ||
+      !this.currentPlan ||
+      this.currentPlan === 'free'
+    ) {
+      this.goForPayment(switchTo);
+      return true;
+    }
+    if (shouldUpgradeOrDowngrade === 'NO_CHANGE') {
+      return true;
+    }
+
+    const dialogRef = this.dialog.open(AlertDialogComponent, {
+      width: '576px',
+      data: {
+        message,
+        buttonText: {
+          ok: confimationButton,
+          cancel: 'Cancel',
+        },
+        heading: heading,
+        showHeading: true,
+      },
+    });
+    // Check user's confimation
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        this.planChangeLocally(switchTo);
+        this.pricing
+          .upgradeDowngrade({
+            quantity: this.subscription.allowedUsers,
+            switchTo,
+          })
+          .subscribe((result: any) => {
+            setTimeout((_: any) => {
+              let url = '/settings/billing';
+              if (result?.url) {
+                url = result?.url;
+              }
+
+              window.location.href = url;
+            }, 500);
+          });
+      }
+    });
+    return true;
+  }
+
+  private goForPayment(switchTo: any) {
+    this.pricing.openCustomerPortal(switchTo).subscribe((result: any) => {
+      if (result.success) {
+        setTimeout((_: any) => {
+          if (result.url) {
+            window.location.href = result.url;
+          } else {
+            window.location.reload();
+          }
+        }, 1000);
+      }
+    });
+  }
+
+  private planChangeLocally(switchTo: any) {
+    const subscriptionDetails: any = localStorage.getItem(
+      'subscription-details',
+    );
+    const details = JSON.parse(subscriptionDetails);
+    details.subscription_payment_plan.planType = switchTo;
+    const stringifiedDetails = JSON.stringify(details);
+    localStorage.setItem('subscription-details', stringifiedDetails);
   }
 
   // Helper method to iterate over object keys in the template
@@ -43,6 +445,26 @@ export class PricingComponent {
 
   // Helper to filter plans by selected period (month or year)
   getPlansByPeriod(product: Product, period: string): Plan[] {
-    return product.plans.filter(plan => plan.planName.toLowerCase() === period);
+    return product.plans.filter(
+      (plan) => plan.planName.toLowerCase() === period,
+    );
+  }
+
+  upgradeOrDowngrade(currentPlan: any, switchTo: any) {
+    const plansOrder = PLAN_TYPES;
+    const currentPlanIndex = plansOrder.indexOf(currentPlan);
+    const switchToIndex = plansOrder.indexOf(switchTo);
+
+    if (currentPlanIndex === -1 || switchToIndex === -1) {
+      return true;
+    }
+
+    if (currentPlanIndex < switchToIndex) {
+      return 'UPGRADE';
+    } else if (currentPlanIndex > switchToIndex) {
+      return 'DOWNGRADE';
+    } else {
+      return 'NO_CHANGE';
+    }
   }
 }
