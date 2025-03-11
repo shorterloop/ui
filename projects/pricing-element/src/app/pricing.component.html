@@ -25,10 +25,15 @@
       <div *ngIf="getPlansByPeriod(product, selectedPlan).length > 0" class="plan-wrapper">
         <div class="plan-section" *ngFor="let plan of getPlansByPeriod(product, selectedPlan)">
           <div class="plan-info">
-            <div class="plan-name">{{ plan.planName | titlecase }}</div>
-            <div class="plan-price">{{ plan.currency }} {{ plan.amount }}</div>
+            <div class="plan-name">{{ (plan.amount / 100) | currency: (plan.currency | uppercase) :true }} per user per {{plan?.planName}}</div>
           </div>
-          <div *ngIf="plan.description" class="plan-description">{{ plan.description }}</div>
+
+          <button class="select-button mat-mdc-paginator-navigation-previous"
+            [class.active-plan]="buttonLabels[plan?.description] === currentPlanText"
+            (click)="buttonActions[plan?.description](plan?.description)"
+            [disabled]="buttonLabels[plan?.description] === currentPlanText">
+            {{buttonLabels[plan?.description]}}
+          </button>
         </div>
       </div>
 
@@ -64,7 +69,8 @@
         </ng-container>
       </div>
 
-      <button class="select-button">Get Started</button>
+
+
     </div>
   </div>
 </div>

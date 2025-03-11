@@ -26,7 +26,7 @@
 }
 .pricing-header .toggle-container {
   display: inline-flex;
-  border: 1px solid #e9ecef;
+  border: 1px solid #e0e0e0;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 8px #0000000d;
@@ -58,14 +58,13 @@
   background: #fff;
   border-radius: 12px;
   padding: 2.5rem 2rem;
-  border: 1px solid #e9ecef;
+  border: 1px solid #e0e0e0;
   transition: box-shadow 0.4s, background 0.4s;
   display: flex;
   flex-direction: column;
   text-align: left;
 }
 .pricing-card:hover {
-  box-shadow: 0 12px 24px #0000001f;
   background: #fff;
 }
 .pricing-card .card-header {
@@ -87,8 +86,7 @@
   margin-bottom: 1.5rem;
 }
 .pricing-card .plan-wrapper .plan-section {
-  border-top: 1px solid #e9ecef;
-  padding: 1rem 0;
+  border-top: 1px solid #e0e0e0;
 }
 .pricing-card .plan-wrapper .plan-section:first-of-type {
   border-top: none;
@@ -163,6 +161,7 @@
   width: 100%;
   font-weight: 600;
   font-size: 1rem;
+  margin-top: 10px;
   transition: background 0.4s, box-shadow 0.4s;
   cursor: pointer;
 }
@@ -174,4 +173,11 @@
   body {
     padding: 1rem;
   }
+}
+
+
+.active-plan {
+  background: none !important;
+  color: #000 !important;
+  border: 1px solid #e0e0e0 !important;
 }

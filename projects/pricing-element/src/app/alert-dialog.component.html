@@ -1,0 +1,17 @@
+<div class="dialog_wrap ">
+  <h1 mat-dialog-title class="mat_title">{{data?.heading}}</h1>
+
+  <mat-dialog-content class="modal_body delete_card_content">
+    <button matSuffix mat-icon-button mat-dialog-close class="modal_close_icon close_icon">
+        <mat-icon color="basic">close</mat-icon>
+    </button>
+    <p [innerHTML]="data?.message"></p>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="modal_footer">
+    <button color="primary" *ngIf="data?.buttonText?.ok" mat-raised-button cdkFocusInitial (click)="onConfirmClick(true)"
+        >{{data?.buttonText?.ok}}</button>
+    <button *ngIf="data?.buttonText?.cancel" mat-raised-button mat-dialog-close
+        class="cancel_btn">{{data?.buttonText?.cancel}}</button>
+</mat-dialog-actions>
+</div>

@@ -6,24 +6,23 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class PricingTableService {
-  apiUrl = '/api/v2/pricing-table/plan-details';
   token: string;
-
+  baseUrl = '';
   constructor(private http: HttpClient) {
     let key = 'authorization';
-    let endPoint = 'http://localhost:3000';
+    this.baseUrl = 'http://localhost:3000';
     if (window.location.hostname === 'localhost') {
       key = 'devauthorization';
     }
-    if (window.location.hostname === 'qa.prodeasy.com') {
+    if (window.location.hostname === 'qa.shorterloop.com') {
       key = 'qaauthorization';
-      endPoint = 'https://qa-api.prodeasy.com';
+      this.baseUrl = 'https://qa-api.shorterloop.com';
     }
     if (window.location.hostname === 'app.shorterloop.com') {
       key = 'prodauthorization';
-      endPoint = 'https://api.shorterloop.com';
+      this.baseUrl = 'https://api.shorterloop.com';
     }
-    this.apiUrl = endPoint + this.apiUrl;
+    this.baseUrl += '/api';
     this.token = this.getCookie(key);
   }
 
@@ -39,22 +38,79 @@ export class PricingTableService {
 
   getPlanDetails(): Observable<any> {
     // Retrieve values from localStorage safely
+    const headers = this.setHttpHeaders();
+
+    const pricingUrl = '/v2/pricing-table/plan-details';
+    const productsUrl = this.baseUrl + pricingUrl;
+    // Make API call
+    return this.http.get<any>(productsUrl, { headers });
+  }
+
+  private setHttpHeaders() {
     const initiativeId = localStorage.getItem('selected-initiative');
     const subscriptionId = localStorage.getItem('subscriptionId');
 
     // Set up headers
     let headers = new HttpHeaders({
-      'Pragma': 'no-cache',
+      Pragma: 'no-cache',
       'Cache-Control': 'no-cache',
-      'Authorization': `Bearer ${this.token}`,
+      Authorization: `Bearer ${this.token}`,
       'Content-Type': 'application/json',
     });
 
     // Append headers conditionally
-    if (initiativeId) headers = headers.set('InitiativeId', JSON.parse(initiativeId));
-    if (subscriptionId) headers = headers.set('subscriptionId', JSON.parse(subscriptionId));
+    if (initiativeId)
+      headers = headers.set('InitiativeId', JSON.parse(initiativeId));
+    if (subscriptionId)
+      headers = headers.set('subscriptionId', JSON.parse(subscriptionId));
+    return headers;
+  }
 
+  getCustomerCurrentPlan() {
+    const headers = this.setHttpHeaders();
+
+    const subscriptionUrl = this.baseUrl + '/subscription';
     // Make API call
-    return this.http.get<any>(this.apiUrl, { headers });
+    return this.http.get<any>(subscriptionUrl, { headers });
+  }
+
+  upgradeDowngrade(data: any) {
+    const headers = this.setHttpHeaders();
+
+    const subscriptionUrl = this.baseUrl + '/upgrade-downgrade';
+    return this.http.put(subscriptionUrl, data, { headers });
+  }
+
+  openCustomerPortal(switchTo: any) {
+    const headers = this.setHttpHeaders();
+
+    const subscriptionUrl = this.baseUrl + '/create-customer-portal-session';
+    return this.http.post(
+      subscriptionUrl,
+      {
+        plan: switchTo,
+      },
+      { headers },
+    );
+  }
+
+  deleteStripeSubscription() {
+    const headers = this.setHttpHeaders();
+
+    const subscriptionUrl = this.baseUrl + '/subscription/plan';
+    return this.http.delete(subscriptionUrl, { headers });
+  }
+
+  startMyTrial(plan: any) {
+    const headers = this.setHttpHeaders();
+
+    const subscriptionUrl = this.baseUrl + '/start-my-trial';
+    return this.http.post(
+      subscriptionUrl,
+      {
+        switchTo: plan,
+      },
+      { headers },
+    );
   }
 }
