@@ -1,4 +1,3 @@
-
 // import { ObserveApiStatus } from 'shorterloop';
 import { Observable } from 'rxjs';
 
@@ -64,7 +63,9 @@ export function ObserveApiStatus(target: any, options?: ObserveApiOptions) {
           loadingSpan.remove();
           loadingSpan = null;
         }
-        target.textContent = originalValue;
+        if (options && options.inProgress) {
+          target.textContent = originalValue;
+        }
         target.disabled = false;
       };
 
