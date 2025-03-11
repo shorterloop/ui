@@ -14,9 +14,9 @@ export class PricingTableService {
     if (window.location.hostname === 'localhost') {
       key = 'devauthorization';
     }
-    if (window.location.hostname === 'qa.prodeasy.com') {
+    if (window.location.hostname === 'qa.shorterloop.com') {
       key = 'qaauthorization';
-      this.baseUrl = 'https://qa-api.prodeasy.com';
+      this.baseUrl = 'https://qa-api.shorterloop.com';
     }
     if (window.location.hostname === 'app.shorterloop.com') {
       key = 'prodauthorization';
