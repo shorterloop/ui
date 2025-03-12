@@ -1,0 +1,38 @@
+<div class="enterprise_dialog_container">
+  <div class="enterprise_form_wrap">
+    <img
+      src="assets/images/grey-close.svg"
+      alt="grey-close"
+      class="close_icon"
+      (click)="closeDialog()"
+    />
+    <ng-container *ngIf="!isSubmittedSuccessfully; else successMessage">
+    <h1>Contact Us for Enterprise Subscription</h1>
+    <p>Fill out the form below, and our team will get in touch to discuss your enterprise needs.</p>
+
+    <form [formGroup]="enterpriseForm">
+      <div class="form_group">
+        <input type="text" formControlName="name" placeholder="Name" class="enterprise_input" />
+        <input type="text" formControlName="phone" placeholder="Phone" class="enterprise_input" />
+      </div>
+
+      <input type="email" formControlName="email" placeholder="Email" class="enterprise_input detail_enterprise" />
+      <textarea formControlName="subject" placeholder="Subject" class="enterprise_input detail_enterprise subject_wrap"></textarea>
+
+      <button type="button" (click)="submitForm()" class="contact_us_btn">Contact Us</button>
+    </form>
+  </ng-container>
+
+  <ng-template #successMessage>
+    <div class="success_container">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M10.9333 27.984C12.5111 28.6613 14.2 29 16 29C17.8222 29 19.5222 28.6613 21.1 27.984C22.6778 27.3058 24.0502 26.3778 25.2173 25.2C26.3836 24.0222 27.3058 22.6444 27.984 21.0667C28.6613 19.4889 29 17.8 29 16C29 14.1778 28.6613 12.4778 27.984 10.9C27.3058 9.32222 26.3836 7.94978 25.2173 6.78267C24.0502 5.61644 22.6778 4.69422 21.1 4.016C19.5222 3.33867 17.8222 3 16 3C14.2 3 12.5111 3.33867 10.9333 4.016C9.35556 4.69422 7.97778 5.61644 6.8 6.78267C5.62222 7.94978 4.69467 9.32222 4.01733 10.9C3.33911 12.4778 3 14.1778 3 16C3 17.8 3.33911 19.4889 4.01733 21.0667C4.69467 22.6444 5.62222 24.0222 6.8 25.2C7.97778 26.3778 9.35556 27.3058 10.9333 27.984ZM14.1667 18.4334L11.3 15.5334C11.0555 15.3111 10.7667 15.2 10.4333 15.2C10.1 15.2 9.8111 15.3223 9.56666 15.5667C9.32221 15.8111 9.19999 16.1054 9.19999 16.4494C9.19999 16.7943 9.32221 17.0889 9.56666 17.3334L13.3 21.1C13.5444 21.3223 13.8387 21.4334 14.1827 21.4334C14.5275 21.4334 14.8111 21.3223 15.0333 21.1L22.5 13.6334C22.7222 13.4111 22.8333 13.1276 22.8333 12.7827C22.8333 12.4387 22.7111 12.1445 22.4667 11.9C22.2222 11.6556 21.928 11.5334 21.584 11.5334C21.2391 11.5334 20.9444 11.6556 20.7 11.9L14.1667 18.4334Z" fill="#00881E"/>
+    </svg>      
+    <div class="success_message">
+    <h1>Request Submitted Successfully!</h1>
+    <p>Thank you for reaching out. Our team will review your request and get in touch at the earliest. Stay tuned!</p>
+    </div>
+  </div>
+  </ng-template>
+  </div>
+</div>

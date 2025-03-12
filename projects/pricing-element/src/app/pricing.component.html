@@ -1,8 +1,10 @@
 <div class="pricing-page">
   <!-- Header & Toggle -->
   <header class="pricing-header">
-    <h1>Choose Your Plan</h1>
-    <p>Select the plan that suits your needs.</p>
+    <div class="plan-info">
+      <h3>Choose Your Plan</h3>
+      <p>Select the plan that suits your needs.</p>
+    </div>
     <div class="toggle-container">
       <button class="toggle-button" [class.active]="selectedPlan === 'month'" (click)="selectedPlan = 'month'">
         Monthly
@@ -13,64 +15,66 @@
     </div>
   </header>
 
-  <!-- Pricing Cards -->
-  <div class="pricing-container">
-    <div class="pricing-card" *ngFor="let product of products">
-      <div class="card-header">
-        <h2 class="product-name">{{ product.productName }}</h2>
-        <p class="product-description">{{ product.description }}</p>
-      </div>
+  <table class="pricing-table">
+    <thead>
+      <tr>
+        <th class="feature-header">Plan & Features</th>
+        <th *ngFor="let product of products" class="product-header">
+          <div class="pricing-card">
+            <div class="pricing-plan-wrap">
+              <div class="card-header">
+                <h2 class="product-name">{{ product.productName }}</h2>
+                <p class="product-description">{{ product.description }}</p>
+              </div>
 
-      <!-- Plan Pricing Section -->
-      <div *ngIf="getPlansByPeriod(product, selectedPlan).length > 0" class="plan-wrapper">
-        <div class="plan-section" *ngFor="let plan of getPlansByPeriod(product, selectedPlan)">
-          <div class="plan-info">
-            <div class="plan-name">{{ (plan.amount / 100) | currency: (plan.currency | uppercase) :true }} per user per {{plan?.planName}}</div>
-          </div>
-
-          <button class="select-button mat-mdc-paginator-navigation-previous"
+              <!-- Plan Pricing Section -->
+              <div *ngIf="getPlansByPeriod(product, selectedPlan).length > 0" class="plan-wrapper">
+                <div class="plan-section" *ngFor="let plan of getPlansByPeriod(product, selectedPlan)">
+                  <div class="plan-info">
+                    <div class="plan-price" *ngIf="product.productName !== 'Enterprise'">
+                      {{ (plan.amount / 100) | currency: (plan.currency | uppercase) :true }} per user per {{plan?.planName}}
+                    </div>
+                  </div>
+                  <button class="select-button mat-mdc-paginator-navigation-previous"
             [class.active-plan]="buttonLabels[plan?.description] === currentPlanText"
             (click)="buttonActions[plan?.description](plan?.description)"
             [disabled]="buttonLabels[plan?.description] === currentPlanText">
             {{buttonLabels[plan?.description]}}
           </button>
-        </div>
-      </div>
-
-      <!-- Features Section -->
-      <div class="features-section" *ngIf="product.features">
-        <ng-container *ngIf="getKeys(product.features).length === 1 && getKeys(product.features)[0] === 'uncategorized'; else multiCategory">
-          <div class="feature-category">Features</div>
-          <ul class="feature-list">
-            <li class="feature-item" *ngFor="let feature of product.features['uncategorized']">
-              {{ feature }}
-            </li>
-          </ul>
-        </ng-container>
-        <ng-template #multiCategory>
-          <ng-container *ngFor="let category of getKeys(product.features)">
-            <div class="feature-category">{{ category }}</div>
-            <ul class="feature-list">
-              <li class="feature-item" *ngFor="let feature of product.features[category]">
-                {{ feature }}
-              </li>
-            </ul>
-          </ng-container>
-        </ng-template>
-      </div>
-
-      <!-- Restrictions Section -->
-      <div class="restrictions" *ngIf="product.restrictions">
-        <div class="restriction-title">Restrictions</div>
-        <ng-container *ngFor="let key of getKeys(product.restrictions)">
-          <div class="restriction-item">
-            {{ key }}: {{ product.restrictions[key] }}
+                </div>
+              </div>
+            </div>
           </div>
-        </ng-container>
-      </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let feature of getUncategorizedFeatures(products)">
+        <td class="feature-name">{{ feature }}</td>
+        <td class="restrictions" *ngFor="let product of products">
+          {{
+            product.restrictions[feature.normalized] === -1
+              ? "Unlimited"
+              : product.restrictions[feature.normalized] || "Unlimited"
+          }}
+        </td>
+      </tr>
 
-
-
-    </div>
-  </div>
+      <ng-container *ngFor="let category of getAllFeatureCategories(products)">
+        <tr class="feature-category-row">
+          <td [attr.colspan]="products.length + 1">{{ category }}</td>
+        </tr>
+        <tr *ngFor="let feature of getAllFeatures(products, category)">
+          <td class="feature-name">{{ feature.original }}</td>
+          <td class="restrictions" *ngFor="let product of products">
+            {{
+              product.restrictions[feature.normalized] === -1
+                ? "Unlimited"
+                : product.restrictions[feature.normalized] || "Unlimited"
+            }}
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
 </div>

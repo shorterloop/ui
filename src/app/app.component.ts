@@ -8,7 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterOutlet } from '@angular/router';
 import { EvaluateExperimentVariantsComponent } from "../../projects/ui/src/lib/evaluate-experiment-variants/evaluate-experiment-variants.component";
-import { KanbanComponent, PricingModule, SampleSizeCalculator } from '../../projects/ui/src/public-api';
+import { KanbanComponent, SampleSizeCalculator } from '../../projects/ui/src/public-api';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +16,6 @@ import { KanbanComponent, PricingModule, SampleSizeCalculator } from '../../proj
   imports: [RouterOutlet,
     CommonModule, MatSelectModule,
     MatIconModule, MatButtonToggleModule, MatInputModule,
-    PricingModule,
     MatFormFieldModule, FormsModule, ReactiveFormsModule, KanbanComponent,
     SampleSizeCalculator, EvaluateExperimentVariantsComponent
   ],

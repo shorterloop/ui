@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { PricingTableService } from './pricing-table.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AlertDialogComponent } from './alert-dialog.component';
+import { EnterprisePopupComponent } from './enterprise-plan-popup/enterprise-popup.component';
+import { DowngradePopupComponent } from './downgrade-popup/downgrade-popup.component';
 const STRIPE_PAYMENT_FAILURES = [
   'incomplete',
   'incomplete_expired',
@@ -67,6 +69,27 @@ export class PricingComponent {
     private dialog: MatDialog,
   ) {
     this.pricing.getPlanDetails().subscribe((result) => {
+      debugger;
+      const enterprisePlan = {
+        id: 8,
+        productName: 'Enterprise',
+        description: 'Large teams managing numerous initiatives at scale.',
+        plans: [
+          {
+            id: 8,
+            planName: 'year',
+            description: 'enterprise-USD-Yearly',
+          },
+          {
+            id: 9,
+            planName: 'month',
+            description: 'enterprise-USD-Monthly',
+          },
+        ],
+        features: {},
+        restrictions: {},
+      };
+      result.push(enterprisePlan);
       this.products = result || [];
     });
   }
@@ -175,7 +198,11 @@ export class PricingComponent {
     return true;
   }
   openEnterprisePlan() {
-    window.open('https://shorterloop.com/sales-contact', '_blank');
+    this.dialog.open(EnterprisePopupComponent, {
+      width: '45%',
+      height: '600px',
+      disableClose: false,
+    });
   }
 
   getButtonLabels() {
@@ -217,12 +244,14 @@ export class PricingComponent {
       }
       // For enterprise plan, set the label to 'Contact Sales'
       if (
-        planName === 'enterprise' ||
-        planName === 'enterpriseMonthly' ||
-        planName === 'enterpriseYearly'
+        planName === PRICING_PLANS.enterprise ||
+        planName === PRICING_PLANS.enterpriseMonthly ||
+        planName === PRICING_PLANS.enterpriseYearly ||
+        planName === PRICING_PLANS.enterpriseMonthlyNoDash ||
+        planName === PRICING_PLANS.enterpriseYearlyNoDash
       ) {
-        labels[planName] = 'Contact Sales';
-        actions[planName] = '';
+        labels[planName] = 'Contact Us';
+        actions[planName] = this.openEnterprisePlan.bind(this);
         if (this.currentPlan === planName) {
           labels[planName] = this.currentPlanText;
           currentPlanFound = true;
@@ -319,12 +348,6 @@ export class PricingComponent {
     }
 
     if (shouldUpgradeOrDowngrade === 'DOWNGRADE') {
-      heading = 'Downgrade to startup subscription';
-      message = `<div>
-          <strong>You are downgrading from ${currentPlanAndModel.plan} to ${switchToPlanAndModel.plan}.</strong>
-        </div> You can manage only one product after downgrade.`;
-      confimationButton = `Downgrade to ${switchToPlanAndModel.plan}`;
-
       if (currentPlanAndModel.plan === switchToPlanAndModel.plan) {
         heading = `Change to ${switchToPlanAndModel.mode} subscription`;
         message = `You are changing from ${currentPlanAndModel.plan} ${currentPlanAndModel.mode} to ${switchToPlanAndModel.mode} plan.`;
@@ -351,10 +374,19 @@ export class PricingComponent {
   }
 
   updateDowngradeUserSubscription(switchTo = '') {
+    debugger;
     if (!this.isSubscriptionOwner) {
       this.disallowUpgradeDueToPermission();
       return true;
     }
+    // Ensure `this.products` is an array of `Product`
+    const pricingPlan: Product[] = this.products as Product[];
+
+    // Find the product that has a plan matching `switchTo`
+    const matchedProduct: Product | undefined = pricingPlan.find(
+      (product: Product) =>
+        product.plans.some((plan: Plan) => plan.description === switchTo),
+    );
 
     const shouldUpgradeOrDowngrade = this.upgradeOrDowngrade(
       this.currentPlan,
@@ -365,6 +397,7 @@ export class PricingComponent {
       switchTo,
       shouldUpgradeOrDowngrade,
     );
+
     const isTrialing = this.subscription?.planStatus === 'trialing';
     if (
       (isTrialing && this.currentPlan === switchTo) ||
@@ -377,21 +410,38 @@ export class PricingComponent {
     if (shouldUpgradeOrDowngrade === 'NO_CHANGE') {
       return true;
     }
+    const currentPlanAndModel: any = this.extractPlanAndMode(this.currentPlan);
+    const switchToPlanAndModel: any = this.extractPlanAndMode(switchTo);
+    let dialogRef;
 
-    const dialogRef = this.dialog.open(AlertDialogComponent, {
-      width: '576px',
-      data: {
-        message,
-        buttonText: {
-          ok: confimationButton,
-          cancel: 'Cancel',
+    if (
+      shouldUpgradeOrDowngrade === 'DOWNGRADE' &&
+      currentPlanAndModel.plan !== switchToPlanAndModel.plan &&
+      matchedProduct
+    ) {
+      // Extract restrictions safely
+      const { users, teams, products } = matchedProduct.restrictions;
+
+      dialogRef = this.dialog.open(DowngradePopupComponent, {
+        width: '50%',
+        height: '570px',
+        disableClose: false,
+        data: { users, teams, products },
+      });
+    } else {
+      dialogRef = this.dialog.open(AlertDialogComponent, {
+        width: '576px',
+        data: {
+          message,
+          buttonText: { ok: confimationButton, cancel: 'Cancel' },
+          heading,
+          showHeading: true,
         },
-        heading: heading,
-        showHeading: true,
-      },
-    });
-    // Check user's confimation
-    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      });
+    }
+
+    // Handle dialog close event only if it was opened
+    dialogRef?.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
         this.planChangeLocally(switchTo);
         this.pricing
@@ -400,17 +450,13 @@ export class PricingComponent {
             switchTo,
           })
           .subscribe((result: any) => {
-            setTimeout((_: any) => {
-              let url = '/settings/billing';
-              if (result?.url) {
-                url = result?.url;
-              }
-
-              window.location.href = url;
+            setTimeout(() => {
+              window.location.href = result?.url || '/settings/billing';
             }, 500);
           });
       }
     });
+
     return true;
   }
 
@@ -466,5 +512,61 @@ export class PricingComponent {
     } else {
       return 'NO_CHANGE';
     }
+  }
+  /**
+   * Returns all unique feature categories, excluding "uncategorized".
+   */
+  getAllFeatureCategories(products: Product[]): string[] {
+    return Array.from(
+      new Set(products.flatMap((product) => Object.keys(product.features))),
+    ).filter((category) => category.toLowerCase() !== 'uncategorized');
+  }
+
+  /**
+   * Returns a list of unique features under a category.
+   * Each feature includes both its original and normalized version.
+   */
+  getAllFeatures(
+    products: Product[],
+    category: string,
+  ): { original: string; normalized: string }[] {
+    const features = new Map<string, string>();
+
+    products.forEach((product) => {
+      product.features?.[category]?.forEach((feature) => {
+        const normalizedFeature = this.normalizeFeatureKey(feature);
+        if (!features.has(normalizedFeature)) {
+          features.set(normalizedFeature, feature);
+        }
+      });
+    });
+
+    return Array.from(features, ([normalized, original]) => ({
+      original,
+      normalized,
+    }));
+  }
+
+  /**
+   * Returns all unique features under the "uncategorized" category.
+   */
+  getUncategorizedFeatures(products: Product[]): string[] {
+    return Array.from(
+      new Set(
+        products.flatMap(
+          (product) => product.features?.['uncategorized'] || [],
+        ),
+      ),
+    );
+  }
+
+  /**
+   * Helper function to normalize feature names (camelCase for consistency).
+   */
+  private normalizeFeatureKey(feature: string): string {
+    return feature
+      .toLowerCase()
+      .replace(/\s(.)/g, (_, group1) => group1.toUpperCase()) // Convert spaces to camelCase
+      .replace(/\s/g, ''); // Remove spaces
   }
 }

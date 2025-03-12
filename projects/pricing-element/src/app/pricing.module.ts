@@ -8,10 +8,13 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AlertDialogComponent } from './alert-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { EnterprisePopupComponent } from './enterprise-plan-popup/enterprise-popup.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DowngradePopupComponent } from './downgrade-popup/downgrade-popup.component';
 
 @NgModule({
-  declarations: [PricingComponent, AlertDialogComponent],
-  exports: [PricingComponent],
+  declarations: [PricingComponent, AlertDialogComponent, EnterprisePopupComponent, DowngradePopupComponent],
+  exports: [PricingComponent, ReactiveFormsModule],
   imports: [
     BrowserModule,
     CommonModule,
@@ -19,6 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonModule,
     MatIconModule,
     HttpClientModule,
+    ReactiveFormsModule
   ],
 })
 export class PricingModule implements DoBootstrap {
