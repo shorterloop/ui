@@ -69,7 +69,6 @@ export class PricingComponent {
     private dialog: MatDialog,
   ) {
     this.pricing.getPlanDetails().subscribe((result) => {
-      debugger;
       const enterprisePlan = {
         id: 8,
         productName: 'Enterprise',
@@ -161,7 +160,6 @@ export class PricingComponent {
     });
     // Check user's confimation
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
-      debugger;
       if (confirmed) {
         this.goForPayment(switchTo);
       }
@@ -208,7 +206,6 @@ export class PricingComponent {
   getButtonLabels() {
     const labels: any = {};
     const plans = PLAN_TYPES;
-    debugger;
 
     let currentPlanFound = false; // Variable to track if the current plan is found in the predefined plans
     const currentPlanIndex = plans.indexOf(this.currentPlan);
@@ -374,7 +371,6 @@ export class PricingComponent {
   }
 
   updateDowngradeUserSubscription(switchTo = '') {
-    debugger;
     if (!this.isSubscriptionOwner) {
       this.disallowUpgradeDueToPermission();
       return true;
@@ -514,59 +510,89 @@ export class PricingComponent {
     }
   }
   /**
-   * Returns all unique feature categories, excluding "uncategorized".
-   */
-  getAllFeatureCategories(products: Product[]): string[] {
-    return Array.from(
-      new Set(products.flatMap((product) => Object.keys(product.features))),
-    ).filter((category) => category.toLowerCase() !== 'uncategorized');
-  }
+ * Returns all unique feature categories, excluding "uncategorized".
+ */
+getAllFeatureCategories(products: Product[]): string[] {
+  return Array.from(
+    new Set(products.flatMap((product) => Object.keys(product.features)))
+  ).filter((category) => category.toLowerCase() !== "uncategorized");
+}
 
-  /**
-   * Returns a list of unique features under a category.
-   * Each feature includes both its original and normalized version.
-   */
-  getAllFeatures(
-    products: Product[],
-    category: string,
-  ): { original: string; normalized: string }[] {
-    const features = new Map<string, string>();
+/**
+ * Returns a list of unique features under a category.
+ * Each feature includes both its original and normalized version.
+ */
+getAllFeatures(
+  products: Product[],
+  category: string
+): { original: string; normalized: string }[] {
+  const features = new Map<string, string>();
 
-    products.forEach((product) => {
-      product.features?.[category]?.forEach((feature) => {
-        const normalizedFeature = this.normalizeFeatureKey(feature);
-        if (!features.has(normalizedFeature)) {
-          features.set(normalizedFeature, feature);
-        }
-      });
+  products.forEach((product) => {
+    product.features?.[category]?.forEach((feature) => {
+      const normalizedFeature = this.normalizeFeatureKey(feature);
+      if (!features.has(normalizedFeature)) {
+        features.set(normalizedFeature, feature);
+      }
     });
+  });
 
-    return Array.from(features, ([normalized, original]) => ({
-      original,
-      normalized,
-    }));
+  return Array.from(features, ([normalized, original]) => ({
+    original,
+    normalized,
+  }));
+}
+
+/**
+ * Returns all unique features under the "uncategorized" category.
+ */
+getUncategorizedFeatures(products: Product[]): string[] {
+  return Array.from(
+    new Set(products.flatMap((product) => product.features?.["uncategorized"] || []))
+  );
+}
+
+/**
+ * Helper function to normalize feature names (camelCase for consistency).
+ */
+private normalizeFeatureKey(feature: string): string {
+  const featureMap: { [key: string]: string } = {
+    storage: "storageInKB",
+    api: "monthlyApiLimit",
+    businessModel: "businessModels",
+  };
+
+  // Convert spaces to camelCase and singularize terms if needed
+  let normalized = feature
+    .toLowerCase()
+    .replace(/\s(.)/g, (_, group1) => group1.toUpperCase()) // Convert spaces to camelCase
+    .replace(/\s/g, ""); // Remove spaces
+
+  // Apply specific mappings
+  normalized = featureMap[normalized] || normalized;
+
+  return normalized;
+}
+
+/**
+ * Converts restriction values into properly formatted display strings.
+ */
+getFormattedRestriction(featureKey: string, value: number | undefined): string {
+  if (value === undefined || value === null) return "Unlimited"; // If missing, assume unlimited
+  if (value === -1) return "Unlimited"; // Handle -1 as "Unlimited"
+  if (value === 0) return "-"; // Handle 0 as "-"
+
+  // Handle storage (convert KB to GB and append "GB")
+  if (featureKey === "storageInKB" || featureKey === "files") {
+    return `${Math.round(value / (1024 * 1024))} GB`;  // Convert KB to GB
   }
 
-  /**
-   * Returns all unique features under the "uncategorized" category.
-   */
-  getUncategorizedFeatures(products: Product[]): string[] {
-    return Array.from(
-      new Set(
-        products.flatMap(
-          (product) => product.features?.['uncategorized'] || [],
-        ),
-      ),
-    );
+  // Handle API requests per month
+  if (featureKey === "monthlyApiLimit") {
+    return `${value} requests/month`;
   }
 
-  /**
-   * Helper function to normalize feature names (camelCase for consistency).
-   */
-  private normalizeFeatureKey(feature: string): string {
-    return feature
-      .toLowerCase()
-      .replace(/\s(.)/g, (_, group1) => group1.toUpperCase()) // Convert spaces to camelCase
-      .replace(/\s/g, ''); // Remove spaces
-  }
+  return value.toString(); // Default case
+}
+
 }

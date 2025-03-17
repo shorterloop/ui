@@ -45,6 +45,26 @@ export class PricingTableService {
     // Make API call
     return this.http.get<any>(productsUrl, { headers });
   }
+  
+  getUsersDetails(): Observable<any> {
+    // Retrieve values from localStorage safely
+    const headers = this.setHttpHeaders();
+
+    const url = '/users/profile';
+    const usersUrl = this.baseUrl + url;
+    // Make API call
+    return this.http.get<any>(usersUrl, { headers });
+  }
+
+  requestEnterpriseAccess(formData: any): Observable<any> {
+    // Retrieve values from localStorage safely
+    const headers = this.setHttpHeaders();
+
+    const enterpriseUrl = '/auth/upgrade-to-enterprise';
+    const enterpriseRequestUrl = this.baseUrl + enterpriseUrl;
+    // Make API call
+    return this.http.post<any>(enterpriseRequestUrl,formData, { headers });
+  }
 
   private setHttpHeaders() {
     const initiativeId = localStorage.getItem('selected-initiative');

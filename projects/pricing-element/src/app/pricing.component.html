@@ -49,17 +49,17 @@
       </tr>
     </thead>
     <tbody>
+      <!-- Uncategorized Features -->
       <tr *ngFor="let feature of getUncategorizedFeatures(products)">
         <td class="feature-name">{{ feature }}</td>
         <td class="restrictions" *ngFor="let product of products">
           {{
-            product.restrictions[feature.normalized] === -1
-              ? "Unlimited"
-              : product.restrictions[feature.normalized] || "Unlimited"
+            getFormattedRestriction(feature, product.restrictions[normalizeFeatureKey(feature)])
           }}
         </td>
       </tr>
-
+    
+      <!-- Categorized Features -->
       <ng-container *ngFor="let category of getAllFeatureCategories(products)">
         <tr class="feature-category-row">
           <td [attr.colspan]="products.length + 1">{{ category }}</td>
@@ -68,13 +68,12 @@
           <td class="feature-name">{{ feature.original }}</td>
           <td class="restrictions" *ngFor="let product of products">
             {{
-              product.restrictions[feature.normalized] === -1
-                ? "Unlimited"
-                : product.restrictions[feature.normalized] || "Unlimited"
+              getFormattedRestriction(feature.normalized, product.restrictions[feature.normalized])
             }}
           </td>
         </tr>
       </ng-container>
     </tbody>
+    
   </table>
 </div>
