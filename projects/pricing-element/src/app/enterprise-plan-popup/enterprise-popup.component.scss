@@ -1,0 +1,102 @@
+  .enterprise_dialog_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .enterprise_form_wrap {
+    background: white;
+    padding: 30px;
+    width: 100%;
+    position: relative;
+    border-radius: 10px;
+  }
+
+  .close_icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+  }
+
+  p {
+    margin-bottom: 35px;
+    margin-top: 15px;
+    color: #484848;
+    font-size: 13px;
+  }
+
+  .form_group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .enterprise_input {
+    color: #484848;
+    width: 100%;
+    padding: 18px;
+    font-size: 15px;
+    border-radius: 16px;
+    border: 1px solid #ccc;
+    outline: none;
+  }
+
+  .message_wrap {
+    height: 130px;
+    resize: none;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    line-height: 1.2;
+  }
+  .input_container{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .input_wrapper {
+    display: flex;
+    gap: 30px;
+    width: 100%;
+  }
+  
+  .phone_wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .error-message{
+    font-size: 13px;
+    color: red;
+    margin-top: 5px;
+    margin-left: 5px;
+  }
+
+  .detail_enterprise {
+    width: 100%;
+    margin-top: 35px;
+  }
+
+  .contact_us_btn {
+    display: block;
+    margin: 60px auto 0;
+    padding: 10px 70px;
+    border-radius: 6px;
+    background: #573DF4;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .success_container{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    min-height: 500px;
+  }
+  .success_message{
+    p{
+      margin-bottom: 0;
+      font-size: 14px
+    }
+  }

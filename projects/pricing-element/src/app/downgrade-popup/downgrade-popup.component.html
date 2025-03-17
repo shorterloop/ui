@@ -1,0 +1,43 @@
+<div class="downgrade-container">
+    <div class="close-btn">
+      <img
+        src="assets/images/grey-close.svg"
+        alt="grey-close"
+        class="close_icon"
+        (click)="closeDialog()"
+      />
+    </div>
+    <div class="downgrade-content-wrap">
+      <div class="downgrade-heading">
+        <h1>You're Downgrading Your Plan</h1>
+        <p>
+          We appreciate having you with us! Downgrading will limit some features,
+          but you’ll still have access to your data in a view-only mode.
+        </p>
+      </div>
+  
+      <div class="downgrade-details">
+        <img
+          src="assets/images/downgrade-popup-illustration.svg"
+          alt="downgrade-illustration"
+          class="downgrade-illustration"
+        />
+  
+        <div class="downgrade-text">
+          <p class="after-downgrade-details">After the downgrade:</p>
+          <ul>
+            <li>Only {{ data.users }} users will remain active</li>
+            <li>Only {{ data.teams }} team will be active</li>
+            <li>Only {{ data.products }} product will be active</li>
+          </ul>
+          <p class="after-downgrade">
+            Need full access again? You can upgrade anytime!
+          </p>
+          <button class="downgrade-btn" (click)="onDowngrade()">
+            Downgrade
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

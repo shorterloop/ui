@@ -1,0 +1,94 @@
+.downgrade-container {
+    position: relative;
+    padding: 0 45px;
+    text-align: center;
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  .close_icon {
+    cursor: pointer;
+    padding: 10px;
+  }
+  
+  .downgrade-content-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 550px;
+    align-items: center;
+    text-align: left;
+  }
+  .downgrade-heading {
+    text-align: left;
+    h1 {
+      margin-bottom: 15px;
+    }
+    p {
+      font-size: 14px;
+      color: #484848;
+    }
+  }
+  
+  .downgrade-details {
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+  }
+  
+  .downgrade-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
+  .downgrade-text {
+    margin-left: 10px;
+    padding-left: 30px;
+    font-size: 14px;
+    color: #484848;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .downgrade-text ul {
+    margin: 0;
+    padding: 0;
+    padding-left: 25px;
+    list-style-type: disc;
+    line-height: 1.5;
+  }
+  
+  .after-downgrade {
+    margin-top: 50px;
+    margin-bottom: 14px;
+  }
+  .after-downgrade-details{
+    margin-bottom: 14px;
+  }
+  .downgrade-illustration {
+    width: 50%;
+    padding-right: 20px;
+  }
+  
+  .downgrade-btn {
+    background-color: transparent;
+    padding: 10px 90px;
+    border: 1px solid #929292;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    align-self: center;
+    cursor: pointer;
+    margin-top: 15px;
+  }
+  
+  .downgrade-btn .btn-icon {
+    width: 16px;
+    margin-right: 5px;
+  }
+  
