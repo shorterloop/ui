@@ -133,9 +133,10 @@ export class PricingComponent {
       shouldUpgradeOrDowngrade,
     );
 
-    const isTrialing = this.subscription?.planStatus === 'trialing';
+    const isTrialingOrUnpaid =
+      ['trialing', 'unpaid'].indexOf(this.subscription?.planStatus) > -1;
     if (
-      (isTrialing && this.currentPlan === switchTo) ||
+      (isTrialingOrUnpaid && this.currentPlan === switchTo) ||
       !this.currentPlan ||
       this.currentPlan === 'free'
     ) {
