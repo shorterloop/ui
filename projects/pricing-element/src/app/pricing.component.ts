@@ -510,7 +510,8 @@ export class PricingComponent {
       return 'NO_CHANGE';
     }
   }
-  /**
+
+/**
  * Returns all unique feature categories, excluding "uncategorized".
  */
 getAllFeatureCategories(products: Product[]): string[] {
@@ -521,27 +522,17 @@ getAllFeatureCategories(products: Product[]): string[] {
 
 /**
  * Returns a list of unique features under a category.
- * Each feature includes both its original and normalized version.
  */
-getAllFeatures(
-  products: Product[],
-  category: string
-): { original: string; normalized: string }[] {
-  const features = new Map<string, string>();
+getAllFeatures(products: Product[], category: string): string[] {
+  const features = new Set<string>();
 
   products.forEach((product) => {
     product.features?.[category]?.forEach((feature) => {
-      const normalizedFeature = this.normalizeFeatureKey(feature);
-      if (!features.has(normalizedFeature)) {
-        features.set(normalizedFeature, feature);
-      }
+      features.add(feature);
     });
   });
 
-  return Array.from(features, ([normalized, original]) => ({
-    original,
-    normalized,
-  }));
+  return Array.from(features);
 }
 
 /**
@@ -554,34 +545,12 @@ getUncategorizedFeatures(products: Product[]): string[] {
 }
 
 /**
- * Helper function to normalize feature names (camelCase for consistency).
- */
-private normalizeFeatureKey(feature: string): string {
-  const featureMap: { [key: string]: string } = {
-    storage: "storageInKB",
-    api: "monthlyApiLimit",
-    businessModel: "businessModels",
-  };
-
-  // Convert spaces to camelCase and singularize terms if needed
-  let normalized = feature
-    .toLowerCase()
-    .replace(/\s(.)/g, (_, group1) => group1.toUpperCase()) // Convert spaces to camelCase
-    .replace(/\s/g, ""); // Remove spaces
-
-  // Apply specific mappings
-  normalized = featureMap[normalized] || normalized;
-
-  return normalized;
-}
-
-/**
  * Converts restriction values into properly formatted display strings.
  */
 getFormattedRestriction(featureKey: string, value: number | undefined): string {
-  if (value === undefined || value === null) return "Unlimited"; // If missing, assume unlimited
-  if (value === -1) return "Unlimited"; // Handle -1 as "Unlimited"
-  if (value === 0) return "-"; // Handle 0 as "-"
+  if (value === undefined || value === null) return "Unlimited";
+  if (value === -1) return "Unlimited"; 
+  if (value === 0) return "-";
 
   // Handle storage (convert KB to GB and append "GB")
   if (featureKey === "storageInKB" || featureKey === "files") {
@@ -593,7 +562,7 @@ getFormattedRestriction(featureKey: string, value: number | undefined): string {
     return `${value} requests/month`;
   }
 
-  return value.toString(); // Default case
+  return value.toString();
 }
 
 }

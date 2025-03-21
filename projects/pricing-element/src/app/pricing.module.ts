@@ -11,9 +11,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { EnterprisePopupComponent } from './enterprise-plan-popup/enterprise-popup.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DowngradePopupComponent } from './downgrade-popup/downgrade-popup.component';
+import { PricingFieldPipe } from './pricing-field.pipe';
 
 @NgModule({
-  declarations: [PricingComponent, AlertDialogComponent, EnterprisePopupComponent, DowngradePopupComponent],
+  declarations: [PricingComponent, AlertDialogComponent, EnterprisePopupComponent, DowngradePopupComponent, PricingFieldPipe],
   exports: [PricingComponent, ReactiveFormsModule],
   imports: [
     BrowserModule,
