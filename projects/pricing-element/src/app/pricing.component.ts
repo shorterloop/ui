@@ -58,12 +58,13 @@ export class PricingComponent {
   selectedPlan: string = 'month';
   isSubscriptionOwner = false;
   currentPlanText = 'Current Plan';
-  subscription = { planType: '', planStatus: '', allowedUsers: 0 };
+  subscription = { planType: '', planStatus: '', allowedUsers: 0 , planCycle: ''};
   currentPlan = '';
 
   buttonLabels: any = {};
   buttonActions: any = {};
   products = [];
+  planCycle: any;
   constructor(
     private pricing: PricingTableService,
     private dialog: MatDialog,
@@ -98,7 +99,12 @@ export class PricingComponent {
       this.isSubscriptionOwner = result?.data?.isSubscriptionOwner;
       this.subscription = result.data.subscription_payment_plan;
       this.currentPlan = this.subscription.planType;
+      this.planCycle = this.subscription.planCycle;
 
+      if(this.currentPlan === PRICING_PLANS.enterprise && this.planCycle){
+      this.currentPlan = `${PRICING_PLANS.enterprise}-USD-${this.planCycle}`
+      }
+      
       if (
         !(
           this.currentPlan === 'free' ||
