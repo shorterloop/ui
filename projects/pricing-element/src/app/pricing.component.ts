@@ -101,8 +101,9 @@ export class PricingComponent {
       this.currentPlan = this.subscription.planType;
       this.planCycle = this.subscription.planCycle;
 
-      if(this.currentPlan === PRICING_PLANS.enterprise && this.planCycle){
-      this.currentPlan = `${PRICING_PLANS.enterprise}-USD-${this.planCycle}`
+      if (this.currentPlan === PRICING_PLANS.enterprise && this.planCycle) {
+        const cycle = this.planCycle.endsWith('ly') ? this.planCycle : `${this.planCycle}ly`;
+        this.currentPlan = `${PRICING_PLANS.enterprise}-USD-${cycle}`;
       }
       
       if (
