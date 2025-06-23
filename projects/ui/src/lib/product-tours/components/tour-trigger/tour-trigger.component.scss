@@ -1,0 +1,54 @@
+:root {
+  --sl-purple-primary: #7c3aed;
+  --sl-purple-dark: #6d28d9;
+  --sl-gray-50: #f9fafb;
+  --sl-gray-100: #f3f4f6;
+  --sl-gray-200: #e5e7eb;
+  --sl-gray-600: #4b5563;
+}
+
+.sl-btn {
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  font-size: 0.875rem;
+  font-family: inherit;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &.sl-btn-primary {
+    background-color: var(--sl-purple-primary);
+    color: white;
+
+    &:hover:not(:disabled) {
+      background-color: var(--sl-purple-dark);
+      transform: translateY(-1px);
+    }
+  }
+
+  &.sl-btn-outline {
+    background-color: transparent;
+    color: var(--sl-gray-600);
+    border: 1px solid var(--sl-gray-200);
+
+    &:hover:not(:disabled) {
+      background-color: var(--sl-gray-50);
+    }
+  }
+
+  &.sl-btn-ghost {
+    background-color: transparent;
+    color: var(--sl-gray-600);
+    padding: 0.5rem;
+
+    &:hover:not(:disabled) {
+      background-color: var(--sl-gray-100);
+    }
+  }
+}

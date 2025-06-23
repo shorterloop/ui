@@ -1,0 +1,53 @@
+<div *ngIf="isActive && currentTour && currentStepData" class="sl-tour-modal-container" [class]="customClass">
+  <!-- Overlay -->
+  <!-- <div class="sl-tour-overlay" (click)="onOverlayClick()"></div> -->
+
+  <!-- Modal -->
+  <div class="sl-tour-modal" *ngIf="showModal" #tourModal [ngClass]="modalArrowDirection" [ngStyle]="{
+      position: 'absolute',
+      top: modalTop + 'px',
+      left: modalLeft + 'px',
+    }" [style.width.px]="modalWidth" [style.height.px]="modalHeight">
+    <div class="sl-modal-header" [class.p_relative]="!currentTour.title" [class.title]="currentTour.title">
+      <div class="sl-tour-brand" *ngIf="currentTour.title">
+        <span>{{ currentTour.title }}</span>
+      </div>
+      <button class="sl-btn sl-btn-ghost sl-close-btn" (click)="onClose()" aria-label="Close tour">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <h2 class="sl-modal-title">{{ currentStepData.title }}</h2>
+
+    <div *ngIf="currentStepData.image" class="sl-modal-image">
+      <img [src]="currentStepData.image" [alt]="currentStepData.title" class="sl-rounded-lg">
+    </div>
+
+    <p class="sl-modal-text">{{ currentStepData.text }}</p>
+
+    <div class="sl-modal-footer">
+      <div class="sl-progress-info">
+        <div *ngIf="showProgressDots" class="sl-progress-dots">
+          <div *ngFor="let dot of getProgressDots(); let i = index" class="sl-dot"
+            [class.sl-active]="i === currentStep">
+          </div>
+        </div>
+        <button (click)="onClose()" class="skip-tour sl-btn sl-btn-outline">
+          Skip Tour
+        </button>
+      </div>
+
+      <div class="sl-modal-actions">
+        <button *ngIf="currentStep > 0" class="sl-btn sl-btn-outline" (click)="onPrevious()">
+          Previous
+        </button>
+        <button class="sl-btn sl-btn-primary" (click)="onNext()">
+          {{ isLastStep ? 'Finish' : 'Next' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
