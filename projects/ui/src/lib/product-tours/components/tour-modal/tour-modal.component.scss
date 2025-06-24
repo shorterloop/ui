@@ -47,6 +47,7 @@
     top: -16px;
     left: 24px; // adjust to align horizontally with target
     border-bottom-color: white;
+    border-color: transparent transparent white transparent;
   }
 
   // Arrow pointing to bottom (modal above the target)
@@ -119,15 +120,16 @@
 .sl-close-btn {
   width: 24px;
   height: 24px;
-  border-radius: 0.5rem;
-  padding: 0.5rem;
+  border-radius: 4px;
+  margin-top: -20px;
+  margin-right: -10px;
 }
 
 .sl-modal-title {
   font-size: 18px;
   font-weight: bold;
   color: #111827;
-  margin: 0 0 0.75rem 0;
+  margin-top: 0;
 }
 
 .sl-modal-image {
@@ -244,15 +246,6 @@
   .sl-modal-actions {
     width: 100%;
     justify-content: center;
-  }
-}
-
-.p_relative {
-  position: relative;
-
-  .sl-close-btn {
-    position: absolute;
-    right: 0;
   }
 }
 

@@ -70,8 +70,10 @@ export class ShorterLoopTourService {
     }
 
     const tour = await this.getTour(tourId);
+    debugger
     if (tour) {
       this.markAsAutoTriggered(tourId);
+      this.ensureModalCreated();
       this.currentTourSubject.next(tour);
       this.currentStepSubject.next(0);
       console.log(`Auto-triggered tour: ${tourId} (will not auto-trigger again)`);

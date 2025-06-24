@@ -8,19 +8,15 @@
       top: modalTop + 'px',
       left: modalLeft + 'px',
     }" [style.width.px]="modalWidth" [style.height.px]="modalHeight">
-    <div class="sl-modal-header" [class.p_relative]="!currentTour.title" [class.title]="currentTour.title">
-      <div class="sl-tour-brand" *ngIf="currentTour.title">
-        <span>{{ currentTour.title }}</span>
-      </div>
-      <button class="sl-btn sl-btn-ghost sl-close-btn" (click)="onClose()" aria-label="Close tour">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <div class="sl-modal-header">
+        <h2 class="sl-modal-title">{{ currentStepData.title }}</h2>
+
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        class="sl-btn sl-btn-ghost sl-close-btn" (click)="onClose()" aria-label="Close tour">
           <line x1="18" y1="6" x2="6" y2="18"></line>
           <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>
-      </button>
     </div>
-
-    <h2 class="sl-modal-title">{{ currentStepData.title }}</h2>
 
     <div *ngIf="currentStepData.image" class="sl-modal-image">
       <img [src]="currentStepData.image" [alt]="currentStepData.title" class="sl-rounded-lg">

@@ -8,7 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterOutlet } from '@angular/router';
 import { EvaluateExperimentVariantsComponent } from "../../projects/ui/src/lib/evaluate-experiment-variants/evaluate-experiment-variants.component";
-import { KanbanComponent, SampleSizeCalculator } from '../../projects/ui/src/public-api';
+import { KanbanComponent, SampleSizeCalculator, ShorterLoopProductTourModule, ShorterLoopTourService } from '../../projects/ui/src/public-api';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +17,9 @@ import { KanbanComponent, SampleSizeCalculator } from '../../projects/ui/src/pub
     CommonModule, MatSelectModule,
     MatIconModule, MatButtonToggleModule, MatInputModule,
     MatFormFieldModule, FormsModule, ReactiveFormsModule, KanbanComponent,
-    SampleSizeCalculator, EvaluateExperimentVariantsComponent
+    SampleSizeCalculator, EvaluateExperimentVariantsComponent,
+
+    ShorterLoopProductTourModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -879,7 +881,56 @@ export class AppComponent {
   ]
 
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private tourService: ShorterLoopTourService) {
+
+    this.tourService.loadToursFromConfig({
+      'product-vision': {
+        tourId: 'product-vision',
+        title: '',
+        description: 'Learn how to create compelling product visions',
+        steps: [
+          {
+            title: 'Welcome to Product Vision',
+            text: 'Learn how to create compelling product visions that align your team.',
+            target: '#product-vision-header',
+            image: 'https://images.unsplash.com/photo-1750008267598-7f68e1a25ab8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+          },
+          {
+            title: 'Vision Statement',
+            text: 'Write your core product vision here.',
+            target: '#vision-statement',
+            image: 'https://images.unsplash.com/photo-1750101272034-7becde7454dd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+          },
+          {
+            title: 'Vision Statement1',
+            text: 'Write your core product vision here1',
+            target: '#vision-statement1'
+          }, {
+            title: 'Vision Statement2',
+            text: 'Write your core product vision here2',
+            target: '#vision-statement2'
+          }
+        ]
+      },
+      'persona': {
+        tourId: 'persona',
+        title: 'User Persona Tour',
+        description: 'Create detailed user personas',
+        steps: [
+          {
+            title: 'Welcome to Personas',
+            text: 'Create detailed user personas to understand your customers.',
+            target: '#persona-header'
+          },
+          {
+            title: 'Demographics',
+            text: 'Add user demographics here.',
+            target: '#demographics'
+          }
+        ]
+      }
+    })
+    this.tourService.autoTriggerTour('product-vision');
     this.calculatorForm = this.fb.group({
       populationSize: [''],
       confidenceLevel: [95],
