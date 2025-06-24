@@ -16,7 +16,7 @@ A powerful, customizable Angular product tour library with auto-triggering capab
 ## Installation
 
 ```bash
-npm install tour
+npm install shorterloop
 ```
 
 ## Quick Start
@@ -28,11 +28,7 @@ import { ShorterLoopProductTourModule } from 'shorterloop';
 
 @NgModule({
   imports: [
-    ShorterLoopProductTourModule.forRoot({
-      storageKey: 'my_app_tours', // Optional: custom localStorage key
-      autoTriggerDelay: 2000,     // Optional: default auto-trigger delay
-      enableLocalStorage: true    // Optional: enable/disable localStorage
-    })
+    ShorterLoopProductTourModule
   ]
 })
 export class AppModule { }
