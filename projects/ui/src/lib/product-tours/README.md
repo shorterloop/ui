@@ -5,12 +5,19 @@ A powerful, customizable Angular product tour library with auto-triggering capab
 ## Features
 
 ✅ **Auto-triggering tours** - Tours start automatically when components load
+
 ✅ **Permanent tracking** - Uses localStorage to ensure tours only auto-trigger once
+
 ✅ **Manual triggers** - Flexible manual tour controls
+
 ✅ **Customizable styling** - Easy to theme and customize
+
 ✅ **TypeScript support** - Full type safety
+
 ✅ **Responsive design** - Works on all devices
+
 ✅ **Accessibility friendly** - ARIA labels and keyboard navigation
+
 ✅ **Zero dependencies** - Only requires Angular
 
 ## Installation
