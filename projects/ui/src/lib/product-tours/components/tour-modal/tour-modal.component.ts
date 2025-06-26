@@ -112,9 +112,7 @@ export class TourModalComponent implements OnInit, OnDestroy, AfterViewChecked {
     element.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
 
     // Wait for scroll to complete and DOM to update
-    setTimeout(() => {
-      this.calculateInitialPosition(element);
-    }, 100);
+    this.calculateInitialPosition(element);
   }
 
   private calculateInitialPosition(element: HTMLElement): void {
@@ -219,7 +217,7 @@ export class TourModalComponent implements OnInit, OnDestroy, AfterViewChecked {
     scroll: { scrollX: number; scrollY: number },
     gap: number
   ): void {
-    this.modalTop = rect.bottom + gap + scroll.scrollY - rect.height / 2;
+    this.modalTop = rect.bottom + gap + scroll.scrollY - rect.height / 2 - 20;
     this.modalLeft = this.clampHorizontal(rect, scroll.scrollX);
     this.modalArrowDirection = 'arrow-top';
   }
@@ -231,7 +229,7 @@ export class TourModalComponent implements OnInit, OnDestroy, AfterViewChecked {
   ): void {
     const { modalHeight } = this.calculateModalDimensions();
     this.modalArrowDirection = 'arrow-bottom';
-    this.modalTop = rect.top - modalHeight - gap + scroll.scrollY + 20;
+    this.modalTop = rect.top - modalHeight - gap + scroll.scrollY - rect.height / 2 -  20;
     this.modalLeft = this.clampHorizontal(rect, scroll.scrollX);
   }
 
