@@ -22,7 +22,6 @@ export class TourTriggerComponent {
   constructor(private tourService: ShorterLoopTourService) { }
 
   startTour(): void {
-    debugger
     if (!this.disabled) {
       this.tourService.startTour(this.tourId);
     }

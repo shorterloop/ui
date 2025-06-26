@@ -70,7 +70,6 @@ export class ShorterLoopTourService {
     }
 
     const tour = await this.getTour(tourId);
-    debugger
     if (tour) {
       this.markAsAutoTriggered(tourId);
       this.ensureModalCreated();

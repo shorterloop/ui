@@ -37,20 +37,19 @@ export class TourModalComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.styleElement = this.renderer.createElement('style');
     this.styleElement.textContent = `
       .sl-tour-highlight {
-        outline: 3px solid var(--sl-purple-primary) !important;
-        outline-offset: 4px !important;
-        position: relative !important;
-        z-index: 9997 !important;
-        border-radius: 0.5rem !important;
-        box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1) !important;
-        animation: sl-tour-pulse 1.5s infinite !important;
+        background: #fff;
+  position: relative !important; 
+  z-index: 10000 !important;
+      border: 2px solid #573df4;
+  animation: sl-tour-pulse-white 1.5s infinite !important; /*
       }
 
-      @keyframes sl-tour-pulse {
-        0% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.4); }
-        70% { box-shadow: 0 0 0 10px rgba(124, 58, 237, 0); }
-        100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0); }
-      }
+@keyframes sl-tour-pulse-white { /* New keyframes for a white pulsing effect */
+  0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); } /* Start with a stronger white glow */
+  70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); } /* Expand and fade out */
+  100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); } /* Reset for infinite loop */
+}
+
     `;
     this.renderer.appendChild(document.head, this.styleElement);
   }
@@ -210,7 +209,7 @@ export class TourModalComponent implements OnInit, OnDestroy, AfterViewChecked {
     scroll: { scrollX: number; scrollY: number },
     gap: number
   ): void {
-    this.modalLeft = rect.left - this.modalWidth - gap + scroll.scrollX - rect.width / 2 + 20;
+    this.modalLeft = rect.left - this.modalWidth - gap + scroll.scrollX - rect.width / 2 - 20;
     this.modalArrowDirection = 'arrow-right';
     this.modalTop = rect.top + scroll.scrollY - 20;
   }
