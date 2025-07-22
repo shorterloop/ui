@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "package:pricing-table": "powershell -Command \"Get-Content 'dist/pricing-element/browser/main.js' | Set-Content 'dist/pricing-element/browser/sl-pricing-table.js'; Remove-Item 'dist/pricing-element/browser/main.js' -Force; Get-Content 'dist/pricing-element/browser/styles.css' | Set-Content 'dist/pricing-element/browser/sl-pricing-table.css'; Remove-Item 'dist/pricing-element/browser/styles.css' -Force\"",
+    "package:pricing-table": "cat dist/pricing-element/browser/main.js > dist/pricing-element/browser/sl-pricing-table.js && rm -f dist/pricing-element/browser/main.js && cat dist/pricing-element/browser/styles.css > dist/pricing-element/browser/sl-pricing-table.css && rm -f dist/pricing-element/browser/styles.css",
     "build:pricing-table": "ng build pricing-element --configuration production --output-hashing=none && npm run package:pricing-table",
     "build": "ng build ui",
     "watch": "ng build --watch --configuration development",
