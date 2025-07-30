@@ -75,7 +75,7 @@
                       buttonLabels[plan?.description] === currentPlanText
                     "
                   >
-                    {{ buttonLabels[plan?.description] || allButtonLabels }}
+                    {{ buttonLabels[plan?.description] || (product.productName?.toLowerCase() === 'enterprise' ? 'Contact Us' : allButtonLabels) }}
                   </button>
                 </div>
               </div>
