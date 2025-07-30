@@ -98,7 +98,7 @@ export class PricingComponent {
   ngOnInit() {
     if(!this.pricing.token) {
       this.allButtonLabels = "Start for 14 days";
-      return true;
+      return;
     }
     this.pricing.getCustomerCurrentPlan().subscribe((result) => {
       this.isSubscriptionOwner = result?.data?.isSubscriptionOwner;
