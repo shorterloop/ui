@@ -61,14 +61,21 @@
                     [class.active-plan]="
                       buttonLabels[plan?.description] === currentPlanText
                     "
-                    (click)="
-                      buttonActions[plan?.description](plan?.description)
-                    "
+                   (click)="
+                buttonActions[plan?.description]?.(plan?.description) ||
+                (product.productName?.toLowerCase() === 'enterprise'
+                  ? openEnterprisePlan()
+                  : login(
+                      product.productName?.toLowerCase() + '-USD-' +
+                      (plan?.planName?.charAt(0).toUpperCase() + plan?.planName?.slice(1) + 'ly')
+                    )
+                )
+"
                     [disabled]="
                       buttonLabels[plan?.description] === currentPlanText
                     "
                   >
-                    {{ buttonLabels[plan?.description] }}
+                    {{ buttonLabels[plan?.description] || allButtonLabels }}
                   </button>
                 </div>
               </div>

@@ -65,6 +65,7 @@ export class PricingComponent {
   buttonActions: any = {};
   products = [];
   planCycle: any;
+  allButtonLabels= '';
   constructor(
     private pricing: PricingTableService,
     private dialog: MatDialog,
@@ -95,6 +96,10 @@ export class PricingComponent {
   }
 
   ngOnInit() {
+    if(!this.pricing.token) {
+      this.allButtonLabels = "Start for 14 days";
+      return true;
+    }
     this.pricing.getCustomerCurrentPlan().subscribe((result) => {
       this.isSubscriptionOwner = result?.data?.isSubscriptionOwner;
       this.subscription = result.data.subscription_payment_plan;
@@ -572,4 +577,9 @@ getFormattedRestriction(featureKey: string, value: number | undefined): string {
   return value.toString();
 }
 
+login(planName= 'scaleup-USD-Yearly') {
+    //@ts-ignore
+    window.top.location.href = 'https://app.shorterloop.com/register?startTrialFor='+planName;
+  }
+  
 }
