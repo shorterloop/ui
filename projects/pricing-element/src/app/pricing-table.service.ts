@@ -11,9 +11,8 @@ export class PricingTableService {
   constructor(private http: HttpClient) {
     let key = 'authorization';
     this.baseUrl = 'http://localhost:3000';
-    const iframe: any = document.querySelector("iframe");
-    const url = new URL(iframe.src);
-    const host = url.hostname || window.location.hostname;
+   
+    let host = document.location.ancestorOrigins[0];
     if (host === 'localhost') {
       key = 'devauthorization';
     }
