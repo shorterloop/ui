@@ -20,6 +20,10 @@ export class PricingTableService {
       key = 'qaauthorization';
       this.baseUrl = 'https://qa-api.shorterloop.com';
     }
+    if (host.indexOf('dev.shorterloop.com') > -1) {
+      key = 'qaauthorization';
+      this.baseUrl = 'https://qa-api.shorterloop.com';
+    }
     if (host.indexOf('app.shorterloop.com') > -1) {
       key = 'prodauthorization';
       this.baseUrl = 'https://api.shorterloop.com';
