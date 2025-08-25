@@ -11,14 +11,17 @@ export class PricingTableService {
   constructor(private http: HttpClient) {
     let key = 'authorization';
     this.baseUrl = 'http://localhost:3000';
-    if (window.location.hostname === 'localhost') {
+    const iframe: any = document.querySelector("iframe");
+    const url = new URL(iframe.src);
+    const host = url.hostname || window.location.hostname;
+    if (host === 'localhost') {
       key = 'devauthorization';
     }
-    if (window.location.hostname === 'qa.shorterloop.com') {
+    if (host === 'qa.shorterloop.com') {
       key = 'qaauthorization';
       this.baseUrl = 'https://qa-api.shorterloop.com';
     }
-    if (window.location.hostname === 'app.shorterloop.com') {
+    if (host === 'app.shorterloop.com') {
       key = 'prodauthorization';
       this.baseUrl = 'https://api.shorterloop.com';
     }
