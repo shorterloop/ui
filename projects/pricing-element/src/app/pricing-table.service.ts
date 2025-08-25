@@ -13,14 +13,14 @@ export class PricingTableService {
     this.baseUrl = 'http://localhost:3000';
    
     let host = document.location.ancestorOrigins[0];
-    if (host === 'localhost') {
+    if (host.indexOf('localhost') > -1) {
       key = 'devauthorization';
     }
-    if (host === 'qa.shorterloop.com') {
+    if (host.indexOf('qa.shorterloop.com') > -1) {
       key = 'qaauthorization';
       this.baseUrl = 'https://qa-api.shorterloop.com';
     }
-    if (host === 'app.shorterloop.com') {
+    if (host.indexOf('app.shorterloop.com') > -1) {
       key = 'prodauthorization';
       this.baseUrl = 'https://api.shorterloop.com';
     }
