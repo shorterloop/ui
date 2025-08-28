@@ -28,6 +28,10 @@ export class PricingTableService {
       key = 'prodauthorization';
       this.baseUrl = 'https://api.shorterloop.com';
     }
+    if (host.indexOf('shorterloop.com') > -1) {
+      key = 'prodauthorization';
+      this.baseUrl = 'https://api.shorterloop.com';
+    }
     this.baseUrl += '/api';
     this.token = this.getCookie(key);
   }
