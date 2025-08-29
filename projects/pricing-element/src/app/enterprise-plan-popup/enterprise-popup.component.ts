@@ -29,6 +29,9 @@ export class EnterprisePopupComponent {
   }
 
   closeDialog() {
+    if(window.location.href.indexOf('cdn.shorterloop.com') > -1) {
+      window.location.reload()
+    }
     this.dialogRef.close();
   }
 

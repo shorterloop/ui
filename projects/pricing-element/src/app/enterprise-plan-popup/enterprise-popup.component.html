@@ -14,7 +14,7 @@
       <div class="form_group">
         <div class="input_wrapper">
           <div class="input_container">
-            <input type="text" formControlName="name" placeholder="Name" class="enterprise_input" [readonly]="true" />
+            <input type="text" formControlName="name" placeholder="Name" class="enterprise_input" />
           </div>
           <div class="input_container">
             <input type="text" formControlName="phone" placeholder="Phone*" class="enterprise_input" />
@@ -26,7 +26,7 @@
         </div>
       </div>
 
-      <input type="email" formControlName="email" placeholder="Email" class="enterprise_input detail_enterprise" [readonly]="true"/>
+      <input type="email" formControlName="email" placeholder="Email" class="enterprise_input detail_enterprise"/>
       <textarea formControlName="message" placeholder="Message*" class="enterprise_input detail_enterprise message_wrap"></textarea>
       <div class="error-message" *ngIf="enterpriseForm.controls['message'].invalid && enterpriseForm.controls['message'].touched">
         <span *ngIf="enterpriseForm.controls['message'].errors?.required">Message is required.</span>

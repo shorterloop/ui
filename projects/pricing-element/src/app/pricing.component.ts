@@ -96,10 +96,11 @@ export class PricingComponent {
   }
 
   ngOnInit() {
-    if(!this.pricing.token) {
+    if(!this.pricing.token || window.location.href.indexOf('cdn.shorterloop.com') > -1) {
       this.allButtonLabels = "Start for 14 days";
       return;
     }
+
     this.pricing.getCustomerCurrentPlan().subscribe((result) => {
       this.isSubscriptionOwner = result?.data?.isSubscriptionOwner;
       this.subscription = result.data.subscription_payment_plan;
