@@ -12,7 +12,7 @@ export class PricingTableService {
     let key = 'authorization';
     this.baseUrl = 'http://localhost:3000';
    
-    let host = document.location.ancestorOrigins[0];
+    let host = document.location?.ancestorOrigins?.[0] || window.location.hostname;
     if (host.indexOf('localhost') > -1) {
       key = 'devauthorization';
     }

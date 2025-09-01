@@ -355,13 +355,21 @@ export class PricingComponent {
         heading = `Change to ${switchToPlanAndModel.mode} subscription`;
         message = `You are changing from ${currentPlanAndModel.plan} ${currentPlanAndModel.mode} to  ${switchToPlanAndModel.mode} plan.`;
         confimationButton = 'Change plan';
-      }
+      }  else if(currentPlanAndModel.plan === 'startup' && switchToPlanAndModel.plan === 'scaleup') {
+          heading = `Change to ${currentPlanAndModel.plan} ${switchToPlanAndModel.mode} plan`;
+          message = `You are changing from ${currentPlanAndModel.plan} ${currentPlanAndModel.mode} to ${switchToPlanAndModel.plan} ${switchToPlanAndModel.mode} plan.`;
+          confimationButton = 'Change plan';
+        }
     }
 
     if (shouldUpgradeOrDowngrade === 'DOWNGRADE') {
       if (currentPlanAndModel.plan === switchToPlanAndModel.plan) {
         heading = `Change to ${switchToPlanAndModel.mode} subscription`;
         message = `You are changing from ${currentPlanAndModel.plan} ${currentPlanAndModel.mode} to ${switchToPlanAndModel.mode} plan.`;
+        confimationButton = 'Change plan';
+      } else if(currentPlanAndModel.plan === 'scaleup' && switchToPlanAndModel.plan === 'startup') {
+        heading = `Change to ${switchToPlanAndModel.plan} ${switchToPlanAndModel.mode} plan`;
+        message = `You are changing from ${currentPlanAndModel.plan} ${currentPlanAndModel.mode} to ${switchToPlanAndModel.plan} ${switchToPlanAndModel.mode} plan.`;
         confimationButton = 'Change plan';
       }
     }
