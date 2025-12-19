@@ -280,7 +280,7 @@ export class PricingComponent {
                 this.updateDowngradeUserSubscription.bind(this);
             }
           } else {
-            labels[planName] = 'Upgrade';
+            labels[planName] = 'Pay Now';
             actions[planName] = this.payNow.bind(this);
           }
         }
