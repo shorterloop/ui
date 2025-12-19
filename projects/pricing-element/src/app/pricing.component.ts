@@ -203,7 +203,7 @@ export class PricingComponent {
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
         this.pricing.deleteStripeSubscription().subscribe((result: any) => {
-          window.location.href = '/settings/company?tab=plan';
+          window.location.href = '/settings/company?tab=plans';
         });
       }
     });
@@ -469,7 +469,7 @@ export class PricingComponent {
           })
           .subscribe((result: any) => {
             setTimeout(() => {
-              window.location.href = result?.url || '/settings/company?tab=plan';
+              window.location.href = result?.url || '/settings/company?tab=plans';
             }, 500);
           });
       }
