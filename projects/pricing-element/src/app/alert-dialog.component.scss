@@ -110,7 +110,7 @@
 
 .csv_upload_wrap {
   display: flex;
-  color: #573df4;
+  color: #c4501c;
 
   .upload_file {
     background-color: transparent;
@@ -186,7 +186,7 @@ button {
 
             &.active {
               svg {
-                fill: #573df4;
+                fill: #c4501c;
               }
             }
           }
@@ -234,7 +234,7 @@ button {
           cursor: pointer;
 
           mat-icon {
-            color: #573df4;
+            color: #c4501c;
             margin-right: 5px;
             font-size: 20px;
           }

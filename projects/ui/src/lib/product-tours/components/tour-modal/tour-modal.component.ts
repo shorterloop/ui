@@ -40,7 +40,7 @@ export class TourModalComponent implements OnInit, OnDestroy, AfterViewChecked {
         background: #fff;
   position: relative !important; 
   z-index: 10000 !important;
-      border: 2px solid #573df4;
+      border: 2px solid #c4501c;
   animation: sl-tour-pulse-white 1.5s infinite !important; /*
       }
 
