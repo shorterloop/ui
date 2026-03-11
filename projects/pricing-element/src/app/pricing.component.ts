@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { PricingTableService } from './pricing-table.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AlertDialogComponent } from './alert-dialog.component';
-import { EnterprisePopupComponent } from './enterprise-plan-popup/enterprise-popup.component';
 import { DowngradePopupComponent } from './downgrade-popup/downgrade-popup.component';
+import { EnterprisePopupComponent } from './enterprise-plan-popup/enterprise-popup.component';
+import { PricingTableService } from './pricing-table.service';
 const STRIPE_PAYMENT_FAILURES = [
   'incomplete',
   'incomplete_expired',
@@ -58,14 +58,14 @@ export class PricingComponent {
   selectedPlan: string = 'month';
   isSubscriptionOwner = false;
   currentPlanText = 'Current Plan';
-  subscription = { planType: '', planStatus: '', allowedUsers: 0 , planCycle: ''};
+  subscription = { planType: '', planStatus: '', allowedUsers: 0, planCycle: '' };
   currentPlan = '';
 
   buttonLabels: any = {};
   buttonActions: any = {};
   products = [];
   planCycle: any;
-  allButtonLabels= '';
+  allButtonLabels = '';
   constructor(
     private pricing: PricingTableService,
     private dialog: MatDialog,
@@ -96,7 +96,7 @@ export class PricingComponent {
   }
 
   ngOnInit() {
-    if(!this.pricing.token || window.location.href.indexOf('cdn.shorterloop.com') > -1) {
+    if (!this.pricing.token || window.location.href.indexOf('cdn.shorterloop.com') > -1) {
       this.allButtonLabels = "Start for 14 days";
       return;
     }
@@ -111,7 +111,7 @@ export class PricingComponent {
         const cycle = this.planCycle.endsWith('ly') ? this.planCycle : `${this.planCycle}ly`;
         this.currentPlan = `${PRICING_PLANS.enterprise}-USD-${cycle}`;
       }
-      
+
       if (
         !(
           this.currentPlan === 'free' ||
@@ -203,7 +203,7 @@ export class PricingComponent {
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
         this.pricing.deleteStripeSubscription().subscribe((result: any) => {
-          window.location.href = '/settings/company?tab=plans';
+          window.location.href = '/settings/company?tabs=plan';
         });
       }
     });
@@ -280,7 +280,7 @@ export class PricingComponent {
                 this.updateDowngradeUserSubscription.bind(this);
             }
           } else {
-            labels[planName] = 'Pay Now';
+            labels[planName] = 'Upgrade';
             actions[planName] = this.payNow.bind(this);
           }
         }
@@ -355,11 +355,11 @@ export class PricingComponent {
         heading = `Change to ${switchToPlanAndModel.mode} subscription`;
         message = `You are changing from ${currentPlanAndModel.plan} ${currentPlanAndModel.mode} to  ${switchToPlanAndModel.mode} plan.`;
         confimationButton = 'Change plan';
-      }  else if(currentPlanAndModel.plan === 'startup' && switchToPlanAndModel.plan === 'scaleup') {
-          heading = `Change to ${currentPlanAndModel.plan} ${switchToPlanAndModel.mode} plan`;
-          message = `You are changing from ${currentPlanAndModel.plan} ${currentPlanAndModel.mode} to ${switchToPlanAndModel.plan} ${switchToPlanAndModel.mode} plan.`;
-          confimationButton = 'Change plan';
-        }
+      } else if (currentPlanAndModel.plan === 'startup' && switchToPlanAndModel.plan === 'scaleup') {
+        heading = `Change to ${currentPlanAndModel.plan} ${switchToPlanAndModel.mode} plan`;
+        message = `You are changing from ${currentPlanAndModel.plan} ${currentPlanAndModel.mode} to ${switchToPlanAndModel.plan} ${switchToPlanAndModel.mode} plan.`;
+        confimationButton = 'Change plan';
+      }
     }
 
     if (shouldUpgradeOrDowngrade === 'DOWNGRADE') {
@@ -367,7 +367,7 @@ export class PricingComponent {
         heading = `Change to ${switchToPlanAndModel.mode} subscription`;
         message = `You are changing from ${currentPlanAndModel.plan} ${currentPlanAndModel.mode} to ${switchToPlanAndModel.mode} plan.`;
         confimationButton = 'Change plan';
-      } else if(currentPlanAndModel.plan === 'scaleup' && switchToPlanAndModel.plan === 'startup') {
+      } else if (currentPlanAndModel.plan === 'scaleup' && switchToPlanAndModel.plan === 'startup') {
         heading = `Change to ${switchToPlanAndModel.plan} ${switchToPlanAndModel.mode} plan`;
         message = `You are changing from ${currentPlanAndModel.plan} ${currentPlanAndModel.mode} to ${switchToPlanAndModel.plan} ${switchToPlanAndModel.mode} plan.`;
         confimationButton = 'Change plan';
@@ -469,7 +469,7 @@ export class PricingComponent {
           })
           .subscribe((result: any) => {
             setTimeout(() => {
-              window.location.href = result?.url || '/settings/company?tab=plans';
+              window.location.href = result?.url || '/settings/company?tabs=plan';
             }, 500);
           });
       }
@@ -532,63 +532,73 @@ export class PricingComponent {
     }
   }
 
-/**
- * Returns all unique feature categories, excluding "uncategorized".
- */
-getAllFeatureCategories(products: Product[]): string[] {
-  return Array.from(
-    new Set(products.flatMap((product) => Object.keys(product.features)))
-  ).filter((category) => category.toLowerCase() !== "uncategorized");
-}
+  /**
+   * Returns all unique feature categories, excluding "uncategorized".
+   */
+  getAllFeatureCategories(products: Product[]): string[] {
+    return Array.from(
+      new Set(products.flatMap((product) => Object.keys(product.features)))
+    ).filter((category) => category.toLowerCase() !== "uncategorized");
+  }
 
-/**
- * Returns a list of unique features under a category.
- */
-getAllFeatures(products: Product[], category: string): string[] {
-  const features = new Set<string>();
+  /**
+   * Returns a list of unique features under a category.
+   */
+  getAllFeatures(products: Product[], category: string): string[] {
+    const features = new Set<string>();
 
-  products.forEach((product) => {
-    product.features?.[category]?.forEach((feature) => {
-      features.add(feature);
+    products.forEach((product) => {
+      product.features?.[category]?.forEach((feature) => {
+        features.add(feature);
+      });
     });
-  });
 
-  return Array.from(features);
-}
-
-/**
- * Returns all unique features under the "uncategorized" category.
- */
-getUncategorizedFeatures(products: Product[]): string[] {
-  return Array.from(
-    new Set(products.flatMap((product) => product.features?.["uncategorized"] || []))
-  );
-}
-
-/**
- * Converts restriction values into properly formatted display strings.
- */
-getFormattedRestriction(featureKey: string, value: number | undefined): string {
-  if (value === undefined || value === null) return "Unlimited";
-  if (value === -1) return "Unlimited"; 
-  if (value === 0) return "-";
-
-  // Handle storage (convert KB to GB and append "GB")
-  if (featureKey === "storageInKB" || featureKey === "files") {
-    return `${Math.round(value / (1024 * 1024))} GB`;  // Convert KB to GB
+    return Array.from(features);
   }
 
-  // Handle API requests per month
-  if (featureKey === "monthlyApiLimit") {
-    return `${value} requests/month`;
+  /**
+   * Returns all unique features under the "uncategorized" category.
+   */
+  getUncategorizedFeatures(products: Product[]): string[] {
+    return Array.from(
+      new Set(products.flatMap((product) => product.features?.["uncategorized"] || []))
+    );
   }
 
-  return value.toString();
-}
+  /**
+   * Converts restriction values into properly formatted display strings.
+   */
+  getFormattedRestriction(featureKey: string, value: number | undefined): string {
+    if (value === undefined || value === null) return "Unlimited";
+    if (value === -1) return "Unlimited";
+    if (value === 0) return "-";
 
-login(planName= 'scaleup-USD-Yearly') {
+    // Handle storage (convert KB to GB and append "GB")
+    if (featureKey === "storageInKB" || featureKey === "files") {
+      return `${Math.round(value / (1024 * 1024))} GB`;  // Convert KB to GB
+    }
+
+    // Handle API requests per month
+    if (featureKey === "monthlyApiLimit") {
+      return `${value} requests/month`;
+    }
+
+    return value.toString();
+  }
+
+  getButtonActionClass(label: string): string {
+    if (!label) return 'btn-default';
+    const normalized = label.toLowerCase().trim();
+    if (normalized.includes('downgrade')) return 'btn-downgrade';
+    if (normalized.includes('upgrade') || normalized.includes('subscribe')) return 'btn-subscribe';
+    if (normalized.includes('contact')) return 'btn-contact-us';
+    if (normalized.includes('start') || normalized.includes('trial')) return 'btn-start-trial';
+    if (normalized.includes('pay')) return 'btn-paynow';
+    return 'btn-default';
+  }
+
+  login(planName = 'scaleup-USD-Yearly') {
     //@ts-ignore
-    window.top.location.href = 'https://app.shorterloop.com/register?startTrialFor='+planName;
+    window.top.location.href = 'https://app.shorterloop.com/register?startTrialFor=' + planName;
   }
-  
 }

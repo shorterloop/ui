@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class PricingTableService {
   token: string;
   baseUrl = '';
+
   constructor(private http: HttpClient) {
     const host = document.location?.ancestorOrigins?.[0] || window.location?.hostname || '';
 
