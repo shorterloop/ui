@@ -9,10 +9,7 @@ export class PricingTableService {
   token: string;
   baseUrl = '';
   constructor(private http: HttpClient) {
-    let key = 'authorization';
-    this.baseUrl = 'http://localhost:3000';
-   
-    const host = document.location?.ancestorOrigins?.[0] || window.location.hostname;
+    const host = document.location?.ancestorOrigins?.[0] || window.location?.hostname || '';
 
     const envConfigs = [
       { domain: 'localhost', key: 'devauthorization', baseUrl: 'http://localhost:3000' },
@@ -22,14 +19,11 @@ export class PricingTableService {
       { domain: 'shorterloop.com', key: 'prodauthorization', baseUrl: 'https://api.shorterloop.com' }
     ];
 
-    const matchedConfig = envConfigs.find(config => host.includes(config.domain));
-    
-    if (matchedConfig) {
-      key = matchedConfig.key;
-      this.baseUrl = matchedConfig.baseUrl;
-    }
-    this.baseUrl += '/api';
-    this.token = this.getCookie(key);
+    const config = envConfigs.find(c => host.includes(c.domain)) || 
+                   { key: 'authorization', baseUrl: 'http://localhost:3000' };
+
+    this.baseUrl = `${config.baseUrl}/api`;
+    this.token = this.getCookie(config.key);
   }
 
   getCookie(cookieName: any) {

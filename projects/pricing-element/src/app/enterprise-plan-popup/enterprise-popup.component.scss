@@ -49,23 +49,24 @@
     white-space: pre-wrap;
     line-height: 1.2;
   }
-  .input_container{
+.input_container {
     display: flex;
     flex-direction: column;
     flex: 1;
   }
+
   .input_wrapper {
     display: flex;
     gap: 30px;
     width: 100%;
   }
-  
+
   .phone_wrapper {
     display: flex;
     flex-direction: column;
   }
 
-  .error-message{
+    .error-message {
     font-size: 13px;
     color: red;
     margin-top: 5px;
@@ -82,20 +83,27 @@
     margin: 60px auto 0;
     padding: 10px 70px;
     border-radius: 6px;
-    background: #c4501c;
-    color: white;
     border: none;
     cursor: pointer;
     font-size: 16px;
-  }
-  .success_container{
+    background: #c4501c;
+      color: #ffffff;
+      border: 1px solid transparent;
+    
+      &:hover {
+        background: #a03c14;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+    }
+  
+    .success_container {
     display: flex;
     gap: 20px;
     align-items: center;
     min-height: 500px;
   }
-  .success_message{
-    p{
+.success_message {
+  p {
       margin-bottom: 0;
       font-size: 14px
     }
