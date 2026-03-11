@@ -13,7 +13,6 @@ export class PricingTableService {
     this.baseUrl = 'http://localhost:3000';
 
     const host = document.location?.ancestorOrigins?.[0] || window.location.hostname;
-
     const envConfigs = [
       { domain: 'localhost', key: 'devauthorization', baseUrl: 'http://localhost:3000' },
       { domain: 'qa.shorterloop.com', key: 'qaauthorization', baseUrl: 'https://qa-api.shorterloop.com' },
