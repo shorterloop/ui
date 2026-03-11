@@ -12,25 +12,21 @@ export class PricingTableService {
     let key = 'authorization';
     this.baseUrl = 'http://localhost:3000';
    
-    let host = document.location?.ancestorOrigins?.[0] || window.location.hostname;
-    if (host.indexOf('localhost') > -1) {
-      key = 'devauthorization';
-    }
-    if (host.indexOf('qa.shorterloop.com') > -1) {
-      key = 'qaauthorization';
-      this.baseUrl = 'https://qa-api.shorterloop.com';
-    }
-    if (host.indexOf('dev.shorterloop.com') > -1) {
-      key = 'qaauthorization';
-      this.baseUrl = 'https://qa-api.shorterloop.com';
-    }
-    if (host.indexOf('app.shorterloop.com') > -1) {
-      key = 'prodauthorization';
-      this.baseUrl = 'https://api.shorterloop.com';
-    }
-    if (host.indexOf('shorterloop.com') > -1) {
-      key = 'prodauthorization';
-      this.baseUrl = 'https://api.shorterloop.com';
+    const host = document.location?.ancestorOrigins?.[0] || window.location.hostname;
+
+    const envConfigs = [
+      { domain: 'localhost', key: 'devauthorization', baseUrl: 'http://localhost:3000' },
+      { domain: 'qa.shorterloop.com', key: 'qaauthorization', baseUrl: 'https://qa-api.shorterloop.com' },
+      { domain: 'dev.shorterloop.com', key: 'qaauthorization', baseUrl: 'https://qa-api.shorterloop.com' },
+      { domain: 'app.shorterloop.com', key: 'prodauthorization', baseUrl: 'https://api.shorterloop.com' },
+      { domain: 'shorterloop.com', key: 'prodauthorization', baseUrl: 'https://api.shorterloop.com' }
+    ];
+
+    const matchedConfig = envConfigs.find(config => host.includes(config.domain));
+    
+    if (matchedConfig) {
+      key = matchedConfig.key;
+      this.baseUrl = matchedConfig.baseUrl;
     }
     this.baseUrl += '/api';
     this.token = this.getCookie(key);
