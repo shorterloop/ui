@@ -6,18 +6,10 @@
       <p>Select the plan that suits your needs.</p>
     </div>
     <div class="toggle-container">
-      <button
-        class="toggle-button"
-        [class.active]="selectedPlan === 'month'"
-        (click)="selectedPlan = 'month'"
-      >
+      <button class="toggle-button" [class.active]="selectedPlan === 'month'" (click)="selectedPlan = 'month'">
         Monthly
       </button>
-      <button
-        class="toggle-button"
-        [class.active]="selectedPlan === 'year'"
-        (click)="selectedPlan = 'year'"
-      >
+      <button class="toggle-button" [class.active]="selectedPlan === 'year'" (click)="selectedPlan = 'year'">
         Yearly
       </button>
     </div>
@@ -36,33 +28,24 @@
               </div>
 
               <!-- Plan Pricing Section -->
-              <div
-                *ngIf="getPlansByPeriod(product, selectedPlan).length > 0"
-                class="plan-wrapper"
-              >
-                <div
-                  class="plan-section"
-                  *ngFor="let plan of getPlansByPeriod(product, selectedPlan)"
-                >
+              <div *ngIf="getPlansByPeriod(product, selectedPlan).length > 0" class="plan-wrapper">
+                <div class="plan-section" *ngFor="let plan of getPlansByPeriod(product, selectedPlan)">
                   <div class="plan-info">
-                    <div
-                      class="plan-price"
-                      *ngIf="product.productName !== 'Enterprise'"
-                    >
+                    <div class="plan-price" *ngIf="product.productName !== 'Enterprise'">
                       {{
-                        plan.amount / 100
-                          | currency: (plan.currency | uppercase) : true
+                      plan.amount / 100
+                      | currency: (plan.currency | uppercase) : true
                       }}
                       per user per {{ plan?.planName }}
                     </div>
                   </div>
-                  <button
-                    class="select-button mat-mdc-paginator-navigation-previous"
+                  <button class="select-button mat-mdc-paginator-navigation-previous"
+                    [ngClass]="getButtonActionClass(buttonLabels[plan?.description] || (product.productName?.toLowerCase() === 'enterprise' ? 'Contact Us' : allButtonLabels))"
                     [class.active-plan]="
                       buttonLabels[plan?.description] === currentPlanText
-                    "
-                   (click)="
-                buttonActions[plan?.description]?.(plan?.description) ||
+                    " (click)="
+                buttonActions[plan?.description] ?
+                buttonActions[plan?.description](plan?.description) :
                 (product.productName?.toLowerCase() === 'enterprise'
                   ? openEnterprisePlan()
                   : login(
@@ -70,12 +53,11 @@
                       (plan?.planName?.charAt(0).toUpperCase() + plan?.planName?.slice(1) + 'ly')
                     )
                 )
-"
-                    [disabled]="
+" [disabled]="
                       buttonLabels[plan?.description] === currentPlanText
-                    "
-                  >
-                    {{ buttonLabels[plan?.description] || (product.productName?.toLowerCase() === 'enterprise' ? 'Contact Us' : allButtonLabels) }}
+                    ">
+                    {{ buttonLabels[plan?.description] || (product.productName?.toLowerCase() === 'enterprise' ?
+                    'Contact Us' : allButtonLabels) }}
                   </button>
                 </div>
               </div>
@@ -90,10 +72,10 @@
         <td class="feature-name">{{ feature | pricingField }}</td>
         <td class="restrictions" *ngFor="let product of products">
           {{
-            getFormattedRestriction(
-              feature | pricingField: "value",
-              product.restrictions[feature | pricingField: "value"]
-            )
+          getFormattedRestriction(
+          feature | pricingField: "value",
+          product.restrictions[feature | pricingField: "value"]
+          )
           }}
         </td>
       </tr>
@@ -107,10 +89,10 @@
           <td class="feature-name">{{ feature | pricingField }}</td>
           <td class="restrictions" *ngFor="let product of products">
             {{
-              getFormattedRestriction(
-                feature | pricingField: "value",
-                product.restrictions[feature | pricingField: "value"]
-              )
+            getFormattedRestriction(
+            feature | pricingField: "value",
+            product.restrictions[feature | pricingField: "value"]
+            )
             }}
           </td>
         </tr>
