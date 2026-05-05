@@ -30,7 +30,7 @@
           [{{column.tasks?.length}}] {{column.heading}}
         </div>
         <div cdkDropList [cdkDropListData]="column.tasks" class="kanban-list" #kanbanList
-          (cdkDropListDropped)="drop($event)" *ngIf="!column?.collapsed" [id]="column.heading">
+          (cdkDropListDropped)="drop($event)" *ngIf="!column?.collapsed" [id]="column.key || column.heading">
           <div class="kanban-item" *ngFor="let task of column.tasks" cdkDrag [cdkDragDisabled]="column?.preventDrag"
             [style.borderLeft]="task?.borderColor ? '4px solid ' + task?.borderColor : ''">
             <div class="task-card">
