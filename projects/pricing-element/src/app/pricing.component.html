@@ -15,75 +15,77 @@
     </div>
   </header>
 
-  <div class="pricing-cards-container">
-    <div class="pricing-card-new" *ngFor="let product of products">
-
-      <!-- App-style Card Header -->
-      <div class="card-header">
-        <h2 class="product-name">{{ product.productName | uppercase }}</h2>
+  <div class="pricing-list-container">
+    <div class="pricing-row" *ngFor="let product of products" [class.highlighted]="product.productName === 'Scaleup'">
+      
+      <!-- 1. Plan Name & Description -->
+      <div class="row-section plan-details">
+        <div class="badge-container">
+          <h2 class="product-name">{{ product.productName | uppercase }}</h2>
+          <span class="popular-badge" *ngIf="product.productName === 'Scaleup'">MOST POPULAR</span>
+        </div>
         <p class="product-description">{{ product.description }}</p>
       </div>
 
-      <div class="card-content">
-        <!-- New Limits Layout (from Preview) -->
-        <div class="card-limits">
-          <span *ngIf="product.restrictions?.products > 0">{{product.restrictions.products}} PRODUCT<span
-              *ngIf="product.restrictions.products > 1">S</span></span>
-          <span *ngIf="product.restrictions?.products === -1 || !product.restrictions?.products">UNLIMITED
-            PRODUCTS</span>
-          <span class="dot">&bull;</span>
-          <span>UNLIMITED PEOPLE</span>
+      <!-- 2. Limits -->
+      <div class="row-section plan-limits">
+        <div class="limit-item">
+          <span class="checkmark">✓</span>
+          <span *ngIf="product.restrictions?.products > 0">{{product.restrictions.products}} Product<span *ngIf="product.restrictions.products > 1">s</span></span>
+          <span *ngIf="product.restrictions?.products === -1 || !product.restrictions?.products">Unlimited Products</span>
         </div>
+        <div class="limit-item">
+          <span class="checkmark">✓</span>
+          <span>Unlimited People</span>
+        </div>
+      </div>
 
-        <!-- Price Section (from Preview) -->
-        <div class="price-section"
-          *ngIf="product.productName !== 'Enterprise' && getPlansByPeriod(product, selectedPlan).length > 0">
+      <!-- 3. Price Section -->
+      <div class="row-section plan-price">
+        <div *ngIf="product.productName !== 'Enterprise' && getPlansByPeriod(product, selectedPlan).length > 0">
           <ng-container *ngFor="let plan of getPlansByPeriod(product, selectedPlan)">
             <div class="price-display">
               <span class="currency-symbol">{{ plan.currency === 'usd' ? '$' : plan.currency }}</span>
               <span class="price-amount">{{ plan.amount / 100 }}</span>
+              <span class="price-period">/ {{ selectedPlan === 'year' ? 'yr' : 'mo' }}</span>
             </div>
             <div class="price-subtitle">
-              per product / {{ selectedPlan === 'year' ? 'year' : 'month' }}, billed {{ selectedPlan === 'year' ? 'annually' : 'monthly' }}
+              per product, billed {{ selectedPlan === 'year' ? 'annually' : 'monthly' }}
             </div>
           </ng-container>
         </div>
-
-        <!-- Enterprise Price Section -->
-        <div class="price-section" *ngIf="product.productName === 'Enterprise'">
-          <div class="price-display">
+        
+        <div *ngIf="product.productName === 'Enterprise'">
+          <div class="price-display custom-price">
             <span class="price-amount">Custom</span>
           </div>
-          <div class="price-subtitle">
-            Contact us for custom pricing and dedicated support
-          </div>
-        </div>
-
-        <!-- Buttons (App styling) -->
-        <div class="card-actions">
-          <!-- Normal Plan buttons -->
-          <ng-container *ngIf="product.productName !== 'Enterprise'">
-            <div *ngFor="let plan of getPlansByPeriod(product, selectedPlan)" class="buttons-wrapper">
-              <button class="select-button"
-                [ngClass]="getButtonActionClass(buttonLabels[plan?.description] || allButtonLabels)"
-                [class.active-plan]="buttonLabels[plan?.description] === currentPlanText"
-                (click)="buttonActions[plan?.description] ? buttonActions[plan?.description](plan?.description) : login(product.productName?.toLowerCase() + '-USD-' + (plan?.planName?.charAt(0).toUpperCase() + plan?.planName?.slice(1) + 'ly'))"
-                [disabled]="buttonLabels[plan?.description] === currentPlanText">
-                {{ buttonLabels[plan?.description] || allButtonLabels }}
-              </button>
-            </div>
-          </ng-container>
-
-          <!-- Enterprise buttons -->
-          <ng-container *ngIf="product.productName === 'Enterprise'">
-            <div class="buttons-wrapper">
-              <button class="select-button btn-contact-us" (click)="openEnterprisePlan()">
-                Contact Us
-              </button>
-            </div>
-          </ng-container>
+          <div class="price-subtitle">Contact for details</div>
         </div>
       </div>
+
+      <!-- 4. Action Button -->
+      <div class="row-section plan-action">
+        <ng-container *ngIf="product.productName !== 'Enterprise'">
+          <div *ngFor="let plan of getPlansByPeriod(product, selectedPlan)" class="buttons-wrapper">
+            <button class="select-button"
+              [ngClass]="getButtonActionClass(buttonLabels[plan?.description] || allButtonLabels)"
+              [class.active-plan]="buttonLabels[plan?.description] === currentPlanText"
+              (click)="buttonActions[plan?.description] ? buttonActions[plan?.description](plan?.description) : login(product.productName?.toLowerCase() + '-USD-' + (plan?.planName?.charAt(0).toUpperCase() + plan?.planName?.slice(1) + 'ly'))"
+              [disabled]="buttonLabels[plan?.description] === currentPlanText">
+              {{ buttonLabels[plan?.description] || allButtonLabels }}
+            </button>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="product.productName === 'Enterprise'">
+          <div class="buttons-wrapper">
+            <button class="select-button btn-contact-us" (click)="openEnterprisePlan()">
+              Contact Us
+            </button>
+          </div>
+        </ng-container>
+      </div>
+      
     </div>
   </div>
 </div>
