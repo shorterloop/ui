@@ -7,5 +7,6 @@ export * from './lib/image/public-api';
 export * from './lib/kanban/kanban.component';
 export * from './lib/product-tours/public-api';
 export * from './lib/progress/public-api';
+export * from './lib/theme-toggle/public-api';
 export * from './services/api-observer/api-call-observer.service';
 
