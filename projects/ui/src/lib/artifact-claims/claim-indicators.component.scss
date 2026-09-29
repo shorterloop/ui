@@ -1,0 +1,57 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+}
+
+.sl_claim_assumed {
+  display: inline-flex;
+  align-items: center;
+  min-height: 16px;
+  padding: 0 6px;
+  border: 1px solid var(--border-subtle, var(--border-primary));
+  border-radius: var(--sl-radius-pill, 999px);
+  color: var(--text-secondary);
+  font-size: 10px;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.sl_claim_flag {
+  display: inline-flex;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--sl-radius-pill, 999px);
+  background: var(--warning-primary, var(--sl-ember));
+}
+
+.sl_claim_count {
+  color: var(--text-secondary);
+  font-size: 11px;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.sl_claim_dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--text-tertiary, var(--text-secondary));
+  border-radius: var(--sl-radius-pill, 999px);
+  color: var(--success-primary, var(--sl-ember));
+  font-size: 7px;
+  line-height: 1;
+}
+
+.sl_claim_dot_flag {
+  background: var(--warning-primary, var(--sl-ember));
+  border-color: var(--warning-primary, var(--sl-ember));
+}
+
+.sl_claim_dot_backed {
+  width: 10px;
+  height: 10px;
+  border-color: var(--success-primary, var(--sl-ember));
+}
