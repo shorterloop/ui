@@ -3,8 +3,11 @@
  */
 export * from './lib/evaluate-experiment-variants/evaluate-experiment-variants.component';
 export * from './lib/form-field/form-field.component';
+export * from './lib/error/public-api';
 export * from './lib/image/public-api';
+export * from './lib/input/public-api';
 export * from './lib/kanban/kanban.component';
+export * from './lib/profile/public-api';
 export * from './lib/product-tours/public-api';
 export * from './lib/progress/public-api';
 export * from './services/api-observer/api-call-observer.service';
