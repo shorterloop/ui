@@ -1,0 +1,46 @@
+# Approves and enables auto-merge on Dependabot PRs that contain only patch
+# and minor updates. Majors, and anything Dependabot cannot classify, are left
+# for a person.
+#
+# `gh pr merge --auto` waits only for the checks main's ruleset marks as
+# *required*. Without a required CI check it merges straight away, so keep
+# the build check required on main for as long as this workflow exists.
+name: Dependabot auto-merge
+
+on: pull_request
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  automerge:
+    # github.actor as well as the PR author: if a person pushes to a
+    # Dependabot branch, that run is theirs and is not auto-approved.
+    if: github.actor == 'dependabot[bot]' && github.event.pull_request.user.login == 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - id: meta
+        uses: dependabot/fetch-metadata@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      # A grouped PR can mix update types, so check every dependency rather
+      # than a single update-type. An empty list means the metadata could not
+      # be read; treat that as unsafe too.
+      - id: check
+        env:
+          DEPS: ${{ steps.meta.outputs.updated-dependencies-json }}
+        run: |
+          total=$(jq 'length' <<<"$DEPS")
+          unsafe=$(jq '[.[] | select(.updateType != "version-update:semver-patch" and .updateType != "version-update:semver-minor")] | length' <<<"$DEPS")
+          echo "Dependencies: $total, needing review: $unsafe"
+          if [ "$total" -gt 0 ] && [ "$unsafe" -eq 0 ]; then echo "safe=true" >> "$GITHUB_OUTPUT"; fi
+
+      - if: steps.check.outputs.safe == 'true'
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr review --approve "$PR_URL" --body "Patch/minor dependency update only. Auto-merging once required checks pass."
+          gh pr merge --auto --squash "$PR_URL"

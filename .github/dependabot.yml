@@ -1,0 +1,40 @@
+# Weekly, grouped dependency updates. Patch and minor updates arrive as one PR
+# and are auto-merged by .github/workflows/dependabot-automerge.yml once CI
+# passes; majors come as their own PRs for a person to review.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    groups:
+      # Angular packages only work at matching versions, so they always move
+      # together. A major here means a coordinated `ng update`, not a merge.
+      angular:
+        patterns:
+          - "@angular/*"
+          - "@angular-devkit/*"
+          - "@schematics/angular"
+      storybook:
+        patterns:
+          - "storybook"
+          - "@storybook/*"
+      minor-and-patch:
+        update-types:
+          - minor
+          - patch
+      security:
+        applies-to: security-updates
+        patterns:
+          - "*"
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: monthly
+    groups:
+      actions:
+        patterns:
+          - "*"
